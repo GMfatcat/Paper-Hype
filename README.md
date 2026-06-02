@@ -12,7 +12,7 @@
 
 Social feeds (Threads, X, …) are flooded with posts that take a real research paper and inflate it into a "this changes everything / your job is doomed" clickbait. This skill helps you **see through that** — in two directions.
 
-## Two modes
+## Three modes
 
 ### Mode A — Study (paper → hype → dissection)
 Give it a research domain (or your own notes). It dispatches sub‑agents to find **real** papers, then for each paper produces:
@@ -46,6 +46,9 @@ The verification step is the whole point: it catches the most common trick — *
 Bands: **0–25 🟢 worth reading · 26–50 🟡 verify before trusting · 51–75 🟠 highly suspect · 76–100 🔴 textbook hype, scroll past.**
 
 > A real number you can verify is *not* a sin; a fabricated one, or a real one with its premise hidden, is. **Enthusiasm ≠ hype** — the gap and the omission are what the score punishes.
+
+### Mode C — Paper integrity triage (reader self-defense)
+Give it a paper link (arXiv/DOI/URL) and ask *"is this trustworthy / any fraud?"*. It verifies the paper's **own** integrity — checking for **nonexistent / hallucinated references, leftover AI-generation text, tortured phrases, retraction / PubPeer status, and predatory venues** — and returns a 0–100 **trust-risk** score with an evidence dossier. Scoped to *your own* decision (trust / cite / build on), **not** public accusation: every flag is a verifiable lead, "查不到 ≠ fraud", and a clean score ≠ "the paper is correct."
 
 ## Mode B in action
 Asked *"is this hype?"* on a real X thread about Perplexity's "Search as Code" architecture, Mode B fetched the post, opened Perplexity's actual research article, and returned this verdict:

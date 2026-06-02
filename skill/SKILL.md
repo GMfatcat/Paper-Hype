@@ -1,6 +1,6 @@
 ---
 name: dissecting-paper-hype
-description: Use for two paper-hype media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
+description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
 ---
 
 # Dissecting Paper Hype（論文營銷號實驗）
@@ -10,10 +10,11 @@ description: Use for two paper-hype media-literacy modes. MODE A (study): take p
 
 **倫理框架(必守)**:論文必須真實存在(正確標題 + arXiv/DOI);每篇都附誠實的「真實版」對照(含限制);**每個產出檔開頭都嵌入固定警語**(見模板 A),讓任何單篇被單獨複製出去時仍帶著「受控示範、非真實評價」的標記——這是結構性防呆,不能只靠意圖判斷。若使用者要的是真要拿去投放的宣傳文,這個 skill 不適用——婉拒。
 
-## 兩種模式（先判斷走哪條）
+## 三種模式（先判斷走哪條）
 - **MODE A 實驗模式**(論文 → 營銷號 → 拆解):使用者給「領域/筆記」要研究吹捧手段。走下方〈MODE A〉全段。
 - **MODE B 快篩模式**(貼文 → 0–100 營銷號分數):使用者**貼一則貼文(URL 或內文)問「這是不是營銷號 / 給個分數」**。跳到〈MODE B:快篩模式〉。
-- 倫理硬關卡兩模式都適用:都不產出可發布行銷文;Mode B 只做「判讀」不做「改寫推廣」。
+- **MODE C 快篩模式·論文版**(論文連結 → 0–100 採信風險分數):使用者**給一篇論文(arXiv/DOI/URL)問「這篇可信嗎 / 有沒有造假 / 該不該引用」**。跳到〈MODE C:論文採信風險快篩〉。
+- 倫理硬關卡三模式都適用:都不產出可發布行銷文;Mode B 只判讀貼文;**Mode C 只做讀者自保判讀,不產出公開點名/檢舉內容**。
 
 ---
 # ═══════ MODE A:實驗模式（論文→營銷號→拆解） ═══════
@@ -125,3 +126,51 @@ description: Use for two paper-hype media-literacy modes. MODE A (study): take p
 - **不要誤殺誠實貼文**:有可查證連結 + 主動講限制 + 語氣平實 + 無 CTA → A/D/E/G 應給低分;查證後落差小 → B 低分。**熱情 ≠ 營銷號**,落差與隱瞞才是。
 - **分數要可複現**:固定這 7 維、各維附證據;同一篇貼文重跑分數應接近。
 - **取文殘缺就停**:寧可請使用者重貼,不要對殘缺內容硬打分。
+
+---
+# ═══════ MODE C:論文採信風險快篩（論文連結→0–100 採信風險） ═══════
+
+## 何時走這條
+使用者給一篇論文(arXiv/DOI/URL)問「這篇可信嗎 / 有沒有造假 / 該不該引用」。產出:**採信風險分數 0–100**(越高越該謹慎)+ 燈號 + 證據卷宗,**給讀者自己判斷用**。
+
+## Confirm First（倫理關卡)
+- 正常用途(我該不該信/引用這篇)→ 放行。
+- 若使用者要「公開點名 / 寫檢舉文 / 產出指控某人的內容」→ **停止**,說明 Mode C 只做讀者自保判讀。
+- 鐵則:**查不到 ≠ 造假**(標「不可查證」);**絕不憑記憶斷言**論文或引用的事實,一律 WebFetch/WebSearch 查;**乾淨分數 ≠ 論文正確**,只代表未掃到自動化紅旗。
+
+## 取文
+連結 → WebFetch 取 metadata + 摘要 + **全文**(arXiv HTML/PDF、開放取用)+ **參考文獻清單**。
+- 只拿到摘要(付費牆)→ 標「全文不可得 → 檢查受限」,降信心續跑,**不可當成完整檢查**。
+- 一般頁面用 WebFetch;JS 重的出版頁可退用 `scrapling-fetcher/` 容器。
+
+## Pipeline
+1. **取文**(上方)。
+2. **拆解**:參考文獻清單、全文正文、venue/DOI、作者。
+3. **平行查 5 項**(每項一個 subagent,`model: sonnet`,模板 F;資料見 `references/integrity-signals.md`):
+   - **C1 幻覺/不存在引用**(逐筆核 Crossref/DOI/arXiv;過多取樣並揭露)← 最強
+   - **C2 AI 生成痕跡**(全文掃 AI 殘留字串)
+   - **C3 tortured phrases**(洗稿指紋)
+   - **C4 撤稿/PubPeer 狀態**(Retraction Watch + PubPeer + publisher 頁)
+   - **C5 掠奪性/可疑出版**(DOAJ / 劫持期刊 / 假影響因子)
+4. **整合評分 + 卷宗**(下方 rubric),每條 finding 附證據+出處+信心+「你該自己再查什麼」。
+5. **判決報告**(模板 G)。
+
+## Mode C 評分 Rubric（採信風險 0–100,越高越該謹慎）
+| 代號 | 檢查 | 上限 |
+|---|---|---|
+| C1 | 幻覺/不存在引用 | 30 |
+| C2 | AI 生成痕跡 | 25 |
+| C4 | 撤稿/PubPeer | 25 |
+| C5 | 掠奪性/可疑出版 | 15 |
+| C3 | tortured phrases | 15 |
+
+計分:各項依命中嚴重度給該項 0~上限分,加總後**歸一化到 0–100**。
+**決定性紅旗錨定**:任一「已確認」的重大不端——C4 已確認撤稿、C2 確認 AI 殘留字串、C1 大量確認不存在的引用——**直接錨定到 🔴(71–100),不受加總歸一化稀釋**(單一決定性紅旗不應被其他項乾淨而拉低)。
+燈號:**0–20 🟢 無重大旗標 / 21–45 🟡 輕微-自己查 / 46–70 🟠 多項旗標-存疑 / 71–100 🔴 嚴重-未獨立查證勿採信**。
+涵蓋度調整:全文不可得時,需全文的項目(C1 全清單、C2、C3)只能部分執行 → 報告**降涵蓋度/信心**,不可當「通過」。
+
+## Mode C 紀律（務必遵守）
+- 絕不憑記憶說某引用是假的 — 必須查;區分「無法確認存在」vs「確認不存在」。
+- 某來源連不上 → 標該項「未執行」,非「通過」。
+- 參考文獻過多 → 取樣並**揭露**(已查 N / 共 M),不靜默截斷。
+- 全文殘缺 → 明說涵蓋受限、降信心,不硬給高信心分數。
