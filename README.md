@@ -87,5 +87,12 @@ examples/                  experiment data — 25 domains, 75 hype pieces
 ## Ethics & disclaimer
 `examples/` contains **deliberately fabricated** clickbait rewrites of real papers, produced as teaching material. Every file is headed with a disclaimer in Chinese marking it as a controlled demo. **Do not extract and publish any "營銷號版 (hype version)" as a real take on a paper.** The skill exists to *detect and dissect* hype, never to manufacture it.
 
+## Acknowledgements
+Mode B's post fetcher is built on [**Scrapling**](https://github.com/D4Vinci/Scrapling) by Karim Shoair ([@D4Vinci](https://github.com/D4Vinci)) — an adaptive web‑scraping framework that handles JS rendering and anti‑bot, which is what makes fetching live Threads/X posts possible. This project only **invokes** Scrapling inside a Docker container (see `skill/scrapling-fetcher/`); it does not vendor or modify Scrapling's source.
+
 ## License
-[MIT](./LICENSE) — see the file and set the copyright holder to your name.
+This project is licensed under the [MIT License](./LICENSE) © 2026 GMfatcat.
+
+**Third‑party licenses:**
+- [Scrapling](https://github.com/D4Vinci/Scrapling) — **BSD‑3‑Clause** © Karim Shoair.
+- The Docker image additionally installs Python, Playwright / camoufox and their dependencies, each under its own license.

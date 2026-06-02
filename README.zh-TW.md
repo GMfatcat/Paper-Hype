@@ -87,5 +87,12 @@ examples/                  實驗數據——25 領域、75 篇營銷號
 ## 倫理與免責
 `examples/` 內含對真實論文的**刻意捏造**吹捧改寫,作為教學反面教材。每個檔案開頭都有中文免責標記,表明這是受控示範。**請勿擷取任何「營銷號版」當作對論文的真實評價發布。** 這個 skill 的存在是為了**偵測與拆解**營銷號,絕非製造它。
 
+## 致謝
+Mode B 的取文器建構於 [**Scrapling**](https://github.com/D4Vinci/Scrapling)(作者 Karim Shoair / [@D4Vinci](https://github.com/D4Vinci))——一個能處理 JS 渲染與反爬的自適應網路爬蟲框架,正是它讓抓取即時 Threads/X 貼文成為可能。本專案僅在 Docker 容器內**呼叫** Scrapling(見 `skill/scrapling-fetcher/`),未內嵌或修改其原始碼。
+
 ## 授權
-[MIT](./LICENSE)——請打開檔案把著作權人改成你的名字。
+本專案採 [MIT 授權](./LICENSE) © 2026 GMfatcat。
+
+**第三方授權:**
+- [Scrapling](https://github.com/D4Vinci/Scrapling) — **BSD‑3‑Clause** © Karim Shoair。
+- Docker 映像另安裝 Python、Playwright / camoufox 及其相依套件,各依其原始授權。
