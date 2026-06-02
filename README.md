@@ -73,14 +73,32 @@ Asked *"is this hype?"* on a real X thread about Perplexity's "Search as Code" a
 - For fetching JS‑heavy social posts: **Docker** (optional — you can always just paste the post text).
 
 ## Install
-Copy the skill into your Claude Code skills directory:
+
+### Option A — let your AI agent install it (recommended)
+Paste this prompt to Claude Code (or any coding agent with shell access) and it will install the skill itself:
+
+```text
+Install the "dissecting-paper-hype" Claude Code skill from https://github.com/GMfatcat/Paper-Hype
+
+1. Clone (or download) the repo to a temp location.
+2. Copy its `skill/` directory into my personal skills directory so the result is
+   ~/.claude/skills/dissecting-paper-hype/  containing SKILL.md, references/ and scrapling-fetcher/.
+   (Windows: %USERPROFILE%\.claude\skills\dissecting-paper-hype\)
+3. Optional — build the post fetcher: in skill/scrapling-fetcher run  `docker build -t hype-fetcher .`
+4. Verify SKILL.md exists at the target path, then read it and summarize the two modes back to me.
+```
+
+### Option B — manual
 ```bash
 # macOS / Linux
-cp -r skill ~/.claude/skills/dissecting-paper-hype
+git clone https://github.com/GMfatcat/Paper-Hype
+cp -r Paper-Hype/skill ~/.claude/skills/dissecting-paper-hype
 
 # Windows (PowerShell)
-Copy-Item -Recurse skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
+git clone https://github.com/GMfatcat/Paper-Hype
+Copy-Item -Recurse Paper-Hype\skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
 ```
+
 Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A) or *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B).
 
 ## Docker fetcher (Mode B 取文)
