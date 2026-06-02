@@ -88,7 +88,7 @@ Install the "dissecting-paper-hype" Claude Code skill from https://github.com/GM
    ~/.claude/skills/dissecting-paper-hype/  containing SKILL.md, references/ and scrapling-fetcher/.
    (Windows: %USERPROFILE%\.claude\skills\dissecting-paper-hype\)
 3. Optional — build the post fetcher: in skill/scrapling-fetcher run  `docker build -t hype-fetcher .`
-4. Verify SKILL.md exists at the target path, then read it and summarize the two modes back to me.
+4. Verify SKILL.md exists at the target path, then read it and summarize the three modes back to me.
 ```
 
 ### Option B — manual
@@ -102,7 +102,7 @@ git clone https://github.com/GMfatcat/Paper-Hype
 Copy-Item -Recurse Paper-Hype\skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
 ```
 
-Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A) or *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B).
+Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A), *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B), or *"這篇論文可信嗎 / is this paper legit? <link>"* (Mode C).
 
 ## Docker fetcher (Mode B 取文)
 Packages [Scrapling](https://github.com/D4Vinci/Scrapling) so you don't install Python/Playwright on the host.

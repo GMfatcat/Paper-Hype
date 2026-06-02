@@ -88,7 +88,7 @@ Threads、X 等動態牆充斥著「拿一篇真論文、吹成『這將改變�
    ~/.claude/skills/dissecting-paper-hype/  且內含 SKILL.md、references/、scrapling-fetcher/。
    (Windows:%USERPROFILE%\.claude\skills\dissecting-paper-hype\)
 3. 選用 — 建置取文器:在 skill/scrapling-fetcher 執行  `docker build -t hype-fetcher .`
-4. 確認目標路徑下有 SKILL.md,然後讀它並把兩種模式摘要回報給我。
+4. 確認目標路徑下有 SKILL.md,然後讀它並把三種模式摘要回報給我。
 ```
 
 ### 方式 B — 手動
@@ -102,7 +102,7 @@ git clone https://github.com/GMfatcat/Paper-Hype
 Copy-Item -Recurse Paper-Hype\skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
 ```
 
-之後在 Claude Code 裡自然詢問即可——skill 會在出現「做營銷號實驗」「把論文寫成吹捧版」(Mode A)或「這篇貼文是營銷號嗎 / is this post hype? <URL>」(Mode B)等說法時觸發。
+之後在 Claude Code 裡自然詢問即可——skill 會在出現「做營銷號實驗」「把論文寫成吹捧版」(Mode A)、「這篇貼文是營銷號嗎 / is this post hype? <URL>」(Mode B)、或「這篇論文可信嗎 / 有沒有造假? <連結>」(Mode C)等說法時觸發。
 
 ## Docker 取文器（Mode B 取文）
 封裝 [Scrapling](https://github.com/D4Vinci/Scrapling),免在本機裝 Python/Playwright。
