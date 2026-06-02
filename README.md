@@ -1,0 +1,91 @@
+# Dissecting Paper Hype
+
+*A [Claude Code](https://claude.com/claude-code) skill for media literacy on AI‑paper hype.*
+
+繁體中文版 → [README.zh-TW.md](./README.zh-TW.md)
+
+---
+
+Social feeds (Threads, X, …) are flooded with posts that take a real research paper and inflate it into a "this changes everything / your job is doomed" clickbait. This skill helps you **see through that** — in two directions.
+
+## Two modes
+
+### Mode A — Study (paper → hype → dissection)
+Give it a research domain (or your own notes). It dispatches sub‑agents to find **real** papers, then for each paper produces:
+- an honest **plain‑language summary** (with the real limitations), and
+- a deliberately exaggerated **hype rewrite** (sensational title + clickbait body),
+
+then scores every piece on a 6‑dimension rubric and writes an analysis report of the recurring **tactics, high‑frequency phrases, and sentence templates**. The point is to learn the manipulation playbook by reconstructing it.
+
+> ⚠️ Every generated hype piece carries a disclaimer header marking it as a **controlled media‑literacy demo, not a real evaluation**. This skill is **not** for producing publishable marketing copy — that use is refused by an ethics gate.
+
+### Mode B — Quick‑check (post → 0–100 hype score)
+Paste a single Threads/X post (URL or text) and ask *"is this hype?"*. The skill:
+1. **Fetches** the post (Docker/Scrapling container, or you paste the text),
+2. **Extracts** its claims, cited papers/repos, and rhetorical tells,
+3. **Verifies** — dispatches sub‑agents that actually open each cited arXiv/GitHub link and compare *what the post claims* vs *what the paper really says*, and which limitations were omitted,
+4. **Scores** it 0–100 on a 7‑dimension rubric and returns a verdict.
+
+The verification step is the whole point: it catches the most common trick — **real numbers with the premises stripped out** — which a keyword scan (or a from‑memory guess) cannot.
+
+#### Hype‑score rubric (0–100, higher = more suspicious)
+| Dim | What it measures | Max |
+|---|---|---|
+| A | Sensational title / opening | 15 |
+| B | Claim‑vs‑paper gap *(needs verification)* | 15 |
+| C | Numbers stripped of premises / mismatched comparison | 15 |
+| D | Hidden limitations *(needs verification)* | 15 |
+| E | Emotional manipulation (job‑loss / health / FOMO / nationalism) | 15 |
+| F | Fake authority / fake social proof | 15 |
+| G | Unverifiable sources | 10 |
+
+Bands: **0–25 🟢 worth reading · 26–50 🟡 verify before trusting · 51–75 🟠 highly suspect · 76–100 🔴 textbook hype, scroll past.**
+
+> A real number you can verify is *not* a sin; a fabricated one, or a real one with its premise hidden, is. **Enthusiasm ≠ hype** — the gap and the omission are what the score punishes.
+
+## A real example (Mode B)
+A measured Chinese‑language X thread explaining Perplexity's "Search as Code" architecture, quoting `100% accuracy`, `-85.1% tokens`, `2.5× on WANDR`. Mode B fetched it, opened Perplexity's actual research article, and confirmed **every number matched the source** — so it did *not* cry "fabrication". It scored **27/100 🟡**, with the one real flaw flagged: the post relays a **vendor's first‑party benchmark (WANDR wasn't even public yet) as if it were independent** — read it, but know whose scoreboard you're looking at.
+
+## Requirements
+- **Claude Code** (this is a skill — it uses the `Skill` tool, sub‑agents, and web access).
+- For Mode B's deep verification: web access (`WebFetch`/`WebSearch`).
+- For fetching JS‑heavy social posts: **Docker** (optional — you can always just paste the post text).
+
+## Install
+Copy the skill into your Claude Code skills directory:
+```bash
+# macOS / Linux
+cp -r skill ~/.claude/skills/dissecting-paper-hype
+
+# Windows (PowerShell)
+Copy-Item -Recurse skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
+```
+Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A) or *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B).
+
+## Docker fetcher (Mode B 取文)
+Packages [Scrapling](https://github.com/D4Vinci/Scrapling) so you don't install Python/Playwright on the host.
+```bash
+cd skill/scrapling-fetcher
+docker build -t hype-fetcher .
+docker run --rm hype-fetcher "https://www.threads.com/@user/post/XXXX"
+```
+Outputs one JSON object; use `post_text` + `text_excerpt` as the post body. **Tested (2026‑06):** the stealth fetcher (camoufox, runs JS) successfully retrieved a full **public Threads** post and arXiv pages; **X (Twitter) login‑walls** often leave only a stub → fall back to pasting. See [skill/scrapling-fetcher/README.md](./skill/scrapling-fetcher/README.md).
+
+## Repo layout
+```
+skill/                     the installable Claude Code skill
+  SKILL.md                 modes, pipelines, rubrics, hard rules
+  references/templates.md  sub‑agent prompts + report formats
+  scrapling-fetcher/       Dockerized post fetcher (Dockerfile + fetch.py)
+examples/                  experiment data — 25 domains, 75 hype pieces
+  batch1-niche-ai/         10 niche domains (KAN, SNN, Liquid NN, …)
+  batch2-mainstream/       5 mainstream domains (Agents, RAG, Diffusion, …)
+  batch3-hot/              10 hot domains (Quantization, MoE, Alignment, AI4Science, …)
+  cross-batch-playbook.md  the consolidated anti‑hype field guide
+```
+
+## Ethics & disclaimer
+`examples/` contains **deliberately fabricated** clickbait rewrites of real papers, produced as teaching material. Every file is headed with a disclaimer in Chinese marking it as a controlled demo. **Do not extract and publish any "營銷號版 (hype version)" as a real take on a paper.** The skill exists to *detect and dissect* hype, never to manufacture it.
+
+## License
+[MIT](./LICENSE) — see the file and set the copyright holder to your name.

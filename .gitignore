@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Cygwin/MSYS crash dumps (seen on Windows + non-ASCII paths)
+*.stackdump
+
+# Local scratch
+*.log
+tmp/
