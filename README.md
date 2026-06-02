@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./cover.png" alt="Dissecting Paper Hype — see what the paper says, see what the internet claims" width="760">
+</p>
+
 # Dissecting Paper Hype
 
 *A [Claude Code](https://claude.com/claude-code) skill for media literacy on AI‑paper hype.*
@@ -43,8 +47,25 @@ Bands: **0–25 🟢 worth reading · 26–50 🟡 verify before trusting · 51�
 
 > A real number you can verify is *not* a sin; a fabricated one, or a real one with its premise hidden, is. **Enthusiasm ≠ hype** — the gap and the omission are what the score punishes.
 
-## A real example (Mode B)
-A measured Chinese‑language X thread explaining Perplexity's "Search as Code" architecture, quoting `100% accuracy`, `-85.1% tokens`, `2.5× on WANDR`. Mode B fetched it, opened Perplexity's actual research article, and confirmed **every number matched the source** — so it did *not* cry "fabrication". It scored **27/100 🟡**, with the one real flaw flagged: the post relays a **vendor's first‑party benchmark (WANDR wasn't even public yet) as if it were independent** — read it, but know whose scoreboard you're looking at.
+## Mode B in action
+Asked *"is this hype?"* on a real X thread about Perplexity's "Search as Code" architecture, Mode B fetched the post, opened Perplexity's actual research article, and returned this verdict:
+
+> ### 🟡 Hype score: 27 / 100 — *verify before trusting*
+> **Verdict:** An honest, careful technical summary — every quoted number matches the source, tone is measured, sources check out. Its one real flaw: it relays a **vendor's first‑party benchmark (WANDR wasn't public yet) as if it were independent**. Read it, but know whose scoreboard you're looking at.
+>
+> | Dim | Score | Why |
+> |---|---|---|
+> | A · sensational title | 4/15 | "next paradigm shift" is mild; no shock words |
+> | B · claim‑vs‑paper gap | 4/15 | every quoted number matches the article |
+> | C · numbers w/o premise | 7/15 | "competitors <25%", "2.5×" are vendor‑run comparisons |
+> | D · hidden limitations | 8/15 | omits: self‑designed benchmark, no third‑party check |
+> | E · emotional manipulation | 1/15 | no FOMO / job‑loss / call‑to‑action |
+> | F · fake authority | 2/15 | cites the real source (which *is* the vendor) |
+> | G · unverifiable sources | 1/10 | the article is fully verifiable |
+>
+> **Verification step:** opened `research.perplexity.ai/...` → `100% accuracy` ✓ · `−85.1% tokens` ✓ · `2.5× on WANDR` ✓ — every number real, but WANDR is Perplexity's own benchmark, unpublished at post time.
+
+<!-- Prefer an actual screenshot? Drop a PNG at assets/mode-b-demo.png and replace the block above with: ![Mode B demo](./assets/mode-b-demo.png) -->
 
 ## Requirements
 - **Claude Code** (this is a skill — it uses the `Skill` tool, sub‑agents, and web access).
