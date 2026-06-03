@@ -1,6 +1,6 @@
 ---
 name: dissecting-paper-hype
-description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "掃最近N篇論文/批量查論文採信風險", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
+description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "一次篩這些貼文/批量篩貼文", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "掃最近N篇論文/批量查論文採信風險", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
 ---
 
 # Dissecting Paper Hype（論文營銷號實驗）
@@ -126,6 +126,16 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 - **不要誤殺誠實貼文**:有可查證連結 + 主動講限制 + 語氣平實 + 無 CTA → A/D/E/G 應給低分;查證後落差小 → B 低分。**熱情 ≠ 營銷號**,落差與隱瞞才是。
 - **分數要可複現**:固定這 7 維、各維附證據;同一篇貼文重跑分數應接近。
 - **取文殘缺就停**:寧可請使用者重貼,不要對殘缺內容硬打分。
+
+## Mode B 批量子流程（一次篩一批貼文）
+使用者給**一批貼文**(多 URL 與/或多則內文,`---` 分隔)問「幫我一次篩 / 哪幾篇值得讀」。**使用者供清單,不自動爬時間軸。**
+1. **取文**:URL → `scrapling-fetcher`;內文直接用;殘缺 → 請補貼該則,不硬評。
+2. **第一層 輕量篩**:每篇一子代理(`model:sonnet`,並行分批,模板 I,只回一行)——評 A/C/E/F/G + 抽引用/宣稱;**B/D 標「待深查」**,話術濃但未查證最多 🟠(熱情≠營銷號,不憑話術定 🔴)。
+3. **彙整**:依分數排序 + 燈號分布。
+4. **第二層 升級**:🟠/🔴(或使用者指定)→ 跑完整單篇 Mode B(深查所引論文 vs 宣稱落差 → 補 B/D)→ 模板 E 判決,分數改標「深查」。
+5. **輸出**:`hype_check/批量貼文掃描_<標籤>.md`(總表 + 分布 + 升級判決 + 方法限制)。
+
+**批量紀律**:一輪預設 **N≤15**、更多分輪先告知;並行分批 ~5;取文殘缺→請補貼;**不靜默截斷**(掃 N/共 M);分數啟發式非定論;**批量結果不可拿去公開點名**(識讀/自保用途)。
 
 ---
 # ═══════ MODE C:論文採信風險快篩（論文連結→0–100 採信風險） ═══════
