@@ -22,3 +22,4 @@ Mode C 取文/拆解 calls it once; C1/C4/C5 直接採用其結果(`retracted`/`
 - **No ORCID ≠ fake author.** Only aggregated (`author_weak_ratio`) is a weak signal; never a verdict on an individual.
 - Not covered v1: C2/C3 (need full text, roadmap #2), deep hallucinated-ref check (needs `--refs` from #2), PubPeer/predatory lists.
 - Politeness: OpenAlex polite pool via `mailto`; modest ORCID calls.
+- Reference resolution (`--refs`) uses Crossref `query.bibliographic` + a title-token match gate. `refs_unresolved` is an **advisory** signal (messy strings / search noise can cause false "unresolved") — treat a high unresolved ratio as "check these manually", never as proof of fabrication.

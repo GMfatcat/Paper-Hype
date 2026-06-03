@@ -160,21 +160,26 @@ def match_reference(ref, candidate_title):
     return overlap >= 0.6
 
 
-def _search_openalex_title(ref):
-    q = urllib.parse.quote(ref[:300])
-    url = f"{OPENALEX}/works?search={q}&per_page=1&mailto={MAILTO}"
+def _search_reference_title(ref):
+    # Crossref query.bibliographic is purpose-built for matching messy reference strings
+    q = urllib.parse.quote(ref[:400])
+    url = f"https://api.crossref.org/works?query.bibliographic={q}&rows=1&mailto={MAILTO}"
     try:
-        data = http_get_json(url)
+        req = urllib.request.Request(url, headers={"User-Agent": f"paper-verify/1.0 (mailto:{MAILTO})",
+                                                   "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode("utf-8"))
     except Exception:
         return None
-    results = data.get("results") or []
-    if not results:
+    items = (data.get("message") or {}).get("items") or []
+    if not items:
         return None
-    return results[0].get("title") or results[0].get("display_name")
+    titles = items[0].get("title") or []
+    return titles[0] if titles else None
 
 
 def resolve_refs(refs, searcher=None):
-    searcher = searcher or _search_openalex_title
+    searcher = searcher or _search_reference_title
     unresolved = []
     for ref in refs:
         title = searcher(ref)
