@@ -127,6 +127,8 @@
 共同前綴(每個都加):
 「這是一個論文採信風險查證任務(讀者自保用,非指控)。請用繁體中文,**務必實際用 WebFetch/WebSearch 查證,不可憑記憶斷言**。查不到就回報『不可查證』,不要當成造假也不要當成真實。」
 
+**優先**:先對該論文跑 `paper-verify`(skill/paper-verify/)取得 facts+flags;C1/C4/C5 直接採用其結果(`retracted`/`not_in_doaj_journal`/`author_identity_weak`/引用統計)。**僅當 `resolved:false`(常因太新未索引)才退回下列手動 WebFetch 查證**。C2/C3(AI 痕跡/tortured)仍走全文文字檢查。
+
 - **C1 幻覺/不存在引用**：給定參考文獻清單 `{refs}`(過多時取樣 N 筆並回報「已查 N / 共 M」)。對每筆用 Crossref/DOI/arXiv 核對是否存在、標題-作者-年份是否吻合。回傳:`已查/總數`、`確認不存在` 筆數與清單、`無法確認` 筆數、一句總評。
 - **C2 AI 生成痕跡**：給定全文 `{fulltext}` 與 `integrity-signals.md` 的 AI 字串清單。回傳:命中字串 + 出現位置原句(照抄)、或「無命中」。
 - **C3 tortured phrases**：給定全文與 tortured 清單(+ Problematic Paper Screener)。回傳:命中片語 + 原句、或「無命中」。

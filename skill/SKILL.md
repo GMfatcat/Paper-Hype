@@ -142,6 +142,7 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 連結 → WebFetch 取 metadata + 摘要 + **全文**(arXiv HTML/PDF、開放取用)+ **參考文獻清單**。
 - 只拿到摘要(付費牆)→ 標「全文不可得 → 檢查受限」,降信心續跑,**不可當成完整檢查**。
 - 一般頁面用 WebFetch;JS 重的出版頁可退用 `scrapling-fetcher/` 容器。
+- **結構化事實**:先跑 `paper-verify "<DOI/arXiv/標題>"`(skill/paper-verify/,Docker 或 `python verify.py`)→ 拿 facts+flags 餵 C1/C4/C5 與作者識別;`resolved:false`(太新未索引)→ 退回 WebFetch,**不當紅旗**。
 
 ## Pipeline
 1. **取文**(上方)。

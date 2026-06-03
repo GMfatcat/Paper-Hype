@@ -32,3 +32,5 @@ Well-known examples (match these + anything structurally similar):
 - Retraction status: Retraction Watch database (search the title/DOI/author) ; the paper's publisher page (look for "Retracted"/"Expression of Concern")
 - Post-publication review: PubPeer `https://pubpeer.com/search?q=<doi-or-title>`
 - Venue legitimacy: DOAJ `https://doaj.org/search/journals?source=...` ; check if the journal is indexed; watch for hijacked-journal / fake-impact-factor signals
+
+- Structured backbone (preferred, deterministic): `paper-verify` tool (skill/paper-verify/) → OpenAlex `https://api.openalex.org/works/<doi|arxiv:id>` + ORCID `https://pub.orcid.org/v3.0/<id>/person`. Use it first; fall back to the manual lookups above when it returns `resolved:false`.
