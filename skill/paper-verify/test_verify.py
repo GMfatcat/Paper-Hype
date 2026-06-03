@@ -19,8 +19,8 @@ def test_build_url_doi_full_link():
     assert "/works/https://doi.org/10.1016/S0140-6736(20)31180-6" in u
 
 def test_build_url_arxiv():
-    assert "/works/arxiv:2212.12794" in verify.build_openalex_url("arXiv:2212.12794")
-    assert "/works/arxiv:2606.02437" in verify.build_openalex_url("2606.02437")
+    assert "/works/https://doi.org/10.48550/arXiv.2212.12794" in verify.build_openalex_url("arXiv:2212.12794")
+    assert "/works/https://doi.org/10.48550/arXiv.2606.02437" in verify.build_openalex_url("2606.02437")
 
 def test_build_url_title_search():
     u = verify.build_openalex_url("Attention Is All You Need")

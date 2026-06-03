@@ -18,7 +18,7 @@ def build_openalex_url(identifier):
         return f"{OPENALEX}/works/https://doi.org/{doi}?mailto={MAILTO}"
     arx = low.replace("arxiv:", "").strip()
     if len(arx) >= 9 and arx[:4].isdigit() and "." in arx and "/" not in arx and " " not in arx:
-        return f"{OPENALEX}/works/arxiv:{arx}?mailto={MAILTO}"
+        return f"{OPENALEX}/works/https://doi.org/10.48550/arXiv.{arx}?mailto={MAILTO}"
     q = urllib.parse.quote(ident)
     return f"{OPENALEX}/works?search={q}&per_page=1&mailto={MAILTO}"
 
