@@ -45,11 +45,20 @@ def parse_arxiv_html(html):
 
 
 def split_references(text):
-    m = re.search(r'(?is)\b(references|bibliography)\b', text or "")
-    tail = text[m.end():] if m else (text or "")
-    parts = re.split(r'(?m)\s*\[\d+\]\s*', tail)
+    text = text or ""
+    matches = list(re.finditer(r'(?im)^\s*(references|bibliography)\s*$', text))
+    if not matches:
+        matches = list(re.finditer(r'(?i)\b(references|bibliography)\b', text))
+    tail = text[matches[-1].end():] if matches else text
+    parts = re.split(r'(?m)(?:^|\s)\[\d+\]\s*', tail)
     entries = [re.sub(r'\s+', ' ', p).strip() for p in parts]
-    return [e for e in entries if len(e) > 20]
+    entries = [e for e in entries if len(e) > 25]
+    if len(entries) >= 3:
+        return entries
+    parts2 = re.split(r'(?m)^\s*\d{1,3}[.\)]\s+', tail)
+    entries2 = [re.sub(r'\s+', ' ', p).strip() for p in parts2]
+    entries2 = [e for e in entries2 if len(e) > 25]
+    return entries2 if len(entries2) > len(entries) else entries
 
 
 def assess_text_layer(text, threshold=TEXT_LAYER_MIN):
@@ -130,6 +139,10 @@ def format_output(result):
 
 
 if __name__ == "__main__":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")  # JSON is UTF-8; avoid Windows cp950 crash
+    except Exception:
+        pass
     if len(sys.argv) < 2:
         print(json.dumps({"ok": False, "notes": ["usage: python extract.py <arXiv id | PDF URL>"]}))
         sys.exit(0)

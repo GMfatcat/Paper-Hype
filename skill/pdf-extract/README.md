@@ -19,3 +19,4 @@ Mode C 取文 runs it alongside `paper-verify`. `fulltext` → C2/C3 scans; `ref
 - **No OCR**: image/scanned PDFs → `coverage:"none"` (honest fall back, not a crash).
 - No paywall bypass; no table/formula/figure structuring.
 - Reference splitting from PDF text is heuristic (`references_count` reported; arXiv HTML refs are structured and cleaner).
+- **Reference extraction is best-effort.** Full text is reliable; references depend on the paper having a structured HTML bibliography or a clean numbered PDF reference list. `references_count` is reported; when low/0, Mode C treats C1 as 受限 and may sample manually. Robust parsing (GROBID-level) is out of scope.

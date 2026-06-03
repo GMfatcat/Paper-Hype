@@ -33,7 +33,7 @@ New Dockerized Python CLI at `skill/pdf-extract/` (Dockerfile + `extract.py` + R
 - **Reference list** (array of strings):
   - arXiv HTML: use the structured bibliography (the `<ol>` / reference list items).
   - PDF text: locate the "References"/"Bibliography" heading, split the tail into entries by `[n]` markers / numbered patterns / blank-line heuristics.
-  - **Heuristic and imperfect** → always report `references_count` and a confidence note; never claim completeness.
+  - **Heuristic and imperfect** → always report `references_count` and a confidence note; never claim completeness. Real-data note (2026-06): full text is reliable; structured refs are present for many but not all papers (e.g. arXiv HTML without a bibliography section, or messy PDF columns) — treated as best-effort, count always reported.
 
 ## 5. Output JSON (shape)
 
