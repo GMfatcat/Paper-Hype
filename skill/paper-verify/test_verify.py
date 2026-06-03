@@ -166,3 +166,25 @@ def test_integration_clean():
     assert r["resolved"] is True
     assert r["flags"]["retracted"] is False
     assert r["venue"]["name"]  # has a venue
+
+
+# ---------------------------------------------------------------------------
+# Task 7: match_reference + resolve_refs
+# ---------------------------------------------------------------------------
+
+def test_match_reference():
+    assert verify.match_reference("Vaswani Attention is all you need 2017",
+                                  "Attention Is All You Need") is True
+    assert verify.match_reference("Totally unrelated string about cats",
+                                  "Attention Is All You Need") is False
+
+def test_resolve_refs(monkeypatch):
+    # searcher returns a title for the real one, None for the fake
+    def fake_search(ref):
+        return "Attention Is All You Need" if "Vaswani" in ref else None
+    out = verify.resolve_refs(["Vaswani Attention is all you need 2017",
+                               "Nonexistent fabricated reference xyz 2099"],
+                              searcher=fake_search)
+    assert out["provided_checked"] == 2
+    assert len(out["provided_unresolved"]) == 1
+    assert "Nonexistent" in out["provided_unresolved"][0]

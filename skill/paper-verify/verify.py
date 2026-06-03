@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -148,12 +149,63 @@ def verify(identifier):
     return result
 
 
+def match_reference(ref, candidate_title):
+    if not candidate_title:
+        return False
+    title_tokens = set(re.findall(r"\w+", candidate_title.lower()))
+    ref_tokens = set(re.findall(r"\w+", (ref or "").lower()))
+    if not title_tokens:
+        return False
+    overlap = len(title_tokens & ref_tokens) / len(title_tokens)
+    return overlap >= 0.6
+
+
+def _search_openalex_title(ref):
+    q = urllib.parse.quote(ref[:300])
+    url = f"{OPENALEX}/works?search={q}&per_page=1&mailto={MAILTO}"
+    try:
+        data = http_get_json(url)
+    except Exception:
+        return None
+    results = data.get("results") or []
+    if not results:
+        return None
+    return results[0].get("title") or results[0].get("display_name")
+
+
+def resolve_refs(refs, searcher=None):
+    searcher = searcher or _search_openalex_title
+    unresolved = []
+    for ref in refs:
+        title = searcher(ref)
+        if not (title and match_reference(ref, title)):
+            unresolved.append(ref)
+    return {"provided_checked": len(refs), "provided_unresolved": unresolved}
+
+
 def format_output(result):
     return json.dumps(result, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print(json.dumps({"resolved": False, "notes": ["usage: python verify.py <DOI|arXiv id|title>"]}))
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+    args = sys.argv[1:]
+    if not args:
+        print(json.dumps({"resolved": False, "notes": ["usage: python verify.py <id> [--refs <file|->]"]}))
         sys.exit(0)
-    print(format_output(verify(sys.argv[1])))
+    refs = None
+    if "--refs" in args:
+        i = args.index("--refs")
+        src = args[i + 1] if i + 1 < len(args) else "-"
+        raw = sys.stdin.read() if src == "-" else open(src, encoding="utf-8").read()
+        refs = json.loads(raw)
+        args = args[:i] + args[i + 2:]
+    result = verify(args[0])
+    if refs is not None:
+        rr = resolve_refs(refs)
+        result.setdefault("references", {}).update(rr)
+        result.setdefault("flags", {})["refs_unresolved"] = len(rr["provided_unresolved"])
+    print(format_output(result))
