@@ -99,6 +99,14 @@ def test_flag_small_team_not_weak():
                                               {"orcid": None, "works_count": 0}]))
     assert fl["author_identity_weak"] is False
 
+def test_flag_unknown_works_not_weak():
+    # 6 no-ORCID authors with UNKNOWN works_count (None) -> must NOT be flagged
+    # (avoids false positives on large real teams OpenAlex lacks ORCID/works data for)
+    authors = [{"orcid": None, "works_count": None} for _ in range(6)]
+    fl = verify.compute_flags(_facts(authors=authors))
+    assert fl["author_identity_weak"] is False
+    assert fl["author_weak_ratio"] == 0.0
+
 
 # ---------------------------------------------------------------------------
 # Task 4: network layer (monkeypatched — no real network)

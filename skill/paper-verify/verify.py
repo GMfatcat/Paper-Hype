@@ -65,7 +65,9 @@ def compute_flags(facts):
     n = len(authors)
     def weak(a):
         wc = a.get("works_count")
-        return (not a.get("orcid")) and (wc is None or wc <= WEAK_WORKS)
+        # unknown works_count (None) is NOT weak — avoid false-flagging real authors
+        # whose ORCID/works OpenAlex simply lacks (e.g. large industry teams).
+        return (not a.get("orcid")) and (wc is not None and wc <= WEAK_WORKS)
     weak_n = sum(1 for a in authors if weak(a))
     ratio = (weak_n / n) if n else 0.0
     venue = facts.get("venue") or {}
