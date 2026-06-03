@@ -157,3 +157,17 @@
 ## 給讀者的一句話
 <要不要採信/引用、若要該先自己確認什麼>
 ```
+
+## H. Mode C 批量模式模板（掃最新 N 篇;單篇一行 + 總表）
+
+**取清單**:WebFetch arXiv API
+`http://export.arxiv.org/api/query?search_query=cat:<類別>&sortBy=submittedDate&sortOrder=descending&max_results=<N>` → 取 id/標題/日期。
+
+**單篇子代理**(每篇一個,`model: sonnet`,並行分批,只回一行):
+```
+你在執行論文採信風險快篩(Mode C),讀者自保用。對指定論文用 WebFetch/WebSearch 實查(不可憑記憶;查不到=不可查證,非造假非真實),跑 5 項:C1 抽查參考文獻是否真實存在(查幾筆並揭露已查N/共M);C2 全文 AI 殘留字串("as an AI language model"/"Certainly, here is"等);C3 tortured phrases;C4 撤稿/PubPeer;C5 venue(arXiv preprint「未同儕審查」屬固有 caveat 非紅旗)。評分上限 C1≤30 C2≤25 C4≤25 C5≤15 C3≤15 歸一化 0–100;決定性紅旗錨定🔴。燈號 0–20🟢/21–45🟡/46–70🟠/71–100🔴。全文不可得→降涵蓋度別當通過。
+論文:arXiv:{ID}「{TITLE}」
+**只回傳這一行**:`{ID} | 分數/100 燈號 | 觸發:<檢查或"無"> | 涵蓋:<全文/受限> | 一句話:<最關鍵發現>`
+```
+
+**總表**(主代理彙整,存 `hype_check/批量掃描_<標籤>.md`):免責標頭 + 燈號分布 + 表(#/arXiv/簡稱/分數/燈/關鍵發現)+ 觀察 + 方法限制。🟠/🔴 篇用模板 G 升級開卷宗。

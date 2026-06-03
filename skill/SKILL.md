@@ -1,6 +1,6 @@
 ---
 name: dissecting-paper-hype
-description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
+description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "掃最近N篇論文/批量查論文採信風險", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
 ---
 
 # Dissecting Paper Hype（論文營銷號實驗）
@@ -174,3 +174,21 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 - 某來源連不上 → 標該項「未執行」,非「通過」。
 - 參考文獻過多 → 取樣並**揭露**(已查 N / 共 M),不靜默截斷。
 - 全文殘缺 → 明說涵蓋受限、降信心,不硬給高信心分數。
+
+## Mode C 批量模式（掃 arXiv 最新 N 篇）
+一次對「最近 / 某領域最新 N 篇」做採信風險普查(已用真實 20 篇驗證)。
+
+1. **取清單** — WebFetch arXiv API 取最新 N 篇(回 Atom XML,含 id/標題/日期):
+   `http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=N`
+   (可改 `cat:` 類別,或 `search_query=all:<關鍵字>` / `au:<作者>`。)
+2. **掃描** — **每篇派一個 Mode C 子代理**(`model: sonnet`):批量時為控制規模,在「單一」子代理內跑完 5 項檢查(非每篇 5 個),**只回傳一行**(模板 H):`{id} | 分數/100 燈號 | 觸發 | 涵蓋 | 一句話`。**並行分批**(每批約 5,超過分批)。
+3. **彙整** — 主代理收齊 → 依分數由高到低排序 → 總表 + 燈號分布(各燈幾篇)。
+4. **升級深查** — 任何 🟠/🔴(或使用者指定)→ 對該篇另跑**單篇完整 Mode C 深查卷宗**(模板 G);其餘維持一行。
+5. **輸出** — 總表存 `hype_check/批量掃描_<標籤>.md`(附方法限制聲明);可疑篇另存 `hype_check/論文判決_<id>_<標籤>.md`。
+
+**批量紀律**(沿用 Mode C + 額外):
+- 規模/成本:N 篇 = N 個子代理(每篇約 15–25 次 web 查詢);預設一輪 **N≤20**,更多就分多輪並**先告知成本**。
+- 批量為「抽查式」引用核對,每篇務必揭露「已查 N/共 M」;**不靜默截斷**(只掃部分要明說掃幾篇/共幾篇)。
+- preprint「未同儕審查」是固有 caveat 非紅旗;已被接受的會議(ICML/ACL/EUSIPCO 等)應更低分。
+- 圖片化 PDF / 付費牆 → 標「涵蓋受限」非「通過」。
+- 分數為**啟發式參考非定論**;**批量結果絕不可拿去公開點名 / 檢舉**(自保框架)。
