@@ -25,6 +25,32 @@ Roughly 1 in 5 real references is returned as "unresolved" by the Crossref `quer
 **Recall ~26% — this number is understated by a dataset limitation and should NOT be read as the skill's true detection capability.**
 The synthetic fakes were built by prepending "Nonexistent Synthetic" and bumping the year to 2099, but kept the rest of the original title tokens intact. Because the perturbed strings still share most real title words with the original paper, Crossref's `query.bibliographic` often matches the *original* real paper anyway, so the fake is resolved — correctly from Crossref's perspective, incorrectly from the eval's perspective. In other words, the fake-construction method was not adversarial enough: the Crossref resolver is robust to simple prefix+year perturbation when the core title tokens survive. A fair recall test requires **fully fabricated titles** — plausible-sounding paper titles that have never existed. This is logged as future work; the recall figure here is a lower bound of uncertain tightness, not a fair estimate. **We do not fix this here (calibration B = measure only, no algorithm changes).**
 
+### C1 improvement attempt (2026-06): DOI-direct + matcher tuning
+
+**Dataset:** n=200 per run (100 real refs + 100 fake refs). Two fake-construction regimes tested:
+- **Easy fakes** (`c1_references.jsonl`): perturbed fakes — "Nonexistent Synthetic" prefix + year bumped to 2099, but real title tokens kept intact (original dataset artifact).
+- **Hard fakes** (`c1_references_hard.jsonl`): fully fabricated titles — plausible-sounding paper titles that have never existed. This is the fair test.
+
+#### Before → After table
+
+| Condition | Easy FP | Easy recall | Hard FP | Hard recall |
+|---|---|---|---|---|
+| **Before** (original verify.py) | 0.21 | 0.26 | 0.21 | **0.82** |
+| **Intermediate** (lenient top-N + year-relax) — REJECTED | 0.15 | 0.19 | 0.15 | 0.45 |
+| **After** (DOI-direct resolves-but-never-rejects + top-1 strict) | 0.23 | 0.26 | 0.23 | **0.82** |
+
+#### Five honest points
+
+1. **Recall 0.82 on fabricated fakes was always there — the original 0.26 was a dataset artifact.** The perturbed fakes kept real title tokens intact, so Crossref's `query.bibliographic` matched the *original* real paper anyway, resolving the fake as "found." On fully-fabricated titles (hard fakes), recall was 0.82 both before and after. The 0.26 figure should not be cited as the skill's capability; 0.82 on fabricated fakes is the fair number.
+
+2. **FP ≈ 0.21–0.23 — essentially unchanged.** Fuzzy title-matching against Crossref `query.bibliographic` has a ~1-in-5 false-positive floor on messy/DOI-less references. DOI-direct did not reduce it on this dataset, which is DOI-sparse (real refs mostly lack Crossref-confirmable DOIs).
+
+3. **DOI-direct was kept as a principled, no-regression addition.** It resolves references whose DOI Crossref confirms, and — critically — *never marks a reference unresolved on a DOI it cannot confirm* (查不到 ≠ 造假). The benefit accrues on real-world references that carry resolvable DOIs, which this dataset does not capture well. It is a correctness improvement even if this eval cannot measure it.
+
+4. **We tried lenient top-N matching to cut FP (achieved 0.15) but calibration showed it crashed recall (0.82 → 0.45)** — an unacceptable tradeoff. That approach was rejected and reverted to top-1 strict matching.
+
+5. **Takeaway: the ~21% FP is a real limitation of fuzzy reference matching.** This is exactly why `refs_unresolved` stays an **advisory, non-decisive** signal. Calibration confirmed the design stance rather than overturning it: at ~21% FP, any tool that declared "unresolved = fabricated" would produce unacceptable false accusations. The label "could not be confirmed" is correct; "fake" is not warranted.
+
 ---
 
 ## C4 — retraction detection (OpenAlex `is_retracted`)

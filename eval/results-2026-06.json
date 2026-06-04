@@ -36,27 +36,51 @@
   },
   "run_date": "2026-06-04",
   "c1_v2": {
+    "run_date": "2026-06-05",
+    "note": "Recall 0.82 on hard (fabricated) fakes was always there — original 0.26 was a dataset artifact (perturbed fakes retained real title tokens, so Crossref resolved them as real). FP ~0.21-0.23 is unchanged: fuzzy title-matching against Crossref query.bibliographic has a ~1-in-5 false-positive floor on messy/DOI-less references. DOI-direct was kept as a principled no-regression addition but did not measurably reduce FP on this DOI-sparse dataset. Lenient top-N matching cut FP to 0.15 but crashed recall (0.82→0.45) and was rejected. Advisory stance confirmed.",
     "before_easy": {
-      "dataset": "c1_references.jsonl",
+      "dataset": "c1_references.jsonl (perturbed fakes — dataset artifact)",
       "n": 200,
-      "precision": 0.5532,
-      "recall": 0.26,
       "false_positive_rate": 0.21,
-      "tp": 26,
-      "fp": 21,
-      "tn": 79,
-      "fn": 74
+      "recall": 0.26,
+      "note": "Low recall is artifact: perturbed fakes kept real title tokens, so Crossref resolved them as real papers"
     },
     "before_hard": {
+      "dataset": "c1_references_hard.jsonl (fully fabricated fakes)",
+      "n": 200,
+      "false_positive_rate": 0.21,
+      "recall": 0.82,
+      "note": "Fair recall on fabricated fakes — this is the real capability number"
+    },
+    "lenient_easy": {
+      "dataset": "c1_references.jsonl",
+      "n": 200,
+      "false_positive_rate": 0.15,
+      "recall": 0.19,
+      "status": "REJECTED",
+      "note": "Lenient top-N matching cut FP but tanked recall — rejected tradeoff"
+    },
+    "lenient_hard": {
       "dataset": "c1_references_hard.jsonl",
       "n": 200,
-      "precision": 0.7961,
+      "false_positive_rate": 0.15,
+      "recall": 0.45,
+      "status": "REJECTED",
+      "note": "Recall crashed from 0.82 to 0.45 — unacceptable; lenient matcher rejected"
+    },
+    "after_easy": {
+      "dataset": "c1_references.jsonl",
+      "n": 200,
+      "false_positive_rate": 0.23,
+      "recall": 0.26,
+      "note": "DOI-direct addition; FP essentially unchanged (+0.02), recall unchanged. DOI-sparse dataset — DOI-direct benefit not measurable here."
+    },
+    "after_hard": {
+      "dataset": "c1_references_hard.jsonl",
+      "n": 200,
+      "false_positive_rate": 0.23,
       "recall": 0.82,
-      "false_positive_rate": 0.21,
-      "tp": 82,
-      "fp": 21,
-      "tn": 79,
-      "fn": 18
+      "note": "DOI-direct addition; FP essentially unchanged (+0.02), recall unchanged at 0.82"
     }
   }
 }
