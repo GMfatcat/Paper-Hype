@@ -225,10 +225,11 @@ def test_match_any_rank3():
              {"title": "Attention Is All You Need", "year": "2017"}]
     assert verify.match_any(ref, cands) is True
 
-def test_match_any_year_relaxes():
-    ref = "Doe. Deep Nets. 2020."   # title overlap ~0.5 with candidate
-    cands = [{"title": "Deep Nets Revisited", "year": "2020"}]  # 2/3 title tokens, year matches -> relaxed bar 0.5
-    assert verify.match_any(ref, cands) is True
+def test_match_any_strict_partial_title_no_match():
+    # partial title (missing a token) must NOT match under strict rules, even if year matches
+    ref = "Doe. Deep Nets. 2020."
+    cands = [{"title": "Deep Nets Revisited", "year": "2020"}]  # 'revisited' absent from ref
+    assert verify.match_any(ref, cands) is False
 
 def test_match_any_short_title_all_but_one():
     ref = "X. BERT pretraining. 2019."

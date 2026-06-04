@@ -4,7 +4,7 @@
 {"ref": "T. Nguyen J. Brandstetter A. Kapoor J. K. Gupta A. Grover ClimaX: A foundation model for weather and climate. arXiv:2301.10343 [cs.LG] (2023).", "label": "real"}
 {"ref": "R. Keisler Forecasting global weather with graph neural networks. arXiv:2202.07575 [physics.ao-ph] (2022).", "label": "real"}
 {"ref": "J. Pathak S. Subramanian P. Harrington S. Raja A. Chattopadhyay M. Mardani T. Kurth D. Hall Z. Li K. Azizzadenesheli P. Hassanzadeh K. Kashinath A. Anandkumar FourCastNet: A global data-driven high-resolution weather model using adaptive fourier neural operators. arXiv:2202.11214 [physics.ao-ph] (2022).", "label": "real"}
-{"ref": "T. Kurth S. Subramanian P. Harrington J. Pathak M. Mardani D. Hall A. Miele K. Kashinath A. Anandkumar FourCastNet: Accelerating global high-resolution weather forecasting using adaptive fourier neural operators. arXiv:2208.05419 [physics.ao-ph] (2022).", "label": "real"}
+{"ref": "T. Kurth S. Subramanian P. Harrington J. Pathak M. Mardani D. Hall A. Miele K. Kashinath A. Anandkumar FourCastNet: Accelerating global high-resolution weather forecasting using adaptive fourier neural operators. arXiv:2208.05419 [physics.ao-ph] (2022). https://doi.org/10.1145/3592979.3593412", "label": "real"}
 {"ref": "K. Bi L. Xie H. Zhang X. Chen X. Gu Q. Tian Pangu-Weather: A 3D high-resolution model for fast and accurate global weather forecast. arXiv:2211.02556 [physics.ao-ph] (2022).", "label": "real"}
 {"ref": "P. W. Battaglia J. B. Hamrick V. Bapst A. Sanchez-Gonzalez V. Zambaldi M. Malinowski A. Tacchetti D. Raposo A. Santoro R. Faulkner C. Gulcehre F. Song A. Ballard J. Gilmer G. Dahl A. Vaswani K. Allen C. Nash V. Langston C. Dyer N. Heess D. Wierstra P. Kohli M. Botvinick O. Vinyals Y. Li R. Pascanu Relational inductive biases deep learning and graph networks. arXiv:1806.01261 [cs.LG] (2018).", "label": "real"}
 {"ref": "Sanchez-Gonzalez A. Learning to simulate complex physics with graph networks 2020", "label": "real"}
@@ -17,90 +17,90 @@
 {"ref": "L. Magnusson ECMWF confluence wiki: 202208 - Heatwave - UK (2022); https://confluence.ecmwf.int/display/FCST/202208+-+Heatwave+-+UK.", "label": "real"}
 {"ref": "C. Maass E. Cuartero MARS user documentation (2022); https://confluence.ecmwf.int/display/UDOC/MARS+user+documentation.", "label": "real"}
 {"ref": "T. Ewalds Source code for GraphCast google-deepmind/graphcast: Version 0.1 Zenodo (2023); https://doi.org/10.5281/zenodo.10058758.10.5281/zenodo.10058758", "label": "real"}
-{"ref": "MC Thompson Thompson, M. C., Yeates, T. O. & Rodriguez, J. A. Advances in methods for atomic resolution macromolecular structure determination. F1000Res. 9, 667 (2020). 2020", "label": "real"}
-{"ref": "X-C Bai Bai, X.-C., McMullan, G. & Scheres, S. H. W. How cryo-EM is revolutionizing structural biology. Trends Biochem. Sci. 40, 49–57 (2015). 2015", "label": "real"}
-{"ref": "M Jaskolski Jaskolski, M., Dauter, Z. & Wlodawer, A. A brief history of macromolecular crystallography, illustrated by a family tree and its Nobel fruits. FEBS J. 281, 3985–4009 (2014). 2014", "label": "real"}
-{"ref": "K Wüthrich Wüthrich, K. The way to NMR structures of proteins. Nat. Struct. Biol. 8, 923–925 (2001). 2001", "label": "real"}
-{"ref": "wwPDB Consortium wwPDB Consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Res. 47, D520–D528 (2018). 2018", "label": "real"}
+{"ref": "MC Thompson Thompson, M. C., Yeates, T. O. & Rodriguez, J. A. Advances in methods for atomic resolution macromolecular structure determination. F1000Res. 9, 667 (2020). 2020 https://doi.org/10.12688/f1000research.25097.1", "label": "real"}
+{"ref": "X-C Bai Bai, X.-C., McMullan, G. & Scheres, S. H. W. How cryo-EM is revolutionizing structural biology. Trends Biochem. Sci. 40, 49–57 (2015). 2015 https://doi.org/10.1016/j.tibs.2014.10.005", "label": "real"}
+{"ref": "M Jaskolski Jaskolski, M., Dauter, Z. & Wlodawer, A. A brief history of macromolecular crystallography, illustrated by a family tree and its Nobel fruits. FEBS J. 281, 3985–4009 (2014). 2014 https://doi.org/10.1111/febs.12796", "label": "real"}
+{"ref": "K Wüthrich Wüthrich, K. The way to NMR structures of proteins. Nat. Struct. Biol. 8, 923–925 (2001). 2001 https://doi.org/10.1038/nsb1101-923", "label": "real"}
+{"ref": "wwPDB Consortium wwPDB Consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Res. 47, D520–D528 (2018). 2018 https://doi.org/10.1093/nar/gky949", "label": "real"}
 {"ref": "AL Mitchell Mitchell, A. L. et al. MGnify: the microbiome analysis resource in 2020. Nucleic Acids Res. 48, D570–D578 (2020). 2020", "label": "real"}
-{"ref": "M Steinegger Steinegger, M., Mirdita, M. & Söding, J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. Nat. Methods 16, 603–606 (2019). 2019", "label": "real"}
-{"ref": "KA Dill Dill, K. A., Ozkan, S. B., Shell, M. S. & Weikl, T. R. The protein folding problem. Annu. Rev. Biophys. 37, 289–316 (2008). 2008", "label": "real"}
-{"ref": "CB Anfinsen Anfinsen, C. B. Principles that govern the folding of protein chains. Science 181, 223–230 (1973). 1973", "label": "real"}
-{"ref": "AW Senior Senior, A. W. et al. Improved protein structure prediction using potentials from deep learning. Nature 577, 706–710 (2020). 2020", "label": "real"}
-{"ref": "S Wang Wang, S., Sun, S., Li, Z., Zhang, R. & Xu, J. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLOS Comput. Biol. 13, e1005324 (2017). 2017", "label": "real"}
-{"ref": "W Zheng Zheng, W. et al. Deep-learning contact-map guided protein structure prediction in CASP13. Proteins 87, 1149–1164 (2019). 2019", "label": "real"}
-{"ref": "LA Abriata Abriata, L. A., Tamò, G. E. & Dal Peraro, M. A further leap of improvement in tertiary structure prediction in CASP13 prompts new routes for future assessments. Proteins 87, 1100–1112 (2019). 2019", "label": "real"}
-{"ref": "R Pearce Pearce, R. & Zhang, Y. Deep learning techniques have significantly impacted protein structure prediction and protein design. Curr. Opin. Struct. Biol. 68, 194–207 (2021). 2021", "label": "real"}
+{"ref": "M Steinegger Steinegger, M., Mirdita, M. & Söding, J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. Nat. Methods 16, 603–606 (2019). 2019 https://doi.org/10.1038/s41592-019-0437-4", "label": "real"}
+{"ref": "KA Dill Dill, K. A., Ozkan, S. B., Shell, M. S. & Weikl, T. R. The protein folding problem. Annu. Rev. Biophys. 37, 289–316 (2008). 2008 https://doi.org/10.1146/annurev.biophys.37.092707.153558", "label": "real"}
+{"ref": "CB Anfinsen Anfinsen, C. B. Principles that govern the folding of protein chains. Science 181, 223–230 (1973). 1973 https://doi.org/10.1126/science.181.4096.223", "label": "real"}
+{"ref": "AW Senior Senior, A. W. et al. Improved protein structure prediction using potentials from deep learning. Nature 577, 706–710 (2020). 2020 https://doi.org/10.1038/s41586-019-1923-7", "label": "real"}
+{"ref": "S Wang Wang, S., Sun, S., Li, Z., Zhang, R. & Xu, J. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLOS Comput. Biol. 13, e1005324 (2017). 2017 https://doi.org/10.1371/journal.pcbi.1005324", "label": "real"}
+{"ref": "W Zheng Zheng, W. et al. Deep-learning contact-map guided protein structure prediction in CASP13. Proteins 87, 1149–1164 (2019). 2019 https://doi.org/10.1002/prot.25792", "label": "real"}
+{"ref": "LA Abriata Abriata, L. A., Tamò, G. E. & Dal Peraro, M. A further leap of improvement in tertiary structure prediction in CASP13 prompts new routes for future assessments. Proteins 87, 1100–1112 (2019). 2019 https://doi.org/10.1002/prot.25787", "label": "real"}
+{"ref": "R Pearce Pearce, R. & Zhang, Y. Deep learning techniques have significantly impacted protein structure prediction and protein design. Curr. Opin. Struct. Biol. 68, 194–207 (2021). 2021 https://doi.org/10.1016/j.sbi.2021.01.007", "label": "real"}
 {"ref": "Moult, J., Fidelis, K., Kryshtafovych, A., Schwede, T. & Topf, M. Critical assessment of techniques for protein structure prediction, fourteenth round. CASP 14 Abstract Book https://www.predictioncenter.org/casp14/doc/CASP14_Abstracts.pdf (2020).", "label": "real"}
-{"ref": "E Brini Brini, E., Simmerling, C. & Dill, K. Protein storytelling through physics. Science 370, eaaz3041 (2020). 2020", "label": "real"}
-{"ref": "MJ Sippl Sippl, M. J. Calculation of conformational ensembles from potentials of mean force. An approach to the knowledge-based prediction of local structures in globular proteins. J. Mol. Biol. 213, 859–883 (1990). 1990", "label": "real"}
-{"ref": "A Šali Šali, A. & Blundell, T. L. Comparative protein modelling by satisfaction of spatial restraints. J. Mol. Biol. 234, 779–815 (1993). 1993", "label": "real"}
-{"ref": "A Roy Roy, A., Kucukural, A. & Zhang, Y. I-TASSER: a unified platform for automated protein structure and function prediction. Nat. Protocols 5, 725–738 (2010). 2010", "label": "real"}
-{"ref": "D Altschuh Altschuh, D., Lesk, A. M., Bloomer, A. C. & Klug, A. Correlation of co-ordinated amino acid substitutions with function in viruses related to tobacco mosaic virus. J. Mol. Biol. 193, 693–707 (1987). 1987", "label": "real"}
-{"ref": "IN Shindyalov Shindyalov, I. N., Kolchanov, N. A. & Sander, C. Can three-dimensional contacts in protein structures be predicted by analysis of correlated mutations? Protein Eng. 7, 349–358 (1994). 1994", "label": "real"}
-{"ref": "M Weigt Weigt, M., White, R. A., Szurmant, H., Hoch, J. A. & Hwa, T. Identification of direct residue contacts in protein–protein interaction by message passing. Proc. Natl Acad. Sci. USA 106, 67–72 (2009). 2009", "label": "real"}
-{"ref": "DS Marks Marks, D. S. et al. Protein 3D structure computed from evolutionary sequence variation. PLoS ONE 6, e28766 (2011). 2011", "label": "real"}
-{"ref": "DT Jones Jones, D. T., Buchan, D. W. A., Cozzetto, D. & Pontil, M. PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments. Bioinformatics 28, 184–190 (2012). 2012", "label": "real"}
-{"ref": "J Moult Moult, J., Pedersen, J. T., Judson, R. & Fidelis, K. A large-scale experiment to assess protein structure prediction methods. Proteins 23, ii–iv (1995). 1995", "label": "real"}
-{"ref": "A Kryshtafovych Kryshtafovych, A., Schwede, T., Topf, M., Fidelis, K. & Moult, J. Critical assessment of methods of protein structure prediction (CASP)-round XIII. Proteins 87, 1011–1020 (2019). 2019", "label": "real"}
-{"ref": "Y Zhang Zhang, Y. & Skolnick, J. Scoring function for automated assessment of protein structure template quality. Proteins 57, 702–710 (2004). 2004", "label": "real"}
-{"ref": "Z Tu Tu, Z. & Bai, X. Auto-context and its application to high-level vision tasks and 3D brain image segmentation. IEEE Trans. Pattern Anal. Mach. Intell. 32, 1744–1757 (2010). 2010", "label": "real"}
-{"ref": "Carreira, J., Agrawal, P., Fragkiadaki, K. & Malik, J. Human pose estimation with iterative error feedback. In Proc. IEEE Conference on Computer Vision and Pattern Recognition 4733–4742 (2016).", "label": "real"}
-{"ref": "C Mirabello Mirabello, C. & Wallner, B. rawMSA: end-to-end deep learning using raw multiple sequence alignments. PLoS ONE 14, e0220182 (2019). 2019", "label": "real"}
-{"ref": "Huang, Z. et al. CCNet: criss-cross attention for semantic segmentation. In Proc. IEEE/CVF International Conference on Computer Vision 603–612 (2019).", "label": "real"}
-{"ref": "V Hornak Hornak, V. et al. Comparison of multiple Amber force fields and development of improved protein backbone parameters. Proteins 65, 712–725 (2006). 2006", "label": "real"}
-{"ref": "A Zemla Zemla, A. LGA: a method for finding 3D similarities in protein structures. Nucleic Acids Res. 31, 3370–3374 (2003). 2003", "label": "real"}
-{"ref": "V Mariani Mariani, V., Biasini, M., Barbato, A. & Schwede, T. lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests. Bioinformatics 29, 2722–2728 (2013). 2013", "label": "real"}
-{"ref": "Xie, Q., Luong, M.-T., Hovy, E. & Le, Q. V. Self-training with noisy student improves imagenet classification. In Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition 10687–10698 (2020).", "label": "real"}
-{"ref": "M Mirdita Mirdita, M. et al. Uniclust databases of clustered and deeply annotated protein sequences and alignments. Nucleic Acids Res. 45, D170–D176 (2017). 2017", "label": "real"}
+{"ref": "E Brini Brini, E., Simmerling, C. & Dill, K. Protein storytelling through physics. Science 370, eaaz3041 (2020). 2020 https://doi.org/10.1126/science.aaz3041", "label": "real"}
+{"ref": "MJ Sippl Sippl, M. J. Calculation of conformational ensembles from potentials of mean force. An approach to the knowledge-based prediction of local structures in globular proteins. J. Mol. Biol. 213, 859–883 (1990). 1990 https://doi.org/10.1016/S0022-2836(05)80269-4", "label": "real"}
+{"ref": "A Šali Šali, A. & Blundell, T. L. Comparative protein modelling by satisfaction of spatial restraints. J. Mol. Biol. 234, 779–815 (1993). 1993 https://doi.org/10.1006/jmbi.1993.1626", "label": "real"}
+{"ref": "A Roy Roy, A., Kucukural, A. & Zhang, Y. I-TASSER: a unified platform for automated protein structure and function prediction. Nat. Protocols 5, 725–738 (2010). 2010 https://doi.org/10.1038/nprot.2010.5", "label": "real"}
+{"ref": "D Altschuh Altschuh, D., Lesk, A. M., Bloomer, A. C. & Klug, A. Correlation of co-ordinated amino acid substitutions with function in viruses related to tobacco mosaic virus. J. Mol. Biol. 193, 693–707 (1987). 1987 https://doi.org/10.1016/0022-2836(87)90352-4", "label": "real"}
+{"ref": "IN Shindyalov Shindyalov, I. N., Kolchanov, N. A. & Sander, C. Can three-dimensional contacts in protein structures be predicted by analysis of correlated mutations? Protein Eng. 7, 349–358 (1994). 1994 https://doi.org/10.1093/protein/7.3.349", "label": "real"}
+{"ref": "M Weigt Weigt, M., White, R. A., Szurmant, H., Hoch, J. A. & Hwa, T. Identification of direct residue contacts in protein–protein interaction by message passing. Proc. Natl Acad. Sci. USA 106, 67–72 (2009). 2009 https://doi.org/10.1073/pnas.0805923106", "label": "real"}
+{"ref": "DS Marks Marks, D. S. et al. Protein 3D structure computed from evolutionary sequence variation. PLoS ONE 6, e28766 (2011). 2011 https://doi.org/10.1371/journal.pone.0028766", "label": "real"}
+{"ref": "DT Jones Jones, D. T., Buchan, D. W. A., Cozzetto, D. & Pontil, M. PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments. Bioinformatics 28, 184–190 (2012). 2012 https://doi.org/10.1093/bioinformatics/btr638", "label": "real"}
+{"ref": "J Moult Moult, J., Pedersen, J. T., Judson, R. & Fidelis, K. A large-scale experiment to assess protein structure prediction methods. Proteins 23, ii–iv (1995). 1995 https://doi.org/10.1002/prot.340230303", "label": "real"}
+{"ref": "A Kryshtafovych Kryshtafovych, A., Schwede, T., Topf, M., Fidelis, K. & Moult, J. Critical assessment of methods of protein structure prediction (CASP)-round XIII. Proteins 87, 1011–1020 (2019). 2019 https://doi.org/10.1002/prot.25823", "label": "real"}
+{"ref": "Y Zhang Zhang, Y. & Skolnick, J. Scoring function for automated assessment of protein structure template quality. Proteins 57, 702–710 (2004). 2004 https://doi.org/10.1002/prot.20264", "label": "real"}
+{"ref": "Z Tu Tu, Z. & Bai, X. Auto-context and its application to high-level vision tasks and 3D brain image segmentation. IEEE Trans. Pattern Anal. Mach. Intell. 32, 1744–1757 (2010). 2010 https://doi.org/10.1109/TPAMI.2009.186", "label": "real"}
+{"ref": "Carreira, J., Agrawal, P., Fragkiadaki, K. & Malik, J. Human pose estimation with iterative error feedback. In Proc. IEEE Conference on Computer Vision and Pattern Recognition 4733–4742 (2016). https://doi.org/10.1109/CVPR.2016.512", "label": "real"}
+{"ref": "C Mirabello Mirabello, C. & Wallner, B. rawMSA: end-to-end deep learning using raw multiple sequence alignments. PLoS ONE 14, e0220182 (2019). 2019 https://doi.org/10.1371/journal.pone.0220182", "label": "real"}
+{"ref": "Huang, Z. et al. CCNet: criss-cross attention for semantic segmentation. In Proc. IEEE/CVF International Conference on Computer Vision 603–612 (2019). https://doi.org/10.1109/ICCV.2019.00069", "label": "real"}
+{"ref": "V Hornak Hornak, V. et al. Comparison of multiple Amber force fields and development of improved protein backbone parameters. Proteins 65, 712–725 (2006). 2006 https://doi.org/10.1002/prot.21123", "label": "real"}
+{"ref": "A Zemla Zemla, A. LGA: a method for finding 3D similarities in protein structures. Nucleic Acids Res. 31, 3370–3374 (2003). 2003 https://doi.org/10.1093/nar/gkg571", "label": "real"}
+{"ref": "V Mariani Mariani, V., Biasini, M., Barbato, A. & Schwede, T. lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests. Bioinformatics 29, 2722–2728 (2013). 2013 https://doi.org/10.1093/bioinformatics/btt473", "label": "real"}
+{"ref": "Xie, Q., Luong, M.-T., Hovy, E. & Le, Q. V. Self-training with noisy student improves imagenet classification. In Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition 10687–10698 (2020). https://doi.org/10.1109/CVPR42600.2020.01070", "label": "real"}
+{"ref": "M Mirdita Mirdita, M. et al. Uniclust databases of clustered and deeply annotated protein sequences and alignments. Nucleic Acids Res. 45, D170–D176 (2017). 2017 https://doi.org/10.1093/nar/gkw1081", "label": "real"}
 {"ref": "Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K. BERT: pre-training of deep bidirectional transformers for language understanding. In Proc. 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies 1, 4171–4186 (2019).", "label": "real"}
 {"ref": "Rao, R. et al. MSA transformer. In Proc. 38th International Conference on Machine Learning PMLR 139, 8844–8856 (2021).", "label": "real"}
-{"ref": "Tunyasuvunakool, K. et al. Highly accurate protein structure prediction for the human proteome. Nature https://doi.org/10.1038/s41586-021-03828-1 (2021).", "label": "real"}
-{"ref": "B Kuhlman Kuhlman, B. & Bradley, P. Advances in protein structure prediction and design. Nat. Rev. Mol. Cell Biol. 20, 681–697 (2019). 2019", "label": "real"}
+{"ref": "Tunyasuvunakool, K. et al. Highly accurate protein structure prediction for the human proteome. Nature https://doi.org/10.1038/s41586-021-03828-1 (2021). https://doi.org/10.1038/s41586-021-03828-1", "label": "real"}
+{"ref": "B Kuhlman Kuhlman, B. & Bradley, P. Advances in protein structure prediction and design. Nat. Rev. Mol. Cell Biol. 20, 681–697 (2019). 2019 https://doi.org/10.1038/s41580-019-0163-x", "label": "real"}
 {"ref": "Johns Hopkins University Coronavirus Resource Center. COVID-19 dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. 2020 (https://coronavirus.jhu.edu/map.html).", "label": "real"}
 {"ref": "World Health Organization. WHO Director-General’s opening remarks at the media briefing on COVID-19 — 11 March 2020 (https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020).", "label": "real"}
 {"ref": "Centers for Disease Control and Prevention. COVID-19 information page (https://www.cdc.gov/coronavirus/2019-ncov/index.html).", "label": "real"}
-{"ref": "Sahin U Muik A Vogler I et al. BNT162b2 induces SARS-CoV-2-neutralising antibodies and T cells in humans. December 11 2020 (https://www.medrxiv.org/content/10.1101/2020.12.09.20245175v1). preprint.", "label": "real"}
+{"ref": "Sahin U Muik A Vogler I et al. BNT162b2 induces SARS-CoV-2-neutralising antibodies and T cells in humans. December 11 2020 (https://www.medrxiv.org/content/10.1101/2020.12.09.20245175v1). preprint. https://doi.org/10.1101/2020.12.09.20245175", "label": "real"}
 {"ref": "Food and Drug Administration. Guidance for industry: emergency use authorization for vaccines to prevent COVID-19. October 2020 (https://www.fda.gov/media/142749/download).", "label": "real"}
 {"ref": "Food and Drug Administration. Shringrix (zoster vaccine recombinant adjuvanted) product information. 2019 (https://www.fda.gov/vaccines-blood-biologics/vaccines/shingrix).", "label": "real"}
-{"ref": "Abel Natural Killer Cells: Development, Maturation, and Clinical Utilization 2018", "label": "real"}
+{"ref": "Abel Natural Killer Cells: Development, Maturation, and Clinical Utilization 2018 https://doi.org/10.3389/fimmu.2018.01869", "label": "real"}
 {"ref": "Alquicira-Hernandez Nebulosa recovers single cell gene expression signals by kernel density estimation 2020", "label": "real"}
-{"ref": "Andreeff RNA content in human lymphocyte subpopulations 1978", "label": "real"}
-{"ref": "Andrews M3Drop: dropout-based feature selection for scRNASeq 2019", "label": "real"}
-{"ref": "Argelaguet MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data 2020", "label": "real"}
-{"ref": "Barshan Supervised principal component analysis: Visualization, classification and regression on subspaces and submanifolds 2011", "label": "real"}
-{"ref": "Bendall Single-cell mass cytometry of differential immune and drug responses across a human hematopoietic continuum 2011", "label": "real"}
-{"ref": "Bodenmiller Multiplexed mass cytometry profiling of cellular states perturbed by small-molecule regulators 2012", "label": "real"}
-{"ref": "Bull Defining blood processing parameters for optimal detection of cryopreserved antigen-specific responses for HIV vaccine trials 2007", "label": "real"}
-{"ref": "Cao Joint profiling of chromatin accessibility and gene expression in thousands of single cells 2018", "label": "real"}
-{"ref": "Cao The single-cell transcriptional landscape of mammalian organogenesis 2019", "label": "real"}
-{"ref": "Chen Revolutionizing immunology with single-cell RNA sequencing 2019", "label": "real"}
-{"ref": "Chen High-throughput sequencing of the transcriptome and chromatin accessibility in the same cell 2019", "label": "real"}
-{"ref": "Clark scNMT-seq enables joint profiling of chromatin accessibility DNA methylation and transcription in single cells 2018", "label": "real"}
-{"ref": "Corgnac The Emerging Role of CD8+ Tissue Resident Memory T (TRM) Cells in Antitumor Immunity: A Unique Functional Contribution of the CD103 Integrin 2018", "label": "real"}
-{"ref": "Cusanovich A Single-Cell Atlas of In Vivo Mammalian Chromatin Accessibility 2018", "label": "real"}
-{"ref": "Demirkan Value of p53 protein in biological behavior of basal cell carcinoma and in normal epithelia adjacent to carcinomas 2000", "label": "real"}
-{"ref": "Diggins Methods for discovery and characterization of cell subsets in high dimensional mass cytometry data 2015", "label": "real"}
-{"ref": "Ding Systematic comparison of single-cell and single-nucleus RNA-sequencing methods 2020", "label": "real"}
-{"ref": "Efremova Computational methods for single-cell omics across modalities 2020", "label": "real"}
-{"ref": "Elizaga Safety and tolerability of HIV-1 multiantigen pDNA vaccine given with IL-12 plasmid DNA via electroporation, boosted with a recombinant vesicular stomatitis virus HIV Gag vaccine in healthy volunteers in a randomized, controlled clinical trial 2018", "label": "real"}
-{"ref": "Epstein Basal cell carcinomas: attack of the hedgehog 2008", "label": "real"}
-{"ref": "Finck Normalization of mass cytometry data with bead standards 2013", "label": "real"}
-{"ref": "Gaiti Epigenetic evolution and lineage histories of chronic lymphocytic leukaemia 2019", "label": "real"}
+{"ref": "Andreeff RNA content in human lymphocyte subpopulations 1978 https://doi.org/10.1073/pnas.75.4.1938", "label": "real"}
+{"ref": "Andrews M3Drop: dropout-based feature selection for scRNASeq 2019 https://doi.org/10.1093/bioinformatics/bty1044", "label": "real"}
+{"ref": "Argelaguet MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data 2020 https://doi.org/10.1186/s13059-020-02015-1", "label": "real"}
+{"ref": "Barshan Supervised principal component analysis: Visualization, classification and regression on subspaces and submanifolds 2011 https://doi.org/10.1016/j.patcog.2010.12.015", "label": "real"}
+{"ref": "Bendall Single-cell mass cytometry of differential immune and drug responses across a human hematopoietic continuum 2011 https://doi.org/10.1126/science.1198704", "label": "real"}
+{"ref": "Bodenmiller Multiplexed mass cytometry profiling of cellular states perturbed by small-molecule regulators 2012 https://doi.org/10.1038/nbt.2317", "label": "real"}
+{"ref": "Bull Defining blood processing parameters for optimal detection of cryopreserved antigen-specific responses for HIV vaccine trials 2007 https://doi.org/10.1016/j.jim.2007.02.003", "label": "real"}
+{"ref": "Cao Joint profiling of chromatin accessibility and gene expression in thousands of single cells 2018 https://doi.org/10.1126/science.aau0730", "label": "real"}
+{"ref": "Cao The single-cell transcriptional landscape of mammalian organogenesis 2019 https://doi.org/10.1038/s41586-019-0969-x", "label": "real"}
+{"ref": "Chen Revolutionizing immunology with single-cell RNA sequencing 2019 https://doi.org/10.1038/s41423-019-0214-4", "label": "real"}
+{"ref": "Chen High-throughput sequencing of the transcriptome and chromatin accessibility in the same cell 2019 https://doi.org/10.1038/s41587-019-0290-0", "label": "real"}
+{"ref": "Clark scNMT-seq enables joint profiling of chromatin accessibility DNA methylation and transcription in single cells 2018 https://doi.org/10.1038/s41467-018-03149-4", "label": "real"}
+{"ref": "Corgnac The Emerging Role of CD8+ Tissue Resident Memory T (TRM) Cells in Antitumor Immunity: A Unique Functional Contribution of the CD103 Integrin 2018 https://doi.org/10.3389/fimmu.2018.01904", "label": "real"}
+{"ref": "Cusanovich A Single-Cell Atlas of In Vivo Mammalian Chromatin Accessibility 2018 https://doi.org/10.1016/j.cell.2018.06.052", "label": "real"}
+{"ref": "Demirkan Value of p53 protein in biological behavior of basal cell carcinoma and in normal epithelia adjacent to carcinomas 2000 https://doi.org/10.1007/BF03187330", "label": "real"}
+{"ref": "Diggins Methods for discovery and characterization of cell subsets in high dimensional mass cytometry data 2015 https://doi.org/10.1016/j.ymeth.2015.05.008", "label": "real"}
+{"ref": "Ding Systematic comparison of single-cell and single-nucleus RNA-sequencing methods 2020 https://doi.org/10.1038/s41587-020-0465-8", "label": "real"}
+{"ref": "Efremova Computational methods for single-cell omics across modalities 2020 https://doi.org/10.1038/s41592-019-0692-4", "label": "real"}
+{"ref": "Elizaga Safety and tolerability of HIV-1 multiantigen pDNA vaccine given with IL-12 plasmid DNA via electroporation, boosted with a recombinant vesicular stomatitis virus HIV Gag vaccine in healthy volunteers in a randomized, controlled clinical trial 2018 https://doi.org/10.1371/journal.pone.0202753", "label": "real"}
+{"ref": "Epstein Basal cell carcinomas: attack of the hedgehog 2008 https://doi.org/10.1038/nrc2503", "label": "real"}
+{"ref": "Finck Normalization of mass cytometry data with bead standards 2013 https://doi.org/10.1002/cyto.a.22271", "label": "real"}
+{"ref": "Gaiti Epigenetic evolution and lineage histories of chronic lymphocytic leukaemia 2019 https://doi.org/10.1038/s41586-019-1198-z", "label": "real"}
 {"ref": "Gayoso A Joint Model of RNA Expression and Surface Protein Abundance in Single Cells 2019", "label": "real"}
-{"ref": "Gomes Immunology Driven by Large-Scale Single-Cell Sequencing 2019", "label": "real"}
-{"ref": "Grimaldi Specific MAIT cell behaviour among innate-like T lymphocytes in critically ill patients with severe infections 2014", "label": "real"}
-{"ref": "Hafemeister Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression 2019", "label": "real"}
-{"ref": "Haghverdi Diffusion pseudotime robustly reconstructs lineage branching 2016", "label": "real"}
-{"ref": "Haghverdi Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors 2018", "label": "real"}
+{"ref": "Gomes Immunology Driven by Large-Scale Single-Cell Sequencing 2019 https://doi.org/10.1016/j.it.2019.09.004", "label": "real"}
+{"ref": "Grimaldi Specific MAIT cell behaviour among innate-like T lymphocytes in critically ill patients with severe infections 2014 https://doi.org/10.1007/s00134-013-3163-x", "label": "real"}
+{"ref": "Hafemeister Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression 2019 https://doi.org/10.1186/s13059-019-1874-1", "label": "real"}
+{"ref": "Haghverdi Diffusion pseudotime robustly reconstructs lineage branching 2016 https://doi.org/10.1038/nmeth.3971", "label": "real"}
+{"ref": "Haghverdi Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors 2018 https://doi.org/10.1038/nbt.4091", "label": "real"}
 {"ref": "Hensley Enumeration of major peripheral blood leukocyte populations for multicenter clinical trials using a whole blood phenotyping assay 2012", "label": "real"}
-{"ref": "Hensley-McBain Optimization of a whole blood phenotyping assay for enumeration of peripheral blood leukocyte populations in multicenter clinical trials 2014", "label": "real"}
-{"ref": "Hinks MAIT Cell Activation and Functions 2020", "label": "real"}
-{"ref": "Huang Select sequencing of clonally expanded CD8+ T cells reveals limits to clonal expansion 2019", "label": "real"}
-{"ref": "Ivanov The orphan nuclear receptor RORgammat directs the differentiation program of proinflammatory IL-17+ T helper cells 2006", "label": "real"}
-{"ref": "Jaitin Massively parallel single-cell RNA-seq for marker-free decomposition of tissues into cell types 2014", "label": "real"}
-{"ref": "Kim Cytomegalovirus Infection and Memory T Cell Inflation 2015", "label": "real"}
-{"ref": "Kiselev scmap: projection of single-cell RNA-seq data across data sets 2018", "label": "real"}
+{"ref": "Hensley-McBain Optimization of a whole blood phenotyping assay for enumeration of peripheral blood leukocyte populations in multicenter clinical trials 2014 https://doi.org/10.1016/j.jim.2014.06.002", "label": "real"}
+{"ref": "Hinks MAIT Cell Activation and Functions 2020 https://doi.org/10.3389/fimmu.2020.01014", "label": "real"}
+{"ref": "Huang Select sequencing of clonally expanded CD8+ T cells reveals limits to clonal expansion 2019 https://doi.org/10.1073/pnas.1902649116", "label": "real"}
+{"ref": "Ivanov The orphan nuclear receptor RORgammat directs the differentiation program of proinflammatory IL-17+ T helper cells 2006 https://doi.org/10.1016/j.cell.2006.07.035", "label": "real"}
+{"ref": "Jaitin Massively parallel single-cell RNA-seq for marker-free decomposition of tissues into cell types 2014 https://doi.org/10.1126/science.1247651", "label": "real"}
+{"ref": "Kim Cytomegalovirus Infection and Memory T Cell Inflation 2015 https://doi.org/10.4110/in.2015.15.4.186", "label": "real"}
+{"ref": "Kiselev scmap: projection of single-cell RNA-seq data across data sets 2018 https://doi.org/10.1038/nmeth.4644", "label": "real"}
 {"ref": "Korsunsky Presto scales Wilcoxon and auROC analyses to millions of observations 2019", "label": "real"}
 {"ref": "Hussein M Adam Robert D Bullard and Elizabeth Bell. 2001. Faces of environmental racism: Confronting issues of global justice. Rowman & Littlefield.", "label": "real"}
 {"ref": "Chris Alberti Kenton Lee and Michael Collins. 2019. A BERT Baseline for the Natural Questions. arXiv:1901.08634 [cs.CL]", "label": "real"}

@@ -185,19 +185,16 @@ def _overlap(title, ref):
     return (len(tt & rt) / len(tt)) if tt else 0.0
 
 def match_any(ref, candidates):
-    ry = _ref_year(ref)
     rt = set(re.findall(r"\w+", (ref or "").lower()))
     for c in candidates or []:
         title = c.get("title") or ""
         ttoks = re.findall(r"\w+", title.lower())
         n = len(ttoks)
-        if 0 < n <= 4:                      # short-title guard
-            present = len(set(ttoks) & rt)
-            if present >= 1 and present >= n - 1:
+        if 0 < n <= 4:                      # short title: require ALL title tokens present
+            if set(ttoks) <= rt:
                 return True
             continue
-        bar = 0.5 if (ry and c.get("year") and ry == c.get("year")) else 0.6
-        if _overlap(title, ref) >= bar:
+        if _overlap(title, ref) >= 0.6:
             return True
     return False
 

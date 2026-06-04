@@ -25,6 +25,8 @@ def real_refs_from_crossref(doi, limit=40):
         author = r.get("author", "")
         year = r.get("year", "")
         s = " ".join(x for x in [author, title, year] if x).strip()
+        if r.get("DOI"):
+            s = s + " https://doi.org/" + r["DOI"]
         if title and len(s) > 15:
             refs.append(s)
     return refs
@@ -34,7 +36,8 @@ def perturb(ref):
     words = ref.split()
     words = ["Quantized" if w.istitle() else w for w in words][:1] + words[1:]
     ref2 = re.sub(r"\b(19|20)\d{2}\b", "2099", ref)
-    return "Nonexistent Synthetic " + ref2  # clearly synthetic prefix
+    ref2 = re.sub(r'10\.\d{4,}/\S+', '', ref2)  # strip any DOI so fakes carry NO valid DOI
+    return "Nonexistent Synthetic " + ref2.strip()  # clearly synthetic prefix
 
 def build_c1():
     real, seen = [], set()
