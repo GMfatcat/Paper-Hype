@@ -16,7 +16,7 @@ The competitive review found our biggest credibility gap: no published error rat
 
 **Honesty rules (binding):** publish only numbers actually produced by a run; describe the dataset and its limitations plainly; if a number is bad, publish it anyway. The 0–100 trust-risk **band has no ground truth → no number is claimed for it**.
 
-**Non-goals:** calibrating the 0–100 bands; `author_identity_weak` (labels too subjective); changing any detection algorithm (B only measures + publishes; a bad result motivates a *separate* fix).
+**Non-goals:** calibrating the 0–100 bands; changing any detection algorithm (B only measures + publishes; a bad result motivates a *separate* fix). **No confidence intervals** — point estimates only, each with its N stated. (Per the 2026-06-04 revision, `author_identity_weak` IS now in scope — see Addendum.)
 
 ## 2. Self-built labeled datasets (committed, reproducible)
 
@@ -71,4 +71,25 @@ Stored in `repo/eval/datasets/`.
 
 ## 8. Rollout
 
-Build harness + dataset in repo; `metrics.py` unit tests are the gate (no network). Run the integration evals once to produce real numbers; write `docs/calibration-2026-06.md` and the README line from those numbers. Local commits (no push until asked). Optional later: also run against CiteAudit's public benchmark for cross-comparability.
+Build harness + dataset in repo; `metrics.py` unit tests are the gate (no network). Run the integration evals once to produce real numbers; write `docs/calibration-2026-06.md` and the README line from those numbers. Local commits (no push until asked).
+
+---
+
+## Addendum (2026-06-04 revisions)
+
+Three changes per user direction:
+
+1. **No confidence intervals.** Report point estimates only (precision / recall / FP), each labelled with its N. No CIs or error bars.
+
+2. **Also calibrate `author_identity_weak`** (new check, FP-focused):
+   - Dataset **`author_papers.jsonl`** (`{"doi","label":"legit"|"suspicious"}`):
+     - **legit** (~20–30): real large-team / industry papers that must NOT be flagged — e.g. Mistral `10.48550/arXiv.2310.06825`, Llama-2 `...2307.09288`, big collaborations. This is the **key FP test** (we already fixed a false positive on Mistral/Llama2 — prove the FP rate is now low).
+     - **suspicious** (best-effort, as many as findable): papers that DO resolve in OpenAlex with genuinely weak author identity. Hard to label; recall is **indicative**. Caveat: the flag only fires on OpenAlex-resolved papers, so unindexed paper-mills (like the earlier "Mind Lab" case, which is `work_not_found`) are out of its reach by design — state this.
+   - **`eval_author.py`**: each DOI → `paper-verify` → `flags.author_identity_weak`; predict suspicious/legit; compute **FP rate on legit** (the primary, defensible number), recall on suspicious (indicative), precision.
+   - Report caveat: author-identity labels are partly subjective; the meaningful number is the **FP rate on known-legit large-team papers**.
+
+3. **Run CiteAudit benchmark first for C1.**
+   - C1's **primary** dataset = CiteAudit's published benchmark (6475 real + 2967 fake refs; arXiv:2602.23452 / checkcitation.com). `build_dataset.py` attempts to fetch it; if obtained, `eval_c1.py` runs on it **first** (for direct comparability with their reported 97%).
+   - The self-built C1 set (§2) becomes the **supplement / fallback** used when CiteAudit's data can't be fetched. The report states exactly which dataset(s) each C1 number came from, and (if both ran) shows both.
+
+These extend §2 (datasets gain `author_papers.jsonl` + CiteAudit-first for C1), §3 (add `eval_author.py`), §4–5 (report + README include the author FP number and the CiteAudit-vs-self-built C1 source), §6 (add author dataset sanity + metrics already cover the author confusion matrix).
