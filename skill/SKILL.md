@@ -186,6 +186,7 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 - 某來源連不上 → 標該項「未執行」,非「通過」。
 - 參考文獻過多 → 取樣並**揭露**(已查 N / 共 M),不靜默截斷。
 - 全文殘缺 → 明說涵蓋受限、降信心,不硬給高信心分數。
+- **影像造假不在範圍內**:生醫類圖像重複/拼接/AI 生成是最大造假向量之一,但需專用工具(Proofig、ImageTwin 的跨期刊圖庫),LLM 無法可靠判讀。若論文以實驗圖像(western blot、顯微、流式等)為主,報告須標記「**影像未檢——本工具不做影像鑑識,建議用 Proofig/ImageTwin**」並提醒這塊風險未涵蓋,**不可因為其他項乾淨就暗示整篇影像也沒問題**。
 
 ## Mode C 批量模式（掃 arXiv 最新 N 篇）
 一次對「最近 / 某領域最新 N 篇」做採信風險普查(已用真實 20 篇驗證)。
