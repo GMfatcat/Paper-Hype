@@ -124,6 +124,109 @@ def test_format_output_valid_json():
     parsed = _json.loads(extract.format_output(r))
     assert parsed["references_count"] == 1
 
+
+# --- GROBID Task 1: parse_grobid_tei ---
+
+GROBID_TEI_FIXTURE = """<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<text><back><listBibl>
+<biblStruct><analytic>
+  <title level="a">Attention Is All You Need</title>
+  <author><persName><surname>Vaswani</surname></persName></author>
+  <author><persName><surname>Shazeer</surname></persName></author>
+</analytic><monogr><imprint><date when="2017">2017</date></imprint></monogr></biblStruct>
+<biblStruct><analytic>
+  <title level="a">Deep Residual Learning for Image Recognition</title>
+  <author><persName><surname>He</surname></persName></author>
+</analytic><monogr><imprint><date when="2016"/></imprint></monogr></biblStruct>
+<biblStruct><note type="raw_reference">Some Author. An untitled raw reference string only. 2020.</note></biblStruct>
+</listBibl></back></text></TEI>"""
+
+def test_parse_grobid_tei_structured_and_raw():
+    refs = extract.parse_grobid_tei(GROBID_TEI_FIXTURE)
+    assert len(refs) == 3
+    assert "Attention Is All You Need" in refs[0]
+    assert "Vaswani" in refs[0] and "2017" in refs[0]
+    assert "Deep Residual Learning" in refs[1]
+    assert "raw reference string" in refs[2]  # raw_reference fallback used
+
+def test_parse_grobid_tei_bad_xml_returns_empty():
+    assert extract.parse_grobid_tei("not xml <<<") == []
+
+
+# --- GROBID Task 2: grobid_references + _grobid_post (network seam) ---
+
+def test_grobid_references_parses_when_post_succeeds(monkeypatch):
+    monkeypatch.setattr(extract, "_grobid_post", lambda url, pdf, timeout=60: GROBID_TEI_FIXTURE)
+    refs = extract.grobid_references(b"%PDF-bytes", "http://localhost:8070")
+    assert len(refs) == 3 and "Attention Is All You Need" in refs[0]
+
+def test_grobid_references_none_on_post_error(monkeypatch):
+    def boom(url, pdf, timeout=60): raise RuntimeError("connection refused")
+    monkeypatch.setattr(extract, "_grobid_post", boom)
+    assert extract.grobid_references(b"x", "http://localhost:8070") is None
+
+def test_grobid_references_none_when_no_url():
+    assert extract.grobid_references(b"x", None) is None
+    assert extract.grobid_references(b"x", "") is None
+
+
+# --- GROBID Task 3: decision order + references_source ---
+
+def test_extract_pdf_uses_grobid_when_available():
+    r = extract.extract(
+        "https://x.org/p.pdf",
+        bytes_fetcher=lambda u: b"%PDF",
+        pdf_text=lambda b: "Body text. References [1] regex ref one here 2019.",
+        grobid_fn=lambda pdf, url: ["GROBID Ref A 2017", "GROBID Ref B 2018", "GROBID Ref C 2019"],
+        grobid_url="http://localhost:8070")
+    assert r["references_source"] == "grobid"
+    assert r["references_count"] == 3 and "GROBID Ref A" in r["references"][0]
+
+def test_extract_pdf_regex_fallback_when_grobid_none():
+    r = extract.extract(
+        "https://x.org/p.pdf",
+        bytes_fetcher=lambda u: b"%PDF",
+        pdf_text=lambda b: "Body. References [1] First real cited paper title here 2019. [2] Second cited paper title here 2020.",
+        grobid_fn=lambda pdf, url: None,
+        grobid_url="http://localhost:8070")
+    assert r["references_source"] == "regex_fallback"
+    assert r["references_count"] >= 1
+
+def test_extract_pdf_regex_when_grobid_disabled():
+    r = extract.extract(
+        "https://x.org/p.pdf",
+        bytes_fetcher=lambda u: b"%PDF",
+        pdf_text=lambda b: "Body. References [1] A cited paper title here 2019. [2] B cited paper title here 2020.",
+        grobid_url=None)  # GROBID off
+    assert r["references_source"] == "regex_fallback"
+
+def test_extract_arxiv_html_with_refs_is_arxiv_source():
+    r = extract.extract("2312.00752", html_fetcher=lambda u: ARXIV_HTML_FIXTURE,
+                        grobid_url="http://localhost:8070",
+                        grobid_fn=lambda pdf, url: ["should not be used"])
+    assert r["references_source"] == "arxiv_html"
+    assert r["references_count"] == 2  # from ARXIV_HTML_FIXTURE (Task-2 fixture in this file)
+
+def test_extract_arxiv_html_no_refs_rescued_by_grobid():
+    html_no_refs = "<html><body><section><p>ltx_ body selective state space</p></section></body></html>"
+    r = extract.extract("2312.00752",
+                        html_fetcher=lambda u: html_no_refs,
+                        bytes_fetcher=lambda u: b"%PDF",
+                        grobid_fn=lambda pdf, url: ["Rescued Ref 2023"],
+                        grobid_url="http://localhost:8070")
+    assert r["references_source"] == "grobid"
+    assert "Rescued Ref" in r["references"][0]
+
+
+# --- GROBID Task 4: CLI format_output includes references_source ---
+
+def test_format_output_includes_references_source():
+    r = extract._result("q", True, "arxiv_html", "full", True, "text", ["a"], ["n"],
+                        references_source="grobid")
+    import json as _j
+    assert _j.loads(extract.format_output(r))["references_source"] == "grobid"
+
 @pytest.mark.integration
 def test_integration_arxiv_html_mamba():
     r = extract.extract("2312.00752")
