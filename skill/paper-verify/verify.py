@@ -272,7 +272,10 @@ def resolve_refs(refs, candidate_fetcher=None, doi_checker=None):
             if ex is False:
                 unresolved.append(ref); continue
             # ex is None -> couldn't check; fall through to title matching
-        if match_any(ref, candidate_fetcher(ref)):
+        # Use only the TOP-1 candidate: calibration showed multi-candidate (top-N)
+        # matching spuriously matched fabricated fakes (recall 0.82->0.55) for a tiny
+        # FP gain. DOI-direct (above) carries the FP win; top-1 preserves recall.
+        if match_any(ref, (candidate_fetcher(ref) or [])[:1]):
             continue
         unresolved.append(ref)
     return {"provided_checked": len(refs), "provided_unresolved": unresolved}
