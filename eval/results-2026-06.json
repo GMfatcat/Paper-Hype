@@ -1,0 +1,38 @@
+{
+  "c1_selfbuilt": {
+    "dataset": "c1_references.jsonl",
+    "n": 200,
+    "precision": 0.5532,
+    "recall": 0.26,
+    "false_positive_rate": 0.21,
+    "tp": 26,
+    "fp": 21,
+    "tn": 79,
+    "fn": 74
+  },
+  "c1_citeaudit": "n/a",
+  "c4": {
+    "dataset": "c4_papers.jsonl",
+    "n": 7,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "tp": 3,
+    "fp": 0,
+    "tn": 4,
+    "fn": 0
+  },
+  "author": {
+    "dataset": "author_papers.jsonl",
+    "n": 5,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "tn": 5,
+    "fn": 0,
+    "legit_n": 5
+  },
+  "run_date": "2026-06-04"
+}
