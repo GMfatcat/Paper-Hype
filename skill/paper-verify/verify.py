@@ -265,16 +265,12 @@ def resolve_refs(refs, candidate_fetcher=None, doi_checker=None):
     unresolved = []
     for ref in refs:
         doi = extract_doi(ref)
-        if doi:
-            ex = doi_checker(doi)
-            if ex is True:
-                continue
-            if ex is False:
-                unresolved.append(ref); continue
-            # ex is None -> couldn't check; fall through to title matching
-        # Use only the TOP-1 candidate: calibration showed multi-candidate (top-N)
-        # matching spuriously matched fabricated fakes (recall 0.82->0.55) for a tiny
-        # FP gain. DOI-direct (above) carries the FP win; top-1 preserves recall.
+        if doi and doi_checker(doi) is True:
+            continue  # DOI confirmed to exist -> resolved (the safe FP win)
+        # DOI absent / 404 / unconfirmable -> do NOT mark unresolved on that alone
+        # (查不到 ≠ 造假); fall through to title matching.
+        # TOP-1 candidate only: calibration showed top-N spuriously matched fabricated
+        # fakes (recall 0.82->0.55) for a tiny FP gain — top-1 preserves recall.
         if match_any(ref, (candidate_fetcher(ref) or [])[:1]):
             continue
         unresolved.append(ref)
