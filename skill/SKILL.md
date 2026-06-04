@@ -154,6 +154,7 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 - 一般頁面用 WebFetch;JS 重的出版頁可退用 `scrapling-fetcher/` 容器。
 - **結構化事實**:先跑 `paper-verify "<DOI/arXiv/標題>"`(skill/paper-verify/,Docker 或 `python verify.py`)→ 拿 facts+flags 餵 C1/C4/C5 與作者識別;`resolved:false`(太新未索引)→ 退回 WebFetch,**不當紅旗**。
 - **全文與引用**:跑 `pdf-extract "<arXiv id/PDF URL>"`(skill/pdf-extract/)→ `fulltext` 餵 C2/C3 文字掃描(不再常「涵蓋受限」);`references` 餵 `paper-verify <id> --refs -` 做 C1。**注意**:引用抽取與比對皆 best-effort,`refs_unresolved` 是**參考訊號非定論**(亂排版/搜尋噪音會誤判),高比例才當「該手動查」;`coverage:none`(圖片化 PDF)→ C2/C3 標受限,同今。
+  - **引用品質**:pdf-extract 的 `references_source` 顯示引用怎麼來(`grobid` > `arxiv_html` > `regex_fallback`)。若有跑 GROBID 服務(`GROBID_URL`),引用大幅更完整 → C1 更可信;沒跑就是 best-effort regex,C1 信心降一級。
 
 ## Pipeline
 1. **取文**(上方)。

@@ -20,3 +20,19 @@ Mode C 取文 runs it alongside `paper-verify`. `fulltext` → C2/C3 scans; `ref
 - No paywall bypass; no table/formula/figure structuring.
 - Reference splitting from PDF text is heuristic (`references_count` reported; arXiv HTML refs are structured and cleaner).
 - **Reference extraction is best-effort.** Full text is reliable; references depend on the paper having a structured HTML bibliography or a clean numbered PDF reference list. `references_count` is reported; when low/0, Mode C treats C1 as 受限 and may sample manually. Robust parsing (GROBID-level) is out of scope.
+
+## Better references via GROBID (optional)
+By default references come from arXiv HTML (when present) or a regex heuristic (best-effort). For high-quality references (F1~0.9), run a GROBID service and point `pdf-extract` at it:
+
+```
+# start a lightweight CRF GROBID (image is ~0.3–1 GB; check GROBID docs for the current tag)
+docker run -d --rm --name grobid -p 8070:8070 lfoppiano/grobid:0.8.0
+curl -s http://localhost:8070/api/isalive   # -> true
+
+export GROBID_URL=http://localhost:8070      # default is already http://localhost:8070
+python extract.py "2302.13971"               # references now via GROBID
+```
+
+- `GROBID_URL` unset/unreachable → identical to today (regex fallback); GROBID is **opt-in**.
+- Output field **`references_source`**: `arxiv_html` | `grobid` | `regex_fallback` | `none` — tells you (and Mode C) how refs were obtained; confidence: grobid > arxiv_html > regex_fallback.
+- The full deep-learning image `grobid/grobid:0.8.2` gives marginally better F1 but is ~10 GB / needs more RAM; the CRF image is recommended here.
