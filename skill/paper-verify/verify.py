@@ -1,6 +1,7 @@
 import json
 import re
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -162,6 +163,87 @@ def match_reference(ref, candidate_title):
     return overlap >= 0.6
 
 
+# ---------------------------------------------------------------------------
+# Pure helpers (no network)
+# ---------------------------------------------------------------------------
+
+_DOI_RE = re.compile(r'10\.\d{4,}/[^\s"<>]+')
+
+def extract_doi(ref):
+    if not ref:
+        return None
+    m = _DOI_RE.search(ref)
+    return m.group(0).rstrip('.,;)]}>') if m else None
+
+def _ref_year(ref):
+    m = re.search(r'\b(19|20)\d{2}\b', ref or "")
+    return m.group(0) if m else None
+
+def _overlap(title, ref):
+    tt = set(re.findall(r"\w+", (title or "").lower()))
+    rt = set(re.findall(r"\w+", (ref or "").lower()))
+    return (len(tt & rt) / len(tt)) if tt else 0.0
+
+def match_any(ref, candidates):
+    ry = _ref_year(ref)
+    rt = set(re.findall(r"\w+", (ref or "").lower()))
+    for c in candidates or []:
+        title = c.get("title") or ""
+        ttoks = re.findall(r"\w+", title.lower())
+        n = len(ttoks)
+        if 0 < n <= 4:                      # short-title guard
+            present = len(set(ttoks) & rt)
+            if present >= 1 and present >= n - 1:
+                return True
+            continue
+        bar = 0.5 if (ry and c.get("year") and ry == c.get("year")) else 0.6
+        if _overlap(title, ref) >= bar:
+            return True
+    return False
+
+def _parse_candidates(data):
+    out = []
+    for it in ((data.get("message") or {}).get("items") or []):
+        titles = it.get("title") or []
+        if not titles:
+            continue
+        parts = ((it.get("issued") or {}).get("date-parts") or [[None]])
+        year = str(parts[0][0]) if (parts and parts[0] and parts[0][0]) else None
+        out.append({"title": titles[0], "year": year})
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Network seams (injectable for testing)
+# ---------------------------------------------------------------------------
+
+def _doi_exists(doi, timeout=30):
+    url = f"https://api.crossref.org/works/{urllib.parse.quote(doi)}?mailto={MAILTO}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": f"paper-verify/1.0 (mailto:{MAILTO})"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return 200 <= r.status < 300
+    except urllib.error.HTTPError as e:
+        return False if e.code == 404 else None
+    except Exception:
+        return None
+
+def _search_reference_candidates(ref, rows=5, timeout=30):
+    q = urllib.parse.quote(ref[:400])
+    url = f"https://api.crossref.org/works?query.bibliographic={q}&rows={rows}&mailto={MAILTO}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": f"paper-verify/1.0 (mailto:{MAILTO})",
+                                                   "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return _parse_candidates(json.loads(r.read().decode("utf-8")))
+    except Exception:
+        return []
+
+
+# ---------------------------------------------------------------------------
+# Legacy single-title searcher (kept for backward compat; _search_reference_title)
+# ---------------------------------------------------------------------------
+
 def _search_reference_title(ref):
     # Crossref query.bibliographic is purpose-built for matching messy reference strings
     q = urllib.parse.quote(ref[:400])
@@ -180,13 +262,22 @@ def _search_reference_title(ref):
     return titles[0] if titles else None
 
 
-def resolve_refs(refs, searcher=None):
-    searcher = searcher or _search_reference_title
+def resolve_refs(refs, candidate_fetcher=None, doi_checker=None):
+    candidate_fetcher = candidate_fetcher or _search_reference_candidates
+    doi_checker = doi_checker or _doi_exists
     unresolved = []
     for ref in refs:
-        title = searcher(ref)
-        if not (title and match_reference(ref, title)):
-            unresolved.append(ref)
+        doi = extract_doi(ref)
+        if doi:
+            ex = doi_checker(doi)
+            if ex is True:
+                continue
+            if ex is False:
+                unresolved.append(ref); continue
+            # ex is None -> couldn't check; fall through to title matching
+        if match_any(ref, candidate_fetcher(ref)):
+            continue
+        unresolved.append(ref)
     return {"provided_checked": len(refs), "provided_unresolved": unresolved}
 
 

@@ -187,12 +187,63 @@ def test_match_reference():
                                   "Attention Is All You Need") is False
 
 def test_resolve_refs(monkeypatch):
-    # searcher returns a title for the real one, None for the fake
-    def fake_search(ref):
-        return "Attention Is All You Need" if "Vaswani" in ref else None
-    out = verify.resolve_refs(["Vaswani Attention is all you need 2017",
-                               "Nonexistent fabricated reference xyz 2099"],
-                              searcher=fake_search)
+    # no-DOI refs: candidate_fetcher returns a matching candidate for the real one, nothing for the fake
+    def fake_fetch(ref):
+        return [{"title": "Attention Is All You Need", "year": "2017"}] if "Vaswani" in ref else []
+    out = verify.resolve_refs(
+        ["Vaswani Attention is all you need 2017",
+         "Nonexistent fabricated reference xyz 2099"],
+        candidate_fetcher=fake_fetch, doi_checker=lambda d: None)
     assert out["provided_checked"] == 2
-    assert len(out["provided_unresolved"]) == 1
-    assert "Nonexistent" in out["provided_unresolved"][0]
+    assert out["provided_unresolved"] == ["Nonexistent fabricated reference xyz 2099"]
+
+def test_resolve_refs_doi_path(monkeypatch):
+    out = verify.resolve_refs(
+        ["Real. Title. 10.1038/s41586-021-03819-2.", "Fake. 10.9999/nope.doi.x 2099."],
+        candidate_fetcher=lambda r: [],
+        doi_checker=lambda d: d.startswith("10.1038"))
+    assert out["provided_unresolved"] == ["Fake. 10.9999/nope.doi.x 2099."]
+
+
+# ---------------------------------------------------------------------------
+# Task 3 (C1 quality): pure helpers
+# ---------------------------------------------------------------------------
+
+def test_extract_doi():
+    assert verify.extract_doi("Foo. Bar. 2020. https://doi.org/10.1145/3292500.3330701") == "10.1145/3292500.3330701"
+    assert verify.extract_doi("A paper, doi:10.1038/s41586-021-03819-2.") == "10.1038/s41586-021-03819-2"
+    assert verify.extract_doi("No doi here, just text 2019") is None
+
+def test_ref_year():
+    assert verify._ref_year("Smith et al. Title. 2021.") == "2021"
+    assert verify._ref_year("no year") is None
+
+def test_match_any_rank3():
+    ref = "Vaswani et al. Attention Is All You Need. 2017."
+    cands = [{"title": "Wrong One", "year": "2019"},
+             {"title": "Another Wrong", "year": "2018"},
+             {"title": "Attention Is All You Need", "year": "2017"}]
+    assert verify.match_any(ref, cands) is True
+
+def test_match_any_year_relaxes():
+    ref = "Doe. Deep Nets. 2020."   # title overlap ~0.5 with candidate
+    cands = [{"title": "Deep Nets Revisited", "year": "2020"}]  # 2/3 title tokens, year matches -> relaxed bar 0.5
+    assert verify.match_any(ref, cands) is True
+
+def test_match_any_short_title_all_but_one():
+    ref = "X. BERT pretraining. 2019."
+    cands = [{"title": "BERT", "year": "2019"}]   # 1-token title present
+    assert verify.match_any(ref, cands) is True
+
+def test_match_any_all_wrong_no_match():
+    ref = "Totally unique fabricated title about quokkas 2099"
+    cands = [{"title": "Something unrelated", "year": "2001"}]
+    assert verify.match_any(ref, cands) is False
+
+def test_parse_candidates():
+    data = {"message": {"items": [
+        {"title": ["A Real Title"], "issued": {"date-parts": [[2017]]}},
+        {"title": ["Second"], "issued": {"date-parts": [[None]]}}]}}
+    out = verify._parse_candidates(data)
+    assert out[0] == {"title": "A Real Title", "year": "2017"}
+    assert out[1]["title"] == "Second" and out[1]["year"] is None
