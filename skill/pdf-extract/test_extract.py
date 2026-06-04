@@ -1,5 +1,6 @@
 import extract
 import json as _json
+import os
 import pytest
 
 
@@ -242,3 +243,20 @@ def test_integration_image_pdf_coverage_none():
     r = extract.extract("https://arxiv.org/pdf/2606.02437")  # Mind Lab — image-encoded PDF
     assert r["ok"] is True
     assert r["coverage"] in ("none", "partial", "full")  # must not crash; ideally none
+
+
+# --- Task 5: GROBID integration smokes ---
+
+@pytest.mark.integration
+def test_integration_grobid_llama_refs():
+    import os
+    r = extract.extract("2302.13971", grobid_url=os.environ.get("GROBID_URL", "http://localhost:8070"))
+    assert r["ok"]
+    assert r["references_source"] == "grobid"
+    assert r["references_count"] >= 15
+
+@pytest.mark.integration
+def test_integration_grobid_down_falls_back():
+    r = extract.extract("2302.13971", grobid_url="http://localhost:9")
+    assert r["ok"]
+    assert r["references_source"] in ("regex_fallback", "none")
