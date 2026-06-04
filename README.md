@@ -129,6 +129,10 @@ examples/                  experiment data — 25 domains, 75 hype pieces
 ## Ethics & disclaimer
 `examples/` contains **deliberately fabricated** clickbait rewrites of real papers, produced as teaching material. Every file is headed with a disclaimer in Chinese marking it as a controlled demo. **Do not extract and publish any "營銷號版 (hype version)" as a real take on a paper.** The skill exists to *detect and dissect* hype, never to manufacture it.
 
+## Calibration
+
+**Calibration (indicative, small self-built sets — see [docs/calibration-2026-06.md](./docs/calibration-2026-06.md)):** C1 reference-resolution false-positive ≈ 21% (n=200) — which is why `refs_unresolved` is an *advisory*, non-decisive signal; `author_identity_weak` false-positive 0% on legit large-team papers (n=5); C4 retraction detection 3/3 on known cases (OpenAlex coverage, n=7). Numbers are honest point estimates with stated N, including the unflattering ones.
+
 ## Acknowledgements
 Mode B's post fetcher is built on [**Scrapling**](https://github.com/D4Vinci/Scrapling) by Karim Shoair ([@D4Vinci](https://github.com/D4Vinci)) — an adaptive web‑scraping framework that handles JS rendering and anti‑bot, which is what makes fetching live Threads/X posts possible. This project only **invokes** Scrapling inside a Docker container (see `skill/scrapling-fetcher/`); it does not vendor or modify Scrapling's source.
 
