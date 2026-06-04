@@ -1,0 +1,228 @@
+{"ref": "Lopez-Gomez I. Global extreme heat forecasting using neural weather models 2022", "label": "real"}
+{"ref": "Shi X. Deep learning for precipitation nowcasting: A benchmark and a new model 2017", "label": "real"}
+{"ref": "C. K. Sønderby L. Espeholt J. Heek M. Dehghani A. Oliver T. Salimans S. Agrawal J. Hickey N. Kalchbrenner Metnet: A neural weather model for precipitation forecasting. arXiv:2003.12140 [cs.LG] (2020).", "label": "real"}
+{"ref": "T. Nguyen J. Brandstetter A. Kapoor J. K. Gupta A. Grover ClimaX: A foundation model for weather and climate. arXiv:2301.10343 [cs.LG] (2023).", "label": "real"}
+{"ref": "R. Keisler Forecasting global weather with graph neural networks. arXiv:2202.07575 [physics.ao-ph] (2022).", "label": "real"}
+{"ref": "J. Pathak S. Subramanian P. Harrington S. Raja A. Chattopadhyay M. Mardani T. Kurth D. Hall Z. Li K. Azizzadenesheli P. Hassanzadeh K. Kashinath A. Anandkumar FourCastNet: A global data-driven high-resolution weather model using adaptive fourier neural operators. arXiv:2202.11214 [physics.ao-ph] (2022).", "label": "real"}
+{"ref": "T. Kurth S. Subramanian P. Harrington J. Pathak M. Mardani D. Hall A. Miele K. Kashinath A. Anandkumar FourCastNet: Accelerating global high-resolution weather forecasting using adaptive fourier neural operators. arXiv:2208.05419 [physics.ao-ph] (2022).", "label": "real"}
+{"ref": "K. Bi L. Xie H. Zhang X. Chen X. Gu Q. Tian Pangu-Weather: A 3D high-resolution model for fast and accurate global weather forecast. arXiv:2211.02556 [physics.ao-ph] (2022).", "label": "real"}
+{"ref": "P. W. Battaglia J. B. Hamrick V. Bapst A. Sanchez-Gonzalez V. Zambaldi M. Malinowski A. Tacchetti D. Raposo A. Santoro R. Faulkner C. Gulcehre F. Song A. Ballard J. Gilmer G. Dahl A. Vaswani K. Allen C. Nash V. Langston C. Dyer N. Heess D. Wierstra P. Kohli M. Botvinick O. Vinyals Y. Li R. Pascanu Relational inductive biases deep learning and graph networks. arXiv:1806.01261 [cs.LG] (2018).", "label": "real"}
+{"ref": "Sanchez-Gonzalez A. Learning to simulate complex physics with graph networks 2020", "label": "real"}
+{"ref": "T. Pfaff M. Fortunato A. Sanchez-Gonzalez P. Battaglia “Learning mesh-based simulation with graph networks ” International Conference on Learning Representations (ICLR 2021) 3 to 7 May 2021.", "label": "real"}
+{"ref": "Alet F. Graph element networks: adaptive, structured computation and memory 2019", "label": "real"}
+{"ref": "T. Haiden M. Janousek J. Bidlot R. Buizza L. Ferranti F. Prates F. Vitart “Evaluation of ECMWF forecasts including the 2018 upgrade ” ECMWF Technical Memorandum No. 831 (European Centre for Medium-Range Weather Forecasts 2018); https://doi.org/10.21957/ldw15ckqi.", "label": "real"}
+{"ref": "L. Magnusson S. Majumdar R. Emerton D. Richardson M. Alonso-Balmaseda C. Baugh P. Bechtold J. Bidlot A. Bonanni M. Bonavita N. Bormann A. Brown P. Browne H. Carr M. Dahoui G. De Chiara M. Diamantakis D. Duncan S. English R. Forbes A. Geer T. Haiden S. Healy T. Hewson B. Ingleby M. Janousek C. Kuehnlein S. Lang S.-J. Lock T. McNally K. Mogensen F. Pappenberger I. Polichtchouk F. Prates C. Prudhomme F. Rabier P. de Rosnay T. Quintino M. Rennie H. Titley F. Vana F. Vitart F. Warrick N. Wedi E. Zsoter “Tropical cyclone activities at ECMWF ” ECMWF Technical Memorandum No. 888 (European Centre for Medium-Range Weather Forecasts 2021); https://doi.org/10.21957/zzxzzygwv.", "label": "real"}
+{"ref": "K. R. Knapp H. J. Diamond J. P. Kossin M. C. Kruk C. J. Schreck III International Best Track Archive for Climate Stewardship (IBTrACS) Project version 4 NOAA National Centers for Environmental Information (2018); https://doi.org/10.25921/82ty-9e16.", "label": "real"}
+{"ref": "L. Magnusson T. Haiden D. Richardson “Verification of extreme weather events: Discrete predictands ” ECMWF Technical Memorandum No. 731 (European Centre for Medium-Range Weather Forecasts 2014); https://doi.org/10.21957/1iql31n2c.", "label": "real"}
+{"ref": "L. Magnusson ECMWF confluence wiki: 202208 - Heatwave - UK (2022); https://confluence.ecmwf.int/display/FCST/202208+-+Heatwave+-+UK.", "label": "real"}
+{"ref": "C. Maass E. Cuartero MARS user documentation (2022); https://confluence.ecmwf.int/display/UDOC/MARS+user+documentation.", "label": "real"}
+{"ref": "T. Ewalds Source code for GraphCast google-deepmind/graphcast: Version 0.1 Zenodo (2023); https://doi.org/10.5281/zenodo.10058758.10.5281/zenodo.10058758", "label": "real"}
+{"ref": "MC Thompson Thompson, M. C., Yeates, T. O. & Rodriguez, J. A. Advances in methods for atomic resolution macromolecular structure determination. F1000Res. 9, 667 (2020). 2020", "label": "real"}
+{"ref": "X-C Bai Bai, X.-C., McMullan, G. & Scheres, S. H. W. How cryo-EM is revolutionizing structural biology. Trends Biochem. Sci. 40, 49–57 (2015). 2015", "label": "real"}
+{"ref": "M Jaskolski Jaskolski, M., Dauter, Z. & Wlodawer, A. A brief history of macromolecular crystallography, illustrated by a family tree and its Nobel fruits. FEBS J. 281, 3985–4009 (2014). 2014", "label": "real"}
+{"ref": "K Wüthrich Wüthrich, K. The way to NMR structures of proteins. Nat. Struct. Biol. 8, 923–925 (2001). 2001", "label": "real"}
+{"ref": "wwPDB Consortium wwPDB Consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Res. 47, D520–D528 (2018). 2018", "label": "real"}
+{"ref": "AL Mitchell Mitchell, A. L. et al. MGnify: the microbiome analysis resource in 2020. Nucleic Acids Res. 48, D570–D578 (2020). 2020", "label": "real"}
+{"ref": "M Steinegger Steinegger, M., Mirdita, M. & Söding, J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. Nat. Methods 16, 603–606 (2019). 2019", "label": "real"}
+{"ref": "KA Dill Dill, K. A., Ozkan, S. B., Shell, M. S. & Weikl, T. R. The protein folding problem. Annu. Rev. Biophys. 37, 289–316 (2008). 2008", "label": "real"}
+{"ref": "CB Anfinsen Anfinsen, C. B. Principles that govern the folding of protein chains. Science 181, 223–230 (1973). 1973", "label": "real"}
+{"ref": "AW Senior Senior, A. W. et al. Improved protein structure prediction using potentials from deep learning. Nature 577, 706–710 (2020). 2020", "label": "real"}
+{"ref": "S Wang Wang, S., Sun, S., Li, Z., Zhang, R. & Xu, J. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLOS Comput. Biol. 13, e1005324 (2017). 2017", "label": "real"}
+{"ref": "W Zheng Zheng, W. et al. Deep-learning contact-map guided protein structure prediction in CASP13. Proteins 87, 1149–1164 (2019). 2019", "label": "real"}
+{"ref": "LA Abriata Abriata, L. A., Tamò, G. E. & Dal Peraro, M. A further leap of improvement in tertiary structure prediction in CASP13 prompts new routes for future assessments. Proteins 87, 1100–1112 (2019). 2019", "label": "real"}
+{"ref": "R Pearce Pearce, R. & Zhang, Y. Deep learning techniques have significantly impacted protein structure prediction and protein design. Curr. Opin. Struct. Biol. 68, 194–207 (2021). 2021", "label": "real"}
+{"ref": "Moult, J., Fidelis, K., Kryshtafovych, A., Schwede, T. & Topf, M. Critical assessment of techniques for protein structure prediction, fourteenth round. CASP 14 Abstract Book https://www.predictioncenter.org/casp14/doc/CASP14_Abstracts.pdf (2020).", "label": "real"}
+{"ref": "E Brini Brini, E., Simmerling, C. & Dill, K. Protein storytelling through physics. Science 370, eaaz3041 (2020). 2020", "label": "real"}
+{"ref": "MJ Sippl Sippl, M. J. Calculation of conformational ensembles from potentials of mean force. An approach to the knowledge-based prediction of local structures in globular proteins. J. Mol. Biol. 213, 859–883 (1990). 1990", "label": "real"}
+{"ref": "A Šali Šali, A. & Blundell, T. L. Comparative protein modelling by satisfaction of spatial restraints. J. Mol. Biol. 234, 779–815 (1993). 1993", "label": "real"}
+{"ref": "A Roy Roy, A., Kucukural, A. & Zhang, Y. I-TASSER: a unified platform for automated protein structure and function prediction. Nat. Protocols 5, 725–738 (2010). 2010", "label": "real"}
+{"ref": "D Altschuh Altschuh, D., Lesk, A. M., Bloomer, A. C. & Klug, A. Correlation of co-ordinated amino acid substitutions with function in viruses related to tobacco mosaic virus. J. Mol. Biol. 193, 693–707 (1987). 1987", "label": "real"}
+{"ref": "IN Shindyalov Shindyalov, I. N., Kolchanov, N. A. & Sander, C. Can three-dimensional contacts in protein structures be predicted by analysis of correlated mutations? Protein Eng. 7, 349–358 (1994). 1994", "label": "real"}
+{"ref": "M Weigt Weigt, M., White, R. A., Szurmant, H., Hoch, J. A. & Hwa, T. Identification of direct residue contacts in protein–protein interaction by message passing. Proc. Natl Acad. Sci. USA 106, 67–72 (2009). 2009", "label": "real"}
+{"ref": "DS Marks Marks, D. S. et al. Protein 3D structure computed from evolutionary sequence variation. PLoS ONE 6, e28766 (2011). 2011", "label": "real"}
+{"ref": "DT Jones Jones, D. T., Buchan, D. W. A., Cozzetto, D. & Pontil, M. PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments. Bioinformatics 28, 184–190 (2012). 2012", "label": "real"}
+{"ref": "J Moult Moult, J., Pedersen, J. T., Judson, R. & Fidelis, K. A large-scale experiment to assess protein structure prediction methods. Proteins 23, ii–iv (1995). 1995", "label": "real"}
+{"ref": "A Kryshtafovych Kryshtafovych, A., Schwede, T., Topf, M., Fidelis, K. & Moult, J. Critical assessment of methods of protein structure prediction (CASP)-round XIII. Proteins 87, 1011–1020 (2019). 2019", "label": "real"}
+{"ref": "Y Zhang Zhang, Y. & Skolnick, J. Scoring function for automated assessment of protein structure template quality. Proteins 57, 702–710 (2004). 2004", "label": "real"}
+{"ref": "Z Tu Tu, Z. & Bai, X. Auto-context and its application to high-level vision tasks and 3D brain image segmentation. IEEE Trans. Pattern Anal. Mach. Intell. 32, 1744–1757 (2010). 2010", "label": "real"}
+{"ref": "Carreira, J., Agrawal, P., Fragkiadaki, K. & Malik, J. Human pose estimation with iterative error feedback. In Proc. IEEE Conference on Computer Vision and Pattern Recognition 4733–4742 (2016).", "label": "real"}
+{"ref": "C Mirabello Mirabello, C. & Wallner, B. rawMSA: end-to-end deep learning using raw multiple sequence alignments. PLoS ONE 14, e0220182 (2019). 2019", "label": "real"}
+{"ref": "Huang, Z. et al. CCNet: criss-cross attention for semantic segmentation. In Proc. IEEE/CVF International Conference on Computer Vision 603–612 (2019).", "label": "real"}
+{"ref": "V Hornak Hornak, V. et al. Comparison of multiple Amber force fields and development of improved protein backbone parameters. Proteins 65, 712–725 (2006). 2006", "label": "real"}
+{"ref": "A Zemla Zemla, A. LGA: a method for finding 3D similarities in protein structures. Nucleic Acids Res. 31, 3370–3374 (2003). 2003", "label": "real"}
+{"ref": "V Mariani Mariani, V., Biasini, M., Barbato, A. & Schwede, T. lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests. Bioinformatics 29, 2722–2728 (2013). 2013", "label": "real"}
+{"ref": "Xie, Q., Luong, M.-T., Hovy, E. & Le, Q. V. Self-training with noisy student improves imagenet classification. In Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition 10687–10698 (2020).", "label": "real"}
+{"ref": "M Mirdita Mirdita, M. et al. Uniclust databases of clustered and deeply annotated protein sequences and alignments. Nucleic Acids Res. 45, D170–D176 (2017). 2017", "label": "real"}
+{"ref": "Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K. BERT: pre-training of deep bidirectional transformers for language understanding. In Proc. 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies 1, 4171–4186 (2019).", "label": "real"}
+{"ref": "Rao, R. et al. MSA transformer. In Proc. 38th International Conference on Machine Learning PMLR 139, 8844–8856 (2021).", "label": "real"}
+{"ref": "Tunyasuvunakool, K. et al. Highly accurate protein structure prediction for the human proteome. Nature https://doi.org/10.1038/s41586-021-03828-1 (2021).", "label": "real"}
+{"ref": "B Kuhlman Kuhlman, B. & Bradley, P. Advances in protein structure prediction and design. Nat. Rev. Mol. Cell Biol. 20, 681–697 (2019). 2019", "label": "real"}
+{"ref": "Johns Hopkins University Coronavirus Resource Center. COVID-19 dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. 2020 (https://coronavirus.jhu.edu/map.html).", "label": "real"}
+{"ref": "World Health Organization. WHO Director-General’s opening remarks at the media briefing on COVID-19 — 11 March 2020 (https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020).", "label": "real"}
+{"ref": "Centers for Disease Control and Prevention. COVID-19 information page (https://www.cdc.gov/coronavirus/2019-ncov/index.html).", "label": "real"}
+{"ref": "Sahin U Muik A Vogler I et al. BNT162b2 induces SARS-CoV-2-neutralising antibodies and T cells in humans. December 11 2020 (https://www.medrxiv.org/content/10.1101/2020.12.09.20245175v1). preprint.", "label": "real"}
+{"ref": "Food and Drug Administration. Guidance for industry: emergency use authorization for vaccines to prevent COVID-19. October 2020 (https://www.fda.gov/media/142749/download).", "label": "real"}
+{"ref": "Food and Drug Administration. Shringrix (zoster vaccine recombinant adjuvanted) product information. 2019 (https://www.fda.gov/vaccines-blood-biologics/vaccines/shingrix).", "label": "real"}
+{"ref": "Abel Natural Killer Cells: Development, Maturation, and Clinical Utilization 2018", "label": "real"}
+{"ref": "Alquicira-Hernandez Nebulosa recovers single cell gene expression signals by kernel density estimation 2020", "label": "real"}
+{"ref": "Andreeff RNA content in human lymphocyte subpopulations 1978", "label": "real"}
+{"ref": "Andrews M3Drop: dropout-based feature selection for scRNASeq 2019", "label": "real"}
+{"ref": "Argelaguet MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data 2020", "label": "real"}
+{"ref": "Barshan Supervised principal component analysis: Visualization, classification and regression on subspaces and submanifolds 2011", "label": "real"}
+{"ref": "Bendall Single-cell mass cytometry of differential immune and drug responses across a human hematopoietic continuum 2011", "label": "real"}
+{"ref": "Bodenmiller Multiplexed mass cytometry profiling of cellular states perturbed by small-molecule regulators 2012", "label": "real"}
+{"ref": "Bull Defining blood processing parameters for optimal detection of cryopreserved antigen-specific responses for HIV vaccine trials 2007", "label": "real"}
+{"ref": "Cao Joint profiling of chromatin accessibility and gene expression in thousands of single cells 2018", "label": "real"}
+{"ref": "Cao The single-cell transcriptional landscape of mammalian organogenesis 2019", "label": "real"}
+{"ref": "Chen Revolutionizing immunology with single-cell RNA sequencing 2019", "label": "real"}
+{"ref": "Chen High-throughput sequencing of the transcriptome and chromatin accessibility in the same cell 2019", "label": "real"}
+{"ref": "Clark scNMT-seq enables joint profiling of chromatin accessibility DNA methylation and transcription in single cells 2018", "label": "real"}
+{"ref": "Corgnac The Emerging Role of CD8+ Tissue Resident Memory T (TRM) Cells in Antitumor Immunity: A Unique Functional Contribution of the CD103 Integrin 2018", "label": "real"}
+{"ref": "Cusanovich A Single-Cell Atlas of In Vivo Mammalian Chromatin Accessibility 2018", "label": "real"}
+{"ref": "Demirkan Value of p53 protein in biological behavior of basal cell carcinoma and in normal epithelia adjacent to carcinomas 2000", "label": "real"}
+{"ref": "Diggins Methods for discovery and characterization of cell subsets in high dimensional mass cytometry data 2015", "label": "real"}
+{"ref": "Ding Systematic comparison of single-cell and single-nucleus RNA-sequencing methods 2020", "label": "real"}
+{"ref": "Efremova Computational methods for single-cell omics across modalities 2020", "label": "real"}
+{"ref": "Elizaga Safety and tolerability of HIV-1 multiantigen pDNA vaccine given with IL-12 plasmid DNA via electroporation, boosted with a recombinant vesicular stomatitis virus HIV Gag vaccine in healthy volunteers in a randomized, controlled clinical trial 2018", "label": "real"}
+{"ref": "Epstein Basal cell carcinomas: attack of the hedgehog 2008", "label": "real"}
+{"ref": "Finck Normalization of mass cytometry data with bead standards 2013", "label": "real"}
+{"ref": "Gaiti Epigenetic evolution and lineage histories of chronic lymphocytic leukaemia 2019", "label": "real"}
+{"ref": "Gayoso A Joint Model of RNA Expression and Surface Protein Abundance in Single Cells 2019", "label": "real"}
+{"ref": "Gomes Immunology Driven by Large-Scale Single-Cell Sequencing 2019", "label": "real"}
+{"ref": "Grimaldi Specific MAIT cell behaviour among innate-like T lymphocytes in critically ill patients with severe infections 2014", "label": "real"}
+{"ref": "Hafemeister Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression 2019", "label": "real"}
+{"ref": "Haghverdi Diffusion pseudotime robustly reconstructs lineage branching 2016", "label": "real"}
+{"ref": "Haghverdi Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors 2018", "label": "real"}
+{"ref": "Hensley Enumeration of major peripheral blood leukocyte populations for multicenter clinical trials using a whole blood phenotyping assay 2012", "label": "real"}
+{"ref": "Hensley-McBain Optimization of a whole blood phenotyping assay for enumeration of peripheral blood leukocyte populations in multicenter clinical trials 2014", "label": "real"}
+{"ref": "Hinks MAIT Cell Activation and Functions 2020", "label": "real"}
+{"ref": "Huang Select sequencing of clonally expanded CD8+ T cells reveals limits to clonal expansion 2019", "label": "real"}
+{"ref": "Ivanov The orphan nuclear receptor RORgammat directs the differentiation program of proinflammatory IL-17+ T helper cells 2006", "label": "real"}
+{"ref": "Jaitin Massively parallel single-cell RNA-seq for marker-free decomposition of tissues into cell types 2014", "label": "real"}
+{"ref": "Kim Cytomegalovirus Infection and Memory T Cell Inflation 2015", "label": "real"}
+{"ref": "Kiselev scmap: projection of single-cell RNA-seq data across data sets 2018", "label": "real"}
+{"ref": "Korsunsky Presto scales Wilcoxon and auROC analyses to millions of observations 2019", "label": "real"}
+{"ref": "Hussein M Adam Robert D Bullard and Elizabeth Bell. 2001. Faces of environmental racism: Confronting issues of global justice. Rowman & Littlefield.", "label": "real"}
+{"ref": "Chris Alberti Kenton Lee and Michael Collins. 2019. A BERT Baseline for the Natural Questions. arXiv:1901.08634 [cs.CL]", "label": "real"}
+{"ref": "American Psychological Association Discrimination: What it is, and how to cope. https://www.apa.org/topics/discrimination 2019", "label": "real"}
+{"ref": "Dario Amodei and Daniel Hernandez. 2018. AI and Compute. https://openai. com/blog/ai-and-compute/", "label": "real"}
+{"ref": "Atallah Mikhail J Natural Language Watermarking and Tamperproofing. In International Workshop on Information Hiding. Springer, 196--212 2002", "label": "real"}
+{"ref": "Baevski Alexei Effectiveness of Self-Supervised Pre-Training for ASR. In ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). 7694--7698 2020", "label": "real"}
+{"ref": "Michael Barera. 2020. Mind the Gap: Addressing Structural Equity and Inclusion on Wikipedia. (2020). Accessible at http://hdl.handle.net/10106/29572.", "label": "real"}
+{"ref": "Barsh Russel Indigenous peoples, racism and the environment 1990", "label": "real"}
+{"ref": "Benjamin Ruha Race After Technology: Abolitionist Tools for the New Jim Code", "label": "real"}
+{"ref": "Bietti Elettra Data Waste. Harvard International Law Journal 61 2020", "label": "real"}
+{"ref": "Bird Steven People.Policy.Place Seminar 2016", "label": "real"}
+{"ref": "Brants Thorsten Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)", "label": "real"}
+{"ref": "Bras Ronan Le Proceedings of the 37th International Conference on Machine Learning. 2020", "label": "real"}
+{"ref": "Brown Tom B. Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020 2020", "label": "real"}
+{"ref": "Bullard Robert D Confronting environmental racism: Voices from the grassroots", "label": "real"}
+{"ref": "Nicholas Carlini Florian Tramer Eric Wallace Matthew Jagielski Ariel Herbert-Voss Katherine Lee Adam Roberts Tom Brown Dawn Song Ulfar Erlingsson Alina Oprea and Colin Raffel. 2020. Extracting Training Data from Large Language Models. arXiv:2012.07805 [cs.CR]", "label": "real"}
+{"ref": "Clark Herbert H. Using Language", "label": "real"}
+{"ref": "Herbert Clark and Adrian Bangerter 2004", "label": "real"}
+{"ref": "Crenshaw Kimberlé Demarginalizing the intersection of race and sex: A Black feminist critique of antidiscrimination doctrine, feminist theory and antiracist politics 1989", "label": "real"}
+{"ref": "Dangl Benjamin The Five Hundred Year Rebellion: Indigenous Movements and the Decolonization of History in Bolivia", "label": "real"}
+{"ref": "Davenport Christian Media bias, perspective, and state repression: The Black Panther Party", "label": "real"}
+{"ref": "de Saussure Ferdinand Course in General Linguistics", "label": "real"}
+{"ref": "de Vries Terrance Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops. 52--59", "label": "real"}
+{"ref": "Maeve Duggan. 2017. Online Harassment 2017. Pew Research Center.", "label": "real"}
+{"ref": "Marchetti P, Solberg R, Huang Y. Hierarchical Spectral Gating for Low-Resource Morphological Inflection. Transactions of the Association for Computational Linguistics 2020.", "label": "fake"}
+{"ref": "Okonkwo T, Ferreira L, Nakamura S. Bounded Causal Divergence in Recurrent Language Models. NeurIPS 2022.", "label": "fake"}
+{"ref": "Szymanski K, Beaumont C, Ramos D. Contrastive Latent Space Compression for Few-Shot Table Understanding. EMNLP 2021.", "label": "fake"}
+{"ref": "Visser R, Tanaka H, Osei E. Piecewise Affine Attention for Ultra-Long Document Summarization. ACL 2023.", "label": "fake"}
+{"ref": "Delacroix M, Gupta N, Wrobel P. Spectral Token Merging in Vision-Language Pretraining. CVPR 2022.", "label": "fake"}
+{"ref": "Nkemdirim O, Larssen B, Zhou X. Adaptive Vocabulary Sharding for Multilingual Neural Machine Translation. ICLR 2021.", "label": "fake"}
+{"ref": "Andersen MK, Petrov I, Diallo A. Quasi-Orthogonal Slot Attention for Compositional Scene Parsing. ECCV 2022.", "label": "fake"}
+{"ref": "Barbosa CR, Svensson T, Lee JH. Recursive Symmetry Breaking in Neural Program Synthesis. ICML 2020.", "label": "fake"}
+{"ref": "Haugen E, Messaoud K, Ribeiro F. Latent Curriculum Scheduling for Cross-Lingual Transfer. AAAI 2023.", "label": "fake"}
+{"ref": "Ogawa M, Brennan P, Stojanovic R. Structured Sparse Gradient Descent for Federated NLP. ICLR 2022.", "label": "fake"}
+{"ref": "Lim SH, Vidal CF, Lindqvist E. Differentiable Entropy Routing in Mixture-of-Experts Transformers. NeurIPS 2021.", "label": "fake"}
+{"ref": "Okpara U, Magnusdottir A, Chevalier B. Anisotropic Positional Encodings for Long-Range Graph Transformers. ICLR 2023.", "label": "fake"}
+{"ref": "Reinholt M, Kapila S, Dubois JF. Temporal Feature Disentanglement for Zero-Shot Event Detection. EMNLP 2020.", "label": "fake"}
+{"ref": "Tsuchiya N, Florescu D, Okonjo K. Calibrated Uncertainty Propagation in Neural Knowledge Graph Completion. ACL 2021.", "label": "fake"}
+{"ref": "Palomares E, Bergstrom L, Sato K. Gated Prototype Networks for Semi-Supervised Image Classification. CVPR 2021.", "label": "fake"}
+{"ref": "Radziwill N, Ibarra C, Wolff M. Doubly Stochastic Attention for Hierarchical Document Encoding. ACL 2022.", "label": "fake"}
+{"ref": "Ngozi IA, Pettersson H, Kanzawa T. Selective Weight Rewinding Under Distribution Shift. ICML 2023.", "label": "fake"}
+{"ref": "Colberg K, Sadiq F, Nakagawa R. Token-Level Dirichlet Priors for Open-Domain Question Answering. NAACL 2022.", "label": "fake"}
+{"ref": "Svenningsen T, Moreira P, Oladipo G. Factored Recurrence with Bottleneck Attention for Video QA. AAAI 2021.", "label": "fake"}
+{"ref": "Mbeki S, Jankowiak R, Ohashi N. Persistent Cohomology Features in Graph Neural Networks. NeurIPS 2022.", "label": "fake"}
+{"ref": "Vetter HA, Eze CO, Magnusdottir S. Non-Canonical Splicing Signatures in Oncogene-Driven Lung Adenocarcinoma. Nature Genetics 2019.", "label": "fake"}
+{"ref": "Ogundimu T, Halvorsen E, Imai K. Stochastic Transcription Factor Binding Dynamics during Gastrulation. Developmental Cell 2021.", "label": "fake"}
+{"ref": "Larsson M, Eze O, Watanabe T. Mitochondrial Fission Asymmetry Controls Neuronal Aging in Drosophila. eLife 2022.", "label": "fake"}
+{"ref": "Achterberg M, Rojas L, Fujita S. Combinatorial Epitope Mapping of Broadly Neutralizing Antibodies to RSV. Journal of Virology 2020.", "label": "fake"}
+{"ref": "Petrov K, Nwosu I, Brandt E. Bayesian Hierarchical Models for Single-Cell ATAC-seq Peak Calling. Genome Biology 2021.", "label": "fake"}
+{"ref": "Dumont F, Sasaki H, Olayinka B. Co-Evolution Constraints Predict Allosteric Coupling in Kinase Families. PLOS Computational Biology 2018.", "label": "fake"}
+{"ref": "Kramer B, Izumi T, Waweru P. Phase-Separated RNA Condensates Drive Alternative Polyadenylation Switching. Molecular Cell 2023.", "label": "fake"}
+{"ref": "Holm LK, Osei-Bonsu A, Yamamoto R. CRISPR Base Editing of Cardiac Troponin Variants Causes Hypertrophic Cardiomyopathy. Science Translational Medicine 2022.", "label": "fake"}
+{"ref": "Bergqvist E, Chukwu O, Inagaki S. Epigenetic Memory of Drought Stress Shapes Root Microbiome Assembly in Maize. Plant Cell 2019.", "label": "fake"}
+{"ref": "Adeyemi M, Eklund J, Ito K. Tandem Repeat Expansion in SYF2 Causes a Novel Cerebellar Ataxia. American Journal of Human Genetics 2021.", "label": "fake"}
+{"ref": "Tamboli S, Ericsson P, Watanabe H. Topological Magnon Band Inversions in Frustrated Kagome Magnets. Physical Review B 2020.", "label": "fake"}
+{"ref": "Osei-Mensah K, Lindgren P, Nishida T. Many-Body Localisation Transition in Quasiperiodic Hubbard Chains. Physical Review Letters 2021.", "label": "fake"}
+{"ref": "Rennick J, Sow F, Hashimoto K. Non-Hermitian Skin Effect in Coupled Optical Resonator Arrays. Nature Physics 2022.", "label": "fake"}
+{"ref": "Christoffersen A, Amara B, Tanaka Y. Cavity QED Signatures of Fracton Topological Order. Physical Review X 2021.", "label": "fake"}
+{"ref": "Nwosu E, Hansson P, Okazaki T. Ultrafast Demagnetisation via Phonon Angular Momentum Transfer in Ferromagnets. Physical Review Letters 2023.", "label": "fake"}
+{"ref": "Espinoza R, Torp N, Suzuki A. Vortex Lattice Melting in Overdoped Cuprate Superconductors. Physical Review B 2018.", "label": "fake"}
+{"ref": "Sato K, Bergmann E, Oduya C. Anomalous Hall Viscosity in Chiral Thin-Film Magnets. Physical Review Materials 2022.", "label": "fake"}
+{"ref": "Lund M, Oluwole B, Nozaki R. Gravitational-Wave Memory Oscillations from Binary Neutron Star Mergers. Physical Review D 2020.", "label": "fake"}
+{"ref": "Holst V, Asante K, Kimura T. Symmetry-Protected Bound States in Photonic Topological Crystals. Nature Photonics 2021.", "label": "fake"}
+{"ref": "Joensen L, Abara E, Nagoya M. Scattering Matrix Poles in Non-Equilibrium Quantum Billiards. Journal of Physics A 2019.", "label": "fake"}
+{"ref": "Dankwa B, Lindman O, Suzuki F. Optimal Contract Design with Hidden Effort and Stochastic Deadlines. Journal of Economic Theory 2021.", "label": "fake"}
+{"ref": "Okonkwo-Amara G, Bertrand C, Ishikawa T. Dynamic Spatial Equilibrium with Congestion and Green Amenities. American Economic Review 2020.", "label": "fake"}
+{"ref": "Terlouw R, Abioye M, Ito S. Threshold Effects in Inequality and Intergenerational Mobility across Brazilian Municipalities. Journal of Development Economics 2022.", "label": "fake"}
+{"ref": "Sorensen KB, Omolara D, Fujimori K. Credit Cycles and Pecuniary Externalities in a Two-Agent New Keynesian Model. Review of Economic Studies 2019.", "label": "fake"}
+{"ref": "Magnusson H, Eze P, Kato N. Platform Governance and Price Dispersion in Online Labor Markets. Quarterly Journal of Economics 2023.", "label": "fake"}
+{"ref": "Nkosi A, Greve J, Yoshida R. Selection Bias in Voluntary Carbon Offset Markets. Journal of Environmental Economics and Management 2021.", "label": "fake"}
+{"ref": "Olayemi B, Carlsson E, Tomita K. Peer Effects in Savings Decisions: Experimental Evidence from Kenya. Review of Economics and Statistics 2020.", "label": "fake"}
+{"ref": "Bergstrom KA, Diallo M, Hayashi T. Monopsonistic Wage Setting and the Gender Pay Gap: A Structural Approach. Journal of Labor Economics 2022.", "label": "fake"}
+{"ref": "Mensah F, Lund-Sorensen P, Nakamura A. Bayesian Inference of Structural Breaks in Autoregressive Macro Models. Journal of Econometrics 2017.", "label": "fake"}
+{"ref": "Acheampong E, Holst D, Mori S. Reputation Cycles in Sovereign Debt Markets with Incomplete Information. American Economic Journal: Macroeconomics 2018.", "label": "fake"}
+{"ref": "Osei P, Lindqvist T, Aoyama K. Neutrophil Extracellular Trap Formation Predicts Acute Kidney Injury in Septic ICU Patients. Critical Care Medicine 2021.", "label": "fake"}
+{"ref": "Kowalski B, Eze I, Watanabe N. Interleukin-32 Isoform-Specific Signalling Drives Synovial Macrophage Polarisation in Rheumatoid Arthritis. Annals of the Rheumatic Diseases 2022.", "label": "fake"}
+{"ref": "Nkemere U, Andersson L, Kobayashi T. Machine Learning Prediction of Non-Response to Anti-TNF Therapy in Crohn Disease. Gut 2020.", "label": "fake"}
+{"ref": "Svensson A, Abubakar M, Fuji R. Clonal Haematopoiesis Accelerates Plaque Vulnerability in Coronary Artery Disease. European Heart Journal 2023.", "label": "fake"}
+{"ref": "Marchetti EA, Owusu B, Murakami T. Recurrent Somatic Mutations in PBRM2 Define a Subtype of Clear-Cell Renal Carcinoma. Cancer Research 2019.", "label": "fake"}
+{"ref": "Rietveld M, Obasi C, Nomura K. Polygenic Risk Scores for Early-Onset Inflammatory Bowel Disease: A Multinational Cohort Study. Lancet Gastroenterology and Hepatology 2021.", "label": "fake"}
+{"ref": "Boateng E, Lindberg H, Yamada S. Metabolomic Profiling of Cerebrospinal Fluid Distinguishes Bacterial from Viral Meningitis. Clinical Infectious Diseases 2018.", "label": "fake"}
+{"ref": "Olawale K, Eriksson M, Fujita K. Epigenome-Wide Association Study of Incident Type 2 Diabetes in European Cohorts. Diabetologia 2022.", "label": "fake"}
+{"ref": "Mensah-Bonsu A, Strand J, Ohta T. Point-of-Care Isothermal Amplification for Rapid Diagnosis of Invasive Pulmonary Aspergillosis. Journal of Clinical Microbiology 2020.", "label": "fake"}
+{"ref": "Andriessen E, Osei-Kumah A, Nakashima K. Fibroblast Growth Factor 23 as a Biomarker of Subclinical Left Ventricular Dysfunction in Chronic Kidney Disease. Kidney International 2021.", "label": "fake"}
+{"ref": "Takahashi R, Ekwueme O, Sorensen A. Recursive Dual-Encoder Architectures for Conversational Retrieval Augmentation. SIGIR 2022.", "label": "fake"}
+{"ref": "Obinna K, Hjelmstad P, Sano T. Differentiable Simulation of Rigid Body Contacts via Implicit Complementarity. ICLR 2023.", "label": "fake"}
+{"ref": "Lindqvist G, Afolabi M, Nakamura H. Scale-Equivariant Self-Supervised Learning for 3D Point Clouds. CVPR 2023.", "label": "fake"}
+{"ref": "Ehlers N, Okonkwo B, Taniguchi Y. Diffusion Models with Patch-Level Noise Schedules for High-Resolution Medical Imaging. NeurIPS 2022.", "label": "fake"}
+{"ref": "Durand C, Nzinga E, Sato H. Neurosymbolic Program Induction via Typed Lambda-Calculus Sketches. ICML 2021.", "label": "fake"}
+{"ref": "Amara JF, Lindstrom K, Kawasaki T. Bayesian Bandits with Covariate-Adaptive Thompson Sampling for Clinical Trials. NeurIPS 2021.", "label": "fake"}
+{"ref": "Bergstrom A, Onyeka M, Fujimoto R. Stochastic Weight Sharing via Probabilistic Quantisation. ICML 2022.", "label": "fake"}
+{"ref": "Nakamura K, Adebayo O, Hellstrom E. Counterfactual Invariance in Multi-Task Reinforcement Learning. ICLR 2022.", "label": "fake"}
+{"ref": "Svensson K, Osei F, Takagi S. Self-Supervised Topology-Aware Graph Augmentation for Molecular Property Prediction. NeurIPS 2023.", "label": "fake"}
+{"ref": "Magnusson O, Diallo C, Tanaka K. Sparse Prompt Tuning via Differentiable Neuron Masking. AAAI 2022.", "label": "fake"}
+{"ref": "Ihejirika O, Lindqvist B, Tanaka S. Uncertainty-Aware Occupancy Prediction for Autonomous Driving via Conformal Prediction. ICRA 2023.", "label": "fake"}
+{"ref": "Gustavsson E, Amara P, Yamazaki T. Cross-Modal Grounding via Differential Geometry of Semantic Manifolds. ICCV 2021.", "label": "fake"}
+{"ref": "Obi E, Magnusson F, Ito S. Implicit Data Augmentation via Learnable Discrete Fourier Sampling. NeurIPS 2020.", "label": "fake"}
+{"ref": "Halvorsen C, Nkosi M, Kuroda T. Partition-Aware Neural Architecture Search for Edge Inference. MLSys 2022.", "label": "fake"}
+{"ref": "Wrobel E, Asante J, Yamashita H. Inverse Curriculum Generation for Multi-Goal Robot Manipulation. ICML 2021.", "label": "fake"}
+{"ref": "Agyemang P, Lindstrom E, Ogawa T. Fair Representation Learning via Spectral Decoupling of Sensitive Attributes. FAccT 2022.", "label": "fake"}
+{"ref": "Achebe M, Karlsson G, Murakami S. Wasserstein Barycenter Aggregation for Federated Learning under Non-IID Data. ICML 2023.", "label": "fake"}
+{"ref": "Nwosu P, Joensen L, Sato T. Principled Hysteresis in Adaptive Batch Size Scheduling for Distributed Training. ICLR 2020.", "label": "fake"}
+{"ref": "Asare K, Svensson E, Yoshikawa R. Masked Autoencoders for Pretraining on Tabular Data with Missing Values. NeurIPS 2022.", "label": "fake"}
+{"ref": "Obeng M, Lindqvist G, Tanigawa T. Stochastic Optimal Control of Mean-Field Games via Neural ODEs. ICML 2023.", "label": "fake"}
+{"ref": "Halvorsen P, Eze J, Sato Y. Agent-Based Modelling of Antibiotic Resistance Evolution in Structured Host Populations. Journal of Theoretical Biology 2019.", "label": "fake"}
+{"ref": "Boateng M, Lindstrom O, Nomura R. Information-Theoretic Bounds on Gene Regulatory Network Identifiability from Perturbation Data. Bioinformatics 2022.", "label": "fake"}
+{"ref": "Ekwueme P, Svensson G, Yoshida K. Topological Data Analysis of Fibrinogen Self-Assembly Dynamics. Soft Matter 2021.", "label": "fake"}
+{"ref": "Olayemi C, Johanssen L, Kawaguchi T. Network Epidemics with Heterogeneous Mixing and Asymptomatic Transmission: a Mean-Field Analysis. Journal of Mathematical Biology 2022.", "label": "fake"}
+{"ref": "Mensah K, Ericsson H, Nozawa T. Microbial Dark Matter and Lateral Gene Transfer in Hydrothermal Vent Ecosystems. ISME Journal 2018.", "label": "fake"}
+{"ref": "Lindberg E, Osei C, Sakamoto T. Structural Plasticity in Prefrontal Cortex Underlies Cognitive Flexibility After Threat Learning. Nature Neuroscience 2023.", "label": "fake"}
+{"ref": "Rennick A, Diallo P, Mori T. Causal Discovery in High-Dimensional Nonstationary Time Series via Invariant Prediction. Journal of Machine Learning Research 2020.", "label": "fake"}
+{"ref": "Sorensen MK, Oboh F, Nagata K. Digital Phenotyping of Prodromal Psychosis Using Passive Mobile Sensing. JAMA Psychiatry 2021.", "label": "fake"}
+{"ref": "Pettersson A, Ojo O, Ishida T. Reward Hacking in Multi-Agent Markets: Empirical Evidence from Algorithmic Trading Competitions. Nature Human Behaviour 2022.", "label": "fake"}
+{"ref": "Adebisi M, Karlsson E, Saito K. Cascading Failures in Power Grids with Coupled Communication Networks: Probabilistic Risk Assessment. IEEE Transactions on Power Systems 2019.", "label": "fake"}
+{"ref": "Okafor J, Bergstrom T, Kamiya N. Structured Pruning of Vision Transformers via Jacobian Rank Minimisation. ICLR 2024.", "label": "fake"}
+{"ref": "Dibua C, Svensson P, Hayakawa T. Functional Connectivity Fingerprinting Under Naturalistic Stimuli via Contrastive fMRI Encoding. NeuroImage 2021.", "label": "fake"}
+{"ref": "Mbah E, Lindqvist C, Sato R. Compositional Generalisation in Grounded Language Games via Disentangled Roleplay. ICLR 2022.", "label": "fake"}
+{"ref": "Olumide A, Johanssen T, Matsuda K. Multi-Objective Neural Architecture Search with Pareto-Aware Hypernetworks. NeurIPS 2021.", "label": "fake"}
+{"ref": "Ihejiaka P, Ericsson B, Nozaki S. Non-Linear Dimensionality Reduction of Electrophysiological State Spaces via Geodesic Flows. PLOS Computational Biology 2023.", "label": "fake"}
+{"ref": "Achebe K, Lindman R, Yoshimura T. Amortised Inference for Latent Ordinary Differential Equations in Longitudinal Clinical Data. NeurIPS 2020.", "label": "fake"}
+{"ref": "Nwobu E, Magnusson D, Kataoka S. Protein-Protein Interface Prediction via Equivariant Residue Contact Diffusion. Nature Methods 2023.", "label": "fake"}
+{"ref": "Osei-Kwame A, Johanssen E, Yamamoto S. Ecological Stoichiometry of Dissolved Organic Carbon Export from Permafrost Thaw. Global Change Biology 2021.", "label": "fake"}
+{"ref": "Bergqvist K, Onyeka G, Takahashi M. Adversarial Debiasing of Mortality Prediction Models via Minimax Fairness Constraints. npj Digital Medicine 2022.", "label": "fake"}
+{"ref": "Mensah-Asante O, Lindstrom H, Nakagawa K. Bayesian Optimal Stopping for Sequential A/B Tests with Delayed Feedback. Management Science 2019.", "label": "fake"}
