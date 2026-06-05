@@ -193,7 +193,7 @@ def test_resolve_refs(monkeypatch):
     out = verify.resolve_refs(
         ["Vaswani Attention is all you need 2017",
          "Nonexistent fabricated reference xyz 2099"],
-        candidate_fetcher=fake_fetch, doi_checker=lambda d: None, oa_fetcher=lambda r: [])
+        candidate_fetcher=fake_fetch, doi_checker=lambda d: None)
     assert out["provided_checked"] == 2
     assert out["provided_unresolved"] == ["Nonexistent fabricated reference xyz 2099"]
 
@@ -239,8 +239,7 @@ def test_resolve_refs_doi_path(monkeypatch):
     out = verify.resolve_refs(
         ["Real. Title. 10.1038/s41586-021-03819-2.", "Fake. 10.9999/nope.doi.x 2099."],
         candidate_fetcher=lambda r: [],
-        doi_checker=lambda d: d.startswith("10.1038"),
-        oa_fetcher=lambda r: [])
+        doi_checker=lambda d: d.startswith("10.1038"))
     assert out["provided_unresolved"] == ["Fake. 10.9999/nope.doi.x 2099."]
 
 
@@ -441,47 +440,3 @@ def test_search_reference_openalex_empty_on_error(monkeypatch):
 def test_search_reference_openalex_empty_results(monkeypatch):
     monkeypatch.setattr(verify, "http_get_json", lambda url, timeout=30: {"results": []})
     assert verify._search_reference_openalex("x") == []
-
-
-# ---------------------------------------------------------------------------
-# Task 2 (C6): resolve_refs second resolver (OpenAlex on Crossref miss)
-# ---------------------------------------------------------------------------
-
-def test_resolve_refs_openalex_rescues_crossref_miss():
-    out = verify.resolve_refs(
-        ["Vaswani et al. Attention Is All You Need. 2017."],
-        candidate_fetcher=lambda r: [],
-        doi_checker=lambda d: None,
-        oa_fetcher=lambda r: [{"title": "Attention Is All You Need", "year": "2017"}])
-    assert out["provided_unresolved"] == []
-
-def test_resolve_refs_both_sources_miss_unresolved():
-    out = verify.resolve_refs(
-        ["Totally fabricated nonexistent title xyz 2099"],
-        candidate_fetcher=lambda r: [],
-        doi_checker=lambda d: None,
-        oa_fetcher=lambda r: [{"title": "Some Unrelated Real Paper", "year": "2001"}])
-    assert out["provided_unresolved"] == ["Totally fabricated nonexistent title xyz 2099"]
-
-def test_resolve_refs_crossref_hit_skips_openalex():
-    calls = {"oa": 0}
-    def oa(r):
-        calls["oa"] += 1
-        return [{"title": "Attention Is All You Need", "year": "2017"}]
-    out = verify.resolve_refs(
-        ["Vaswani Attention Is All You Need 2017"],
-        candidate_fetcher=lambda r: [{"title": "Attention Is All You Need", "year": "2017"}],
-        doi_checker=lambda d: None,
-        oa_fetcher=oa)
-    assert out["provided_unresolved"] == []
-    assert calls["oa"] == 0
-
-def test_resolve_refs_doi_still_wins_first():
-    calls = {"cr": 0, "oa": 0}
-    def cr(r): calls["cr"] += 1; return []
-    def oa(r): calls["oa"] += 1; return []
-    out = verify.resolve_refs(
-        ["Real. Title. 10.1038/s41586-021-03819-2."],
-        candidate_fetcher=cr, doi_checker=lambda d: d.startswith("10.1038"), oa_fetcher=oa)
-    assert out["provided_unresolved"] == []
-    assert calls["cr"] == 0 and calls["oa"] == 0
