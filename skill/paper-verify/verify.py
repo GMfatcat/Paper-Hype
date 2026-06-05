@@ -374,20 +374,19 @@ def _search_reference_title(ref):
     return titles[0] if titles else None
 
 
-def resolve_refs(refs, candidate_fetcher=None, doi_checker=None):
+def resolve_refs(refs, candidate_fetcher=None, doi_checker=None, oa_fetcher=None):
     candidate_fetcher = candidate_fetcher or _search_reference_candidates
     doi_checker = doi_checker or _doi_exists
+    oa_fetcher = oa_fetcher or _search_reference_openalex
     unresolved = []
     for ref in refs:
         doi = extract_doi(ref)
         if doi and doi_checker(doi) is True:
-            continue  # DOI confirmed to exist -> resolved (the safe FP win)
-        # DOI absent / 404 / unconfirmable -> do NOT mark unresolved on that alone
-        # (查不到 ≠ 造假); fall through to title matching.
-        # TOP-1 candidate only: calibration showed top-N spuriously matched fabricated
-        # fakes (recall 0.82->0.55) for a tiny FP gain — top-1 preserves recall.
+            continue  # DOI confirmed to exist -> resolved
         if match_any(ref, (candidate_fetcher(ref) or [])[:1]):
-            continue
+            continue  # Crossref query.bibliographic top-1
+        if match_any(ref, (oa_fetcher(ref) or [])[:1]):
+            continue  # second resolver: OpenAlex search-by-title (only on Crossref miss)
         unresolved.append(ref)
     return {"provided_checked": len(refs), "provided_unresolved": unresolved}
 
