@@ -143,12 +143,14 @@ def verify(identifier):
             "references": {"referenced_works_count": None, "cited_by_count": None,
                            "provided_checked": 0, "provided_unresolved": []},
             "flags": {"retracted": False, "not_in_doaj_journal": False,
-                      "venue_repository_only": False, "author_identity_weak": False,
+                      "venue_repository_only": False, "venue_predatory": False,
+                      "venue_hijacked": False, "author_identity_weak": False,
                       "author_weak_ratio": 0.0, "work_not_found": True, "refs_unresolved": 0},
             "notes": ["not found in OpenAlex — likely too new / not yet indexed; fall back to WebFetch checks"],
         }
     facts = extract_facts(work)
     facts["authors"] = enrich_authors(facts["authors"])
+    facts["venue"]["watchlist"] = match_venue(facts.get("venue"), _get_watchlists())
     flags = compute_flags(facts)
     result = {"query": identifier, "resolved": True}
     result.update(facts)
@@ -237,6 +239,14 @@ def _norm_issn(s):
 
 DEFAULT_WATCHLISTS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   "data", "watchlists.json")
+
+_WATCHLISTS_CACHE = None
+
+def _get_watchlists():
+    global _WATCHLISTS_CACHE
+    if _WATCHLISTS_CACHE is None:
+        _WATCHLISTS_CACHE = load_watchlists()
+    return _WATCHLISTS_CACHE
 
 def load_watchlists(path=DEFAULT_WATCHLISTS):
     empty = {"issn": {}, "name": {}, "publisher": {},

@@ -362,3 +362,39 @@ def test_flags_venue_hijacked():
 def test_flags_venue_clean_no_watchlist():
     fl = verify.compute_flags(_facts())
     assert fl["venue_hijacked"] is False and fl["venue_predatory"] is False
+
+
+# ---------------------------------------------------------------------------
+# Task 4 (C5): wire watchlist into verify()
+# ---------------------------------------------------------------------------
+
+def test_verify_attaches_watchlist(monkeypatch):
+    work = dict(CLEAN_WORK)
+    work["primary_location"] = {"source": {"display_name": "International Journal of Innovative Science and Research Technology",
+                                           "type": "journal", "is_in_doaj": False,
+                                           "issn": ["2456-2156"], "host_organization_name": "IJISRT"}}
+    monkeypatch.setattr(verify, "fetch_openalex", lambda i: work)
+    monkeypatch.setattr(verify, "enrich_authors", lambda a: a)
+    r = verify.verify("10.38124/ijisrt/x")
+    assert r["venue"]["watchlist"]["category"] == "predatory"
+    assert r["flags"]["venue_predatory"] is True
+    assert r["flags"]["venue_hijacked"] is False
+
+def test_verify_not_found_has_new_flags(monkeypatch):
+    monkeypatch.setattr(verify, "fetch_openalex", lambda i: None)
+    r = verify.verify("2999.99999")
+    assert r["flags"]["venue_predatory"] is False
+    assert r["flags"]["venue_hijacked"] is False
+
+@pytest.mark.integration
+def test_integration_ijisrt_predatory():
+    r = verify.verify("10.38124/ijisrt/ijisrt24apr651")
+    assert r["resolved"] is True
+    assert r["flags"]["venue_predatory"] is True
+
+@pytest.mark.integration
+def test_integration_bmj_not_predatory():
+    r = verify.verify("10.1136/bmj-2023-078378")
+    assert r["resolved"] is True
+    assert r["flags"]["venue_predatory"] is False
+    assert r["flags"]["venue_hijacked"] is False
