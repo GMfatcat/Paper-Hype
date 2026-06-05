@@ -265,6 +265,34 @@ def load_watchlists(path=DEFAULT_WATCHLISTS):
             "meta": data.get("meta") or {}, "entries": entries}
 
 
+def match_venue(venue, watchlists):
+    venue = venue or {}
+    issns = [i for i in (_norm_issn(x) for x in (venue.get("issn") or [])) if i]
+    nm = _norm_name(venue.get("name"))
+    pub = _norm_name(venue.get("publisher"))
+    meta = watchlists.get("meta") or {}
+    src = (meta.get("sources") or {})
+    sd = meta.get("snapshot_date")
+
+    def hit(category, matched_by, value, list_name):
+        return {"category": category, "list": list_name, "matched_by": matched_by,
+                "value": value, "source": src.get(list_name), "snapshot_date": sd}
+
+    for iss in issns:
+        if watchlists["issn"].get(iss) == "hijacked":
+            return hit("hijacked", "issn", iss, "hijacked_journals")
+    if nm and watchlists["name"].get(nm) == "hijacked":
+        return hit("hijacked", "name", nm, "hijacked_journals")
+    for iss in issns:
+        if watchlists["issn"].get(iss) == "predatory":
+            return hit("predatory", "issn", iss, "predatory_journals")
+    if nm and watchlists["name"].get(nm) == "predatory":
+        return hit("predatory", "name", nm, "predatory_journals")
+    if pub and watchlists["publisher"].get(pub) == "predatory":
+        return hit("predatory", "publisher", pub, "predatory_publishers")
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Network seams (injectable for testing)
 # ---------------------------------------------------------------------------

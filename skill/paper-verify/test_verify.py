@@ -286,3 +286,56 @@ def test_parse_candidates():
     out = verify._parse_candidates(data)
     assert out[0] == {"title": "A Real Title", "year": "2017"}
     assert out[1]["title"] == "Second" and out[1]["year"] is None
+
+
+# ---------------------------------------------------------------------------
+# Task 2 (C5): match_venue
+# ---------------------------------------------------------------------------
+
+def _wl():
+    return {
+        "issn": {"2456-2156": "predatory", "0006-8241": "hijacked"},
+        "name": {"international journal of innovative science and research technology": "predatory",
+                 "bothalia": "hijacked"},
+        "publisher": {"omics publishing group": "predatory"},
+        "meta": {"snapshot_date": "2026-06-05",
+                 "sources": {"predatory_journals": "https://beallslist.net/standalone-journals/"}},
+        "entries": {},
+    }
+
+def test_match_venue_predatory_by_issn():
+    v = {"name": "Whatever", "issn": ["2456-2156"], "publisher": "X"}
+    hit = verify.match_venue(v, _wl())
+    assert hit["category"] == "predatory" and hit["matched_by"] == "issn"
+
+def test_match_venue_predatory_by_name_when_no_issn():
+    v = {"name": "International Journal of Innovative Science and Research Technology",
+         "issn": [], "publisher": "X"}
+    hit = verify.match_venue(v, _wl())
+    assert hit["category"] == "predatory" and hit["matched_by"] == "name"
+
+def test_match_venue_predatory_by_publisher():
+    v = {"name": "Some Journal of Stuff", "issn": ["9999-9999"], "publisher": "OMICS Publishing Group"}
+    hit = verify.match_venue(v, _wl())
+    assert hit["category"] == "predatory" and hit["matched_by"] == "publisher"
+
+def test_match_venue_hijacked_by_issn():
+    v = {"name": "Bothalia", "issn": ["0006-8241"], "publisher": "X"}
+    hit = verify.match_venue(v, _wl())
+    assert hit["category"] == "hijacked" and hit["matched_by"] == "issn"
+
+def test_match_venue_hijacked_outranks_predatory():
+    wl = _wl()
+    wl["name"]["bothalia"] = "predatory"
+    v = {"name": "Bothalia", "issn": ["0006-8241"], "publisher": "X"}
+    hit = verify.match_venue(v, wl)
+    assert hit["category"] == "hijacked"
+
+def test_match_venue_legit_subscription_no_match():
+    for v in ({"name": "BMJ", "issn": ["0959-8138", "1756-1833"], "publisher": "BMJ"},
+              {"name": "The Review of Economic Studies", "issn": ["0034-6527"], "publisher": "Oxford University Press"}):
+        assert verify.match_venue(v, _wl()) is None
+
+def test_match_venue_empty():
+    assert verify.match_venue({}, _wl()) is None
+    assert verify.match_venue(None, _wl()) is None
