@@ -197,6 +197,44 @@ def test_resolve_refs(monkeypatch):
     assert out["provided_checked"] == 2
     assert out["provided_unresolved"] == ["Nonexistent fabricated reference xyz 2099"]
 
+
+# ---------------------------------------------------------------------------
+# Task 1 (C5): watchlist normalizers + loader
+# ---------------------------------------------------------------------------
+
+def test_norm_name():
+    assert verify._norm_name("The Lancet!") == "lancet"
+    assert verify._norm_name("  Nucleic   Acids  Research ") == "nucleic acids research"
+    assert verify._norm_name("Bio-Medical & Eng.") == "bio medical eng"
+    assert verify._norm_name(None) == ""
+
+def test_norm_issn():
+    assert verify._norm_issn("2456-2156") == "2456-2156"
+    assert verify._norm_issn("24562156") == "2456-2156"
+    assert verify._norm_issn("0006-821x") == "0006-821X"
+    assert verify._norm_issn("not-an-issn") is None
+    assert verify._norm_issn(None) is None
+
+def test_load_watchlists_fixture(tmp_path):
+    p = tmp_path / "wl.json"
+    p.write_text(_json.dumps({
+        "meta": {"snapshot_date": "2026-06-05", "sources": {}},
+        "predatory_journals": [{"name": "Fake Journal", "issn": ["1111-1111"]}],
+        "predatory_publishers": [{"name": "Bad Publisher"}],
+        "hijacked_journals": [{"name": "Cloned J", "issn": ["2222-2222"]}],
+    }), encoding="utf-8")
+    wl = verify.load_watchlists(str(p))
+    assert wl["issn"]["1111-1111"] == "predatory"
+    assert wl["issn"]["2222-2222"] == "hijacked"
+    assert wl["name"]["fake journal"] == "predatory"
+    assert wl["publisher"]["bad publisher"] == "predatory"
+    assert wl["meta"]["snapshot_date"] == "2026-06-05"
+
+def test_load_watchlists_missing_file():
+    wl = verify.load_watchlists("/no/such/watchlists.json")
+    assert wl["issn"] == {} and wl["name"] == {} and wl["publisher"] == {}
+    assert "note" in wl["meta"]
+
 def test_resolve_refs_doi_path(monkeypatch):
     out = verify.resolve_refs(
         ["Real. Title. 10.1038/s41586-021-03819-2.", "Fake. 10.9999/nope.doi.x 2099."],

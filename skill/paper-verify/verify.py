@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import sys
 import urllib.error
@@ -208,6 +209,60 @@ def _parse_candidates(data):
         year = str(parts[0][0]) if (parts and parts[0] and parts[0][0]) else None
         out.append({"title": titles[0], "year": year})
     return out
+
+
+# ---------------------------------------------------------------------------
+# C5 venue watchlists (predatory / hijacked) — pure helpers
+# ---------------------------------------------------------------------------
+
+def _norm_name(s):
+    s = (s or "").lower()
+    s = re.sub(r"[^a-z0-9]+", " ", s).strip()
+    if s.startswith("the "):
+        s = s[4:]
+    return re.sub(r"\s+", " ", s)
+
+def _norm_issn(s):
+    if not s:
+        return None
+    raw = re.sub(r"[^0-9xX]", "", s).upper()
+    if len(raw) != 8 or not re.fullmatch(r"\d{7}[\dX]", raw):
+        return None
+    return raw[:4] + "-" + raw[4:]
+
+
+DEFAULT_WATCHLISTS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  "data", "watchlists.json")
+
+def load_watchlists(path=DEFAULT_WATCHLISTS):
+    empty = {"issn": {}, "name": {}, "publisher": {},
+             "meta": {"note": "watchlists unavailable"}, "entries": {}}
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return empty
+    issn_idx, name_idx, pub_idx, entries = {}, {}, {}, {}
+    def add_journals(section, category):
+        for e in data.get(section) or []:
+            nm = _norm_name(e.get("name"))
+            if nm:
+                name_idx.setdefault(nm, category)
+                entries[(category, "name", nm)] = e
+            for raw in e.get("issn") or []:
+                iss = _norm_issn(raw)
+                if iss:
+                    issn_idx.setdefault(iss, category)
+                    entries[(category, "issn", iss)] = e
+    add_journals("hijacked_journals", "hijacked")
+    add_journals("predatory_journals", "predatory")
+    for e in data.get("predatory_publishers") or []:
+        nm = _norm_name(e.get("name"))
+        if nm:
+            pub_idx.setdefault(nm, "predatory")
+            entries[("predatory", "publisher", nm)] = e
+    return {"issn": issn_idx, "name": name_idx, "publisher": pub_idx,
+            "meta": data.get("meta") or {}, "entries": entries}
 
 
 # ---------------------------------------------------------------------------

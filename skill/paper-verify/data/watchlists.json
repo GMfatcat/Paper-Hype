@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "snapshot_date": "2026-06-05",
+    "sources": {
+      "predatory_journals": "https://beallslist.net/standalone-journals/",
+      "predatory_publishers": "https://beallslist.net/",
+      "hijacked_journals": "https://retractionwatch.com/the-retraction-watch-hijacked-journal-checker/"
+    },
+    "note": "Beall's List is community-maintained and contested (false inclusions exist). A hit is a lead, not a verdict. Refresh by re-running build_watchlists.py."
+  },
+  "predatory_journals": [
+    {"name": "International Journal of Innovative Science and Research Technology", "issn": ["2456-2156"]}
+  ],
+  "predatory_publishers": [
+    {"name": "OMICS Publishing Group"}
+  ],
+  "hijacked_journals": [
+    {"name": "Bothalia", "issn": ["0006-8241"]}
+  ]
+}
