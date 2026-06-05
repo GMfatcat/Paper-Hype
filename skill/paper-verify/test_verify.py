@@ -392,6 +392,27 @@ def test_integration_ijisrt_predatory():
     assert r["resolved"] is True
     assert r["flags"]["venue_predatory"] is True
 
+
+# ---------------------------------------------------------------------------
+# Task 5: build_watchlists merge_sections
+# ---------------------------------------------------------------------------
+
+def test_build_watchlists_merge_keeps_prior_on_missing():
+    import build_watchlists as bw
+    prior = {"meta": {"snapshot_date": "2025-01-01", "sources": {}},
+             "predatory_journals": [{"name": "Old J", "issn": ["1111-1111"]}],
+             "predatory_publishers": [], "hijacked_journals": []}
+    merged = bw.merge_sections(prior,
+                               predatory_journals=[{"name": "New J", "issn": ["2222-2222"]}],
+                               predatory_publishers=None,
+                               hijacked_journals=None,
+                               snapshot_date="2026-06-05")
+    assert merged["predatory_journals"] == [{"name": "New J", "issn": ["2222-2222"]}]
+    assert merged["predatory_publishers"] == []
+    assert merged["hijacked_journals"] == []
+    assert merged["meta"]["snapshot_date"] == "2026-06-05"
+    assert merged["meta"]["refreshed"] == ["predatory_journals"]
+
 @pytest.mark.integration
 def test_integration_bmj_not_predatory():
     r = verify.verify("10.1136/bmj-2023-078378")
