@@ -164,7 +164,7 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
    - **C2 AI 生成痕跡**(全文掃 AI 殘留字串)
    - **C3 tortured phrases**(洗稿指紋)
    - **C4 撤稿/PubPeer 狀態**(Retraction Watch + PubPeer + publisher 頁)
-   - **C5 掠奪性/可疑出版**(DOAJ / 劫持期刊 / 假影響因子)
+   - **C5 掠奪性/可疑出版**(先看 paper-verify 確定性 flags:`venue_hijacked` 劫持/克隆→決定性紅旗、`venue_predatory` Beall's 期刊/出版社→amber;DOAJ / 假影響因子為佐證)
 4. **整合評分 + 卷宗**(下方 rubric),每條 finding 附證據+出處+信心+「你該自己再查什麼」。
 5. **判決報告**(模板 G)。
 
@@ -178,7 +178,8 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 | C3 | tortured phrases | 15 |
 
 計分:各項依命中嚴重度給該項 0~上限分,加總後**歸一化到 0–100**。
-**決定性紅旗錨定**:任一「已確認」的重大不端——C4 已確認撤稿、C2 確認 AI 殘留字串、C1 大量確認不存在的引用——**直接錨定到 🔴(71–100),不受加總歸一化稀釋**(單一決定性紅旗不應被其他項乾淨而拉低)。
+**決定性紅旗錨定**:任一「已確認」的重大不端——C4 已確認撤稿、C2 確認 AI 殘留字串、C1 大量確認不存在的引用、**C5 `venue_hijacked`(劫持/克隆期刊)**——**直接錨定到 🔴(71–100),不受加總歸一化稀釋**(單一決定性紅旗不應被其他項乾淨而拉低)。
+**C5 細則**:`venue_predatory`(Beall's 期刊或出版社命中 watchlist)→ 填滿 C5 上限(amber 線索,**非**自動 🔴,因 Beall's 清單有爭議/有誤收),與其他已確認旗標加總後仍可達 🔴;`venue_hijacked` → 見上方決定性錨定;單純 `not_in_doaj_journal` → **advisory**(BMJ、Review of Economic Studies 等正規訂閱期刊也會中),不單獨升級。卷宗須引用 watchlist 的 `source` + `snapshot_date`,並註明**清單命中是線索非定論**(讀者自保,非指控)。
 燈號:**0–20 🟢 無重大旗標 / 21–45 🟡 輕微-自己查 / 46–70 🟠 多項旗標-存疑 / 71–100 🔴 嚴重-未獨立查證勿採信**。
 涵蓋度調整:全文不可得時,需全文的項目(C1 全清單、C2、C3)只能部分執行 → 報告**降涵蓋度/信心**,不可當「通過」。
 
