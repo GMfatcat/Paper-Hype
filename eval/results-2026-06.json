@@ -95,5 +95,13 @@
       "recall": 0.82,
       "note": "DOI-direct addition; FP essentially unchanged (+0.02), recall unchanged at 0.82"
     }
+  },
+  "c1_cleaning": {
+    "run_date": "2026-06-05",
+    "feature": "pdf-extract clean_reference() strips arXiv-HTML citation-key noise (BZB + [19], FAHA [23], bare [12]) at the _result chokepoint",
+    "calibration_impact": "NONE — clean_reference is a no-op on all 476 calibration refs (they carry no citation-key prefix), so c1 recall (0.82 hard) and FP are provably unchanged. Verified by diffing, not re-running the 20-min eval.",
+    "subset_live_before": {"BitNet": 0.50, "KAN": 0.125, "LoRA": 0.55},
+    "subset_live_after": {"BitNet": 0.50, "KAN": 0.10, "LoRA": 0.55},
+    "honest_finding": "Cleaning works (the BZB+/FAHA/HCB+ prefixes are gone from the ref strings) but did NOT reduce the unresolved/FP ratio: BitNet 0.50->0.50, LoRA 0.55->0.55, KAN 0.125->0.10 (one extra resolved). The spec hypothesis -- that stripping the leading citation key would let Crossref match -- was WRONG: Crossref query.bibliographic is already robust to the small leading-key token fraction; author+title tokens dominate the match. The real FP driver is the matcher/Crossref ranking (the prior c1_v2 finding), which loosening would trade for recall. clean_reference is kept as a correct, no-regression output-hygiene improvement (cleaner reference strings, idempotent, 0 recall impact), NOT an FP fix. The genuine C1-FP lever is a second resolver source (round 3)."
   }
 }

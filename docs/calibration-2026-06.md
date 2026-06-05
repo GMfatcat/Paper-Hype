@@ -51,6 +51,30 @@ The synthetic fakes were built by prepending "Nonexistent Synthetic" and bumping
 
 5. **Takeaway: the ~21% FP is a real limitation of fuzzy reference matching.** This is exactly why `refs_unresolved` stays an **advisory, non-decisive** signal. Calibration confirmed the design stance rather than overturning it: at ~21% FP, any tool that declared "unresolved = fabricated" would produce unacceptable false accusations. The label "could not be confirmed" is correct; "fake" is not warranted.
 
+### C1 reference cleaning (2026-06): a negative result, honestly
+
+We added `clean_reference()` in `pdf-extract` to strip arXiv-HTML citation-key
+noise (`BZB + [19]`, `FAHA [23]`, bare `[12]`) that prefixes extracted
+references, hypothesising it was inflating C1 false-positives. Result:
+
+| paper | unresolved before | unresolved after |
+|-------|-------------------|------------------|
+| BitNet | 0.50 | 0.50 |
+| KAN | 0.125 | 0.10 |
+| LoRA | 0.55 | 0.55 |
+
+The cleaning **works** (the prefixes are gone from the strings) but **did not
+move the FP ratio.** The hypothesis was wrong: Crossref `query.bibliographic` is
+already robust to the small leading-key token fraction — author + title tokens
+dominate the match — so removing the key changes nothing. The FP driver is the
+matcher / Crossref ranking (point 2 above), which we will not loosen because it
+trades recall (point 4). `clean_reference` is kept anyway as a correct,
+no-regression **output-hygiene** improvement (cleaner reference strings,
+idempotent, **0 impact on calibration recall** — it is a no-op on all 476
+calibration refs, verified by diff, not by re-running). It is not an FP fix. The
+genuine C1-FP lever is a **second resolver source** (next round), which can
+catch the references Crossref's single ranking misses.
+
 ---
 
 ## C4 — retraction detection (OpenAlex `is_retracted`)
