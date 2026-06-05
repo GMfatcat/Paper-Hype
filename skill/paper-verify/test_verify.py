@@ -372,7 +372,7 @@ def test_verify_attaches_watchlist(monkeypatch):
     work = dict(CLEAN_WORK)
     work["primary_location"] = {"source": {"display_name": "International Journal of Innovative Science and Research Technology",
                                            "type": "journal", "is_in_doaj": False,
-                                           "issn": ["2456-2156"], "host_organization_name": "IJISRT"}}
+                                           "issn": ["2456-2165"], "host_organization_name": "IJISRT"}}
     monkeypatch.setattr(verify, "fetch_openalex", lambda i: work)
     monkeypatch.setattr(verify, "enrich_authors", lambda a: a)
     r = verify.verify("10.38124/ijisrt/x")

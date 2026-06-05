@@ -9,7 +9,7 @@
     "note": "Beall's List is community-maintained and contested (false inclusions exist). A hit is a lead, not a verdict. Refresh by re-running build_watchlists.py."
   },
   "predatory_journals": [
-    {"name": "International Journal of Innovative Science and Research Technology", "issn": ["2456-2156"]}
+    {"name": "International Journal of Innovative Science and Research Technology (IJISRT)", "issn": ["2456-2165"]}
   ],
   "predatory_publishers": [
     {"name": "OMICS Publishing Group"}
