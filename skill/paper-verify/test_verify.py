@@ -419,3 +419,24 @@ def test_integration_bmj_not_predatory():
     assert r["resolved"] is True
     assert r["flags"]["venue_predatory"] is False
     assert r["flags"]["venue_hijacked"] is False
+
+
+# ---------------------------------------------------------------------------
+# Task 1 (C6): _search_reference_openalex second resolver
+# ---------------------------------------------------------------------------
+
+def test_search_reference_openalex_parses(monkeypatch):
+    monkeypatch.setattr(verify, "http_get_json", lambda url, timeout=30: {
+        "results": [{"display_name": "A Real Title", "publication_year": 2017}]})
+    out = verify._search_reference_openalex("some ref string")
+    assert out == [{"title": "A Real Title", "year": "2017"}]
+
+def test_search_reference_openalex_empty_on_error(monkeypatch):
+    def boom(url, timeout=30):
+        raise RuntimeError("network")
+    monkeypatch.setattr(verify, "http_get_json", boom)
+    assert verify._search_reference_openalex("x") == []
+
+def test_search_reference_openalex_empty_results(monkeypatch):
+    monkeypatch.setattr(verify, "http_get_json", lambda url, timeout=30: {"results": []})
+    assert verify._search_reference_openalex("x") == []

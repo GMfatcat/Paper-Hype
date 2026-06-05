@@ -334,6 +334,24 @@ def _search_reference_candidates(ref, rows=5, timeout=30):
         return []
 
 
+def _search_reference_openalex(ref, timeout=30):
+    # Second resolver: OpenAlex search-by-title for refs Crossref query.bibliographic missed.
+    q = urllib.parse.quote((ref or "")[:400])
+    url = f"{OPENALEX}/works?search={q}&per_page=1&mailto={MAILTO}"
+    try:
+        data = http_get_json(url, timeout=timeout)
+    except Exception:
+        return []
+    out = []
+    for w in (data.get("results") or []):
+        title = w.get("display_name") or w.get("title")
+        if not title:
+            continue
+        yr = w.get("publication_year")
+        out.append({"title": title, "year": str(yr) if yr else None})
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Legacy single-title searcher (kept for backward compat; _search_reference_title)
 # ---------------------------------------------------------------------------
