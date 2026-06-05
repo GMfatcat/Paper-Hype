@@ -228,6 +228,34 @@ def test_format_output_includes_references_source():
     import json as _j
     assert _j.loads(extract.format_output(r))["references_source"] == "grobid"
 
+# --- Task N: clean_reference ---
+
+def test_clean_reference_strips_citation_key():
+    assert extract.clean_reference("BZB + [19] Yonatan Bisk, Rowan Zellers").startswith("Yonatan Bisk")
+    assert extract.clean_reference("Com [23] Together Computer. Redpajama") == "Together Computer. Redpajama"
+    assert extract.clean_reference("FAHA [23] Elias Frantar").startswith("Elias Frantar")
+    assert extract.clean_reference("MXBS [16] Stephen Merity").startswith("Stephen Merity")
+
+def test_clean_reference_strips_bare_index():
+    assert extract.clean_reference("[12] Ming-Jun Lai and Zhaiming Shen").startswith("Ming-Jun Lai")
+
+def test_clean_reference_leaves_clean_unchanged():
+    s = "Vaswani et al. Attention Is All You Need. 2017."
+    assert extract.clean_reference(s) == s
+
+def test_clean_reference_conservative_keeps_author_year():
+    s = "Allen-Zhu & Li (2019) Zeyuan Allen-Zhu and Yuanzhi Li. What Can ResNet Learn"
+    assert extract.clean_reference(s) == s
+
+def test_clean_reference_empty():
+    assert extract.clean_reference(None) == ""
+    assert extract.clean_reference("") == ""
+
+def test_clean_reference_idempotent():
+    once = extract.clean_reference("HCB + [19] Yanping Huang, Youlong Cheng")
+    assert extract.clean_reference(once) == once
+
+
 @pytest.mark.integration
 def test_integration_arxiv_html_mamba():
     r = extract.extract("2312.00752")

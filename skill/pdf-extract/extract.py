@@ -48,6 +48,26 @@ def parse_arxiv_html(html):
     return strip_html(body_html), refs
 
 
+_CITE_KEY = re.compile(r"^[A-Z][A-Za-z]{0,7}(?:\s*\+)?\s*\[\d{1,4}\]\s+")
+_BARE_INDEX = re.compile(r"^\[\d{1,4}\]\s+")
+
+
+def clean_reference(s):
+    """Strip arXiv-HTML citation-key noise from the START of a reference string.
+
+    Removes a leading author-initial key + bracketed index ("BZB + [19] ",
+    "FAHA [23] ", "MXBS [16] ") or a bare leading index ("[12] "). Conservative:
+    only the well-characterized leading patterns are stripped; author-year
+    prefixes ("Allen-Zhu & Li (2019) ") and the rest are left intact. Idempotent.
+    """
+    if not s:
+        return ""
+    out = _CITE_KEY.sub("", s)
+    if out == s:
+        out = _BARE_INDEX.sub("", s)
+    return out.strip()
+
+
 def split_references(text):
     text = text or ""
     matches = list(re.finditer(r'(?im)^\s*(references|bibliography)\s*$', text))
