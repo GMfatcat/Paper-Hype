@@ -129,6 +129,12 @@ examples/                  實驗數據——25 領域、75 篇營銷號
 ## 倫理與免責
 `examples/` 內含對真實論文的**刻意捏造**吹捧改寫,作為教學反面教材。每個檔案開頭都有中文免責標記,表明這是受控示範。**請勿擷取任何「營銷號版」當作對論文的真實評價發布。** 這個 skill 的存在是為了**偵測與拆解**營銷號,絕非製造它。
 
+## 校準與驗證
+
+**校準(指標性、小型自建集——見 [docs/calibration-2026-06.md](./docs/calibration-2026-06.md)):** C1 幻覺引用 recall ≈ 82%(全捏造假,n=200 硬集;先前的 26% 是資料集瑕疵——擾動假保留真標題,被 Crossref 解析成真論文)。C1 引用解析誤報率 ≈ 21–23%(無 DOI 引用的模糊比對地板;DOI-direct 是原則性加法但在此 DOI-稀疏集上未能降 FP)——這正是 `refs_unresolved` 僅為**參考訊號、非定論**的原因。`author_identity_weak` 在正規大團隊論文上誤報 0%(n=5);C4 撤稿偵測 3/3(OpenAlex 覆蓋,n=7)。數字皆為誠實點估計並標註 N,含不討喜的。
+
+**對 20 篇全新、從未測過的論文做端到端 Mode C 實跑**(見 [docs/mode-c-test-2026-06.md](./docs/mode-c-test-2026-06.md)):C4 撤稿把兩篇已知撤稿論文錨定到 🔴;太新尚未索引的論文退回手動(⚪)而非被當紅旗;無任何真實作者團隊誤觸 `author_identity_weak`。浮現並記錄兩個誠實限制:DOAJ flag 無法區分 Beall's List 期刊(IJISRT)與正規訂閱期刊(BMJ、Review of Economic Studies)——辨掠奪性需靠質化 C5;以及實跑 C1 對合法論文有 12–55% 未解析(全為誤報,源自 arXiv-HTML 引用抽取髒字串),再次印證 `refs_unresolved` 屬參考性質,且 GROBID 等級的乾淨引用才是 C1 的真正槓桿。
+
 ## 致謝
 Mode B 的取文器建構於 [**Scrapling**](https://github.com/D4Vinci/Scrapling)(作者 Karim Shoair / [@D4Vinci](https://github.com/D4Vinci))——一個能處理 JS 渲染與反爬的自適應網路爬蟲框架,正是它讓抓取即時 Threads/X 貼文成為可能。本專案僅在 Docker 容器內**呼叫** Scrapling(見 `skill/scrapling-fetcher/`),未內嵌或修改其原始碼。
 

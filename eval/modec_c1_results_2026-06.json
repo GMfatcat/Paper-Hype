@@ -1,0 +1,50 @@
+[
+  {
+    "id": "2402.17764",
+    "label": "BitNet b1.58",
+    "references_count": 28,
+    "references_source": "arxiv_html",
+    "checked": 28,
+    "unresolved": 14,
+    "unresolved_ratio": 0.5,
+    "sample_unresolved": [
+      "CLC + [19] Christopher Clark, Kenton Lee, Ming-Wei Chang, Tom Kwiatkowski, Michael Collins, and Kristina Toutanova. Boolq: Exploring the surprising difficulty of natural yes/no questions. CoRR , abs/1905.10044, 2019.",
+      "FAHA [23] Elias Frantar, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. OPTQ: accurate quantization for generative pre-trained transformers. In The Eleventh International Conference on Learning Representations , 2023.",
+      "HCB + [19] Yanping Huang, Youlong Cheng, Ankur Bapna, Orhan Firat, Dehao Chen, Mia Xu Chen, HyoukJoong Lee, Jiquan Ngiam, Quoc V. Le, Yonghui Wu, and Zhifeng Chen. Gpipe: Efficient training of giant neural networks using pipeline parallelism. In Advances in Neural Information Processing Systems , pages 103–112, 2019.",
+      "MXBS [16] Stephen Merity, Caiming Xiong, James Bradbury, and Richard Socher. Pointer sentinel mixture models, 2016.",
+      "RSR + [19] Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, and Peter J. Liu. Exploring the limits of transfer learning with a unified text-to-text transformer. CoRR , abs/1910.10683, 2019."
+    ]
+  },
+  {
+    "id": "2404.19756",
+    "label": "KAN",
+    "references_count": 118,
+    "references_source": "arxiv_html",
+    "checked": 40,
+    "unresolved": 5,
+    "unresolved_ratio": 0.125,
+    "sample_unresolved": [
+      "[12] Ming-Jun Lai and Zhaiming Shen. The kolmogorov superposition theorem can break the curse of dimensionality when approximating high dimensional functions. arXiv preprint arXiv:2112.09963 , 2021.",
+      "[18] Juncai He and Jinchao Xu. Deep neural networks and finite elements of any order on arbitrary dimensions. arXiv preprint arXiv:2312.14276 , 2023.",
+      "[23] Carl De Boor. A practical guide to splines , volume 27. springer-verlag New York, 1978.",
+      "[24] Utkarsh Sharma and Jared Kaplan. A neural scaling law from the dimension of the data manifold. arXiv preprint arXiv:2004.10802 , 2020.",
+      "[37] Silviu-Marian Udrescu, Andrew Tan, Jiahai Feng, Orisvaldo Neto, Tailin Wu, and Max Tegmark. Ai feynman 2.0: Pareto-optimal symbolic regression exploiting graph modularity. Advances in Neural Information Processing Systems , 33:4860–4871, 2020."
+    ]
+  },
+  {
+    "id": "2106.09685",
+    "label": "LoRA",
+    "references_count": 62,
+    "references_source": "arxiv_html",
+    "checked": 40,
+    "unresolved": 22,
+    "unresolved_ratio": 0.55,
+    "sample_unresolved": [
+      "Allen-Zhu & Li (2019) Zeyuan Allen-Zhu and Yuanzhi Li. What Can ResNet Learn Efficiently, Going Beyond Kernels? In NeurIPS , 2019. Full version available at http://arxiv.org/abs/1905.10337 .",
+      "Allen-Zhu & Li (2020a) Zeyuan Allen-Zhu and Yuanzhi Li. Backward feature correction: How deep learning performs deep learning. arXiv preprint arXiv:2001.04413 , 2020a.",
+      "Allen-Zhu et al. (2019) Zeyuan Allen-Zhu, Yuanzhi Li, and Zhao Song. A convergence theory for deep learning via over-parameterization. In ICML , 2019. Full version available at http://arxiv.org/abs/1811.03962 .",
+      "Ba et al. (2016) Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E. Hinton. Layer normalization, 2016.",
+      "Brown et al. (2020) Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei. Language Models are Few-Shot Learners. arXiv:2005.14165 [cs] , July 2020. URL http://arxiv.org/abs/2005.14165 ."
+    ]
+  }
+]
