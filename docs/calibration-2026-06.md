@@ -71,9 +71,27 @@ matcher / Crossref ranking (point 2 above), which we will not loosen because it
 trades recall (point 4). `clean_reference` is kept anyway as a correct,
 no-regression **output-hygiene** improvement (cleaner reference strings,
 idempotent, **0 impact on calibration recall** — it is a no-op on all 476
-calibration refs, verified by diff, not by re-running). It is not an FP fix. The
-genuine C1-FP lever is a **second resolver source** (next round), which can
-catch the references Crossref's single ranking misses.
+calibration refs, verified by diff, not by re-running). It is not an FP fix.
+
+### C1 second resolver (OpenAlex) — attempted, reverted
+
+We then tried a **second resolver**: on a Crossref miss, retry the reference
+against OpenAlex search-by-title (top-1 + strict `match_any`). An early
+title-only spike looked promising, but on real reference strings OpenAlex's
+generic `search` returns the **wrong** top-1 (the BoolQ reference → "Beyond the
+Imitation Game"; the splines reference → a metamodel-reliability review; even a
+clean title query was unstable). `match_any` correctly rejected these wrong
+answers — so the **recall gate held (0.83)** but **zero additional references
+resolved**: subset (BitNet 0.50, LoRA 0.55) and calibration FP (0.23) were
+unchanged. The step added a network call per missed reference for no measurable
+benefit, so it was **reverted (YAGNI)**.
+
+**Deeper conclusion:** the ~21–23% C1 false-positive floor is **robust across
+both Crossref and OpenAlex**. These references fail title search because the
+strings are messy or the titles are short/common — not because one index is
+weak. There is no cheap second-source fix. This reconfirms, twice over, that
+`refs_unresolved` must remain an **advisory, non-decisive** signal: the honest
+label is "could not be confirmed," never "fabricated."
 
 ---
 
