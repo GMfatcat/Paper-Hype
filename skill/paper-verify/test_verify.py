@@ -339,3 +339,26 @@ def test_match_venue_legit_subscription_no_match():
 def test_match_venue_empty():
     assert verify.match_venue({}, _wl()) is None
     assert verify.match_venue(None, _wl()) is None
+
+
+# ---------------------------------------------------------------------------
+# Task 3 (C5): compute_flags venue_predatory / venue_hijacked
+# ---------------------------------------------------------------------------
+
+def test_flags_venue_predatory():
+    f = _facts()
+    f["venue"]["watchlist"] = {"category": "predatory", "list": "predatory_journals"}
+    fl = verify.compute_flags(f)
+    assert fl["venue_predatory"] is True
+    assert fl["venue_hijacked"] is False
+
+def test_flags_venue_hijacked():
+    f = _facts()
+    f["venue"]["watchlist"] = {"category": "hijacked", "list": "hijacked_journals"}
+    fl = verify.compute_flags(f)
+    assert fl["venue_hijacked"] is True
+    assert fl["venue_predatory"] is False
+
+def test_flags_venue_clean_no_watchlist():
+    fl = verify.compute_flags(_facts())
+    assert fl["venue_hijacked"] is False and fl["venue_predatory"] is False

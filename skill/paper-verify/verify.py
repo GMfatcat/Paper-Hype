@@ -74,10 +74,14 @@ def compute_flags(facts):
     ratio = (weak_n / n) if n else 0.0
     venue = facts.get("venue") or {}
     vtype = venue.get("type")
+    wl_hit = (venue.get("watchlist") or {})
+    wl_cat = wl_hit.get("category")
     return {
         "retracted": bool(facts.get("retraction", {}).get("is_retracted")),
         "not_in_doaj_journal": vtype == "journal" and venue.get("is_in_doaj") is False,
         "venue_repository_only": vtype == "repository",
+        "venue_predatory": wl_cat == "predatory",
+        "venue_hijacked": wl_cat == "hijacked",
         "author_identity_weak": n >= MIN_AUTHORS and ratio >= WEAK_RATIO,
         "author_weak_ratio": round(ratio, 2),
         "work_not_found": False,
