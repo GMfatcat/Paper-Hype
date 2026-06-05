@@ -70,6 +70,17 @@ Threads、X 等動態牆充斥著「拿一篇真論文、吹成『這將改變�
 
 <!-- 想放真截圖?把 PNG 放到 assets/mode-b-demo.png,再把上面這段換成: ![Mode B 示範](./assets/mode-b-demo.png) -->
 
+## 已知限制 — 採信分數前必讀
+
+這些分數是**給人判斷的初篩,不是事實判決。** 以下為實測限制(數字來自[校準](./docs/calibration-2026-06.md)與[20 篇 Mode C 實跑](./docs/mode-c-test-2026-06.md)):
+
+- **「查不到」不是判決。** 太新的論文尚未進 OpenAlex,verifier 會回 `resolved:false` 並退回手動查證。全新論文**不是**紅旗。(20 篇測試中 2 篇如此。)
+- **`refs_unresolved` 是參考訊號、絕非定論。** 實跑 C1 對合法論文有 **12–55% 引用「未解析」——全是誤報**,源自引用抽取髒字串而非造假。未解析數高代表「該手動查」,不代表「假引用」。跑 **GROBID** 服務(見 `skill/pdf-extract/`)可得更乾淨的引用、C1 更可信。
+- **venue/DOAJ flag 無法辨識掠奪性期刊。** 它對 Beall's List 期刊(如 IJISRT)與正規訂閱期刊(BMJ、Review of Economic Studies)會同樣觸發,因為 DOAJ 只收開放取用期刊。辨掠奪性要靠**質化 C5**(Beall's list / 劫持期刊 / 假影響因子),不能只看 flag。
+- **C2/C3(AI 殘留文字、tortured phrases)需要全文。** 圖片化/掃描 PDF 會得到 `coverage:none`,這些檢查標記為受限,而非「通過」。
+- **Mode B 依賴即時取文。** 登入牆、反爬、已刪文都可能讓取文失敗;此時 skill 會明說而非瞎猜。
+- **Mode C 是讀者自保,不是指控。** 「查不到 ≠ 造假」,乾淨分數也 ≠「這篇是對的」。校準集偏小(均標註 N),數字僅供參考。
+
 ## 需求
 - **Claude Code**(這是一個 skill,會用到 `Skill` 工具、sub‑agent、網路存取)。
 - Mode B 深度查證需要網路(`WebFetch`/`WebSearch`)。

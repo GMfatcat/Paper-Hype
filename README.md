@@ -70,6 +70,17 @@ Asked *"is this hype?"* on a real X thread about Perplexity's "Search as Code" a
 
 <!-- Prefer an actual screenshot? Drop a PNG at assets/mode-b-demo.png and replace the block above with: ![Mode B demo](./assets/mode-b-demo.png) -->
 
+## Limitations — read before trusting a score
+
+The scores are **triage to guide a human, not ground truth.** Empirically measured limits (numbers from [calibration](./docs/calibration-2026-06.md) and the [20-paper Mode C test](./docs/mode-c-test-2026-06.md)):
+
+- **"Not found" is not a verdict.** Very recent papers aren't yet in OpenAlex, so the verifier returns `resolved:false` and falls back to manual checks. A brand-new paper is **not** a red flag. (2 of 20 test papers hit this.)
+- **`refs_unresolved` is advisory, never decisive.** Live C1 ran **12–55% of references "unresolved" on legitimate papers** — all false positives, driven by messy reference extraction, not fraud. A high unresolved count means "go check manually," not "fake citations." Running a **GROBID** service (see `skill/pdf-extract/`) gives cleaner references and a more reliable C1.
+- **The venue/DOAJ flag can't identify predatory journals.** It fires identically on a Beall's-List journal (e.g. IJISRT) and on reputable subscription journals (BMJ, Review of Economic Studies), because DOAJ only indexes open-access titles. The predatory call needs the **qualitative C5 check** (Beall's list / hijacking / fake impact factor), not the flag alone.
+- **C2/C3 (AI-text traces, tortured phrases) need full text.** Image-only / scanned PDFs yield `coverage:none`; those checks are reported as limited, not "passed."
+- **Mode B depends on a live fetch.** Login walls, anti-bot, or deleted posts can block fetching; the skill says so rather than guessing.
+- **Mode C is reader self-defense, not accusation.** "查不到 ≠ fraud", and a clean score ≠ "the paper is correct." Calibration sets are small (stated N); treat the numbers as indicative.
+
 ## Requirements
 - **Claude Code** (this is a skill — it uses the `Skill` tool, sub‑agents, and web access).
 - For Mode B's deep verification: web access (`WebFetch`/`WebSearch`).
