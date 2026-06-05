@@ -288,3 +288,15 @@ def test_integration_grobid_down_falls_back():
     r = extract.extract("2302.13971", grobid_url="http://localhost:9")
     assert r["ok"]
     assert r["references_source"] in ("regex_fallback", "none")
+
+
+def test_result_cleans_and_drops_empty_refs():
+    r = extract._result("q", True, "arxiv_html", "full", True, "body text",
+                        ["BZB + [19] Yonatan Bisk, Rowan Zellers",
+                         "MXBS [16] ",              # key only -> cleans to "" -> dropped
+                         "Vaswani et al. Attention Is All You Need. 2017."],
+                        ["note"], references_source="arxiv_html")
+    assert r["references"][0].startswith("Yonatan Bisk")
+    assert r["references"][-1].startswith("Vaswani")
+    assert all(x for x in r["references"])
+    assert r["references_count"] == len(r["references"]) == 2

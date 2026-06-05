@@ -174,6 +174,7 @@ def grobid_references(pdf_bytes, grobid_url, timeout=60):
 
 
 def _result(query, ok, source, coverage, text_layer, fulltext, refs, notes, references_source="none"):
+    refs = [c for c in (clean_reference(r) for r in (refs or [])) if c]
     return {
         "query": query, "ok": ok, "source": source, "coverage": coverage,
         "text_layer": text_layer, "fulltext": fulltext, "fulltext_chars": len(fulltext or ""),
