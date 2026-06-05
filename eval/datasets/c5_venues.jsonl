@@ -1,0 +1,9 @@
+{"id": "10.38124/ijisrt/ijisrt24apr651", "venue": "IJISRT", "label": "predatory", "expect": "flagged"}
+{"id": "10.38124/ijisrt/ijisrt24may1483", "venue": "IJISRT", "label": "predatory", "expect": "flagged"}
+{"id": "10.38124/ijisrt/ijisrt24apr2676", "venue": "IJISRT", "label": "predatory", "expect": "flagged"}
+{"id": "10.38124/ijisrt/ijisrt24mar1125", "venue": "IJISRT", "label": "predatory", "expect": "flagged"}
+{"id": "10.1136/bmj-2023-078378", "venue": "BMJ", "label": "legit", "expect": "clean"}
+{"id": "10.1093/restud/rdae007", "venue": "Review of Economic Studies", "label": "legit", "expect": "clean"}
+{"id": "10.1093/nar/gkae268", "venue": "Nucleic Acids Research", "label": "legit", "expect": "clean"}
+{"id": "10.1109/cvpr52733.2024.01605", "venue": "CVPR", "label": "legit", "expect": "clean"}
+{"id": "10.1126/science.adi2336", "venue": "Science", "label": "legit", "expect": "clean"}

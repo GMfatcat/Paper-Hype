@@ -35,6 +35,19 @@
     "legit_n": 5
   },
   "run_date": "2026-06-04",
+  "c5": {
+    "run_date": "2026-06-05",
+    "dataset": "c5_venues.jsonl",
+    "n": 9,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "tp": 4,
+    "fp": 0,
+    "tn": 5,
+    "fn": 0,
+    "note": "predatory recall 4/4 on IJISRT by ISSN (2456-2165); 0 FP on BMJ/RES/NAR/CVPR/Science; hijacked path unit-tested only — no stable hijacked DOI in set"
+  },
   "c1_v2": {
     "run_date": "2026-06-05",
     "note": "Recall 0.82 on hard (fabricated) fakes was always there — original 0.26 was a dataset artifact (perturbed fakes retained real title tokens, so Crossref resolved them as real). FP ~0.21-0.23 is unchanged: fuzzy title-matching against Crossref query.bibliographic has a ~1-in-5 false-positive floor on messy/DOI-less references. DOI-direct was kept as a principled no-regression addition but did not measurably reduce FP on this DOI-sparse dataset. Lenient top-N matching cut FP to 0.15 but crashed recall (0.82→0.45) and was rejected. Advisory stance confirmed.",
