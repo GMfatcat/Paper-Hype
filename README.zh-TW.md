@@ -12,7 +12,7 @@ English → [README.md](./README.md)
 
 Threads、X 等動態牆充斥著「拿一篇真論文、吹成『這將改變一切／你的飯碗不保』」的營銷號貼文。這個 skill 幫你**識破它們**——而且是雙向的。
 
-## 三種模式
+## 四種模式
 
 ### Mode A — 實驗模式（論文 → 營銷號 → 拆解）
 給一個研究領域(或你自己的筆記),它派 sub‑agent 找出**真實存在**的論文,每篇產出:
@@ -49,6 +49,23 @@ Threads、X 等動態牆充斥著「拿一篇真論文、吹成『這將改變�
 
 ### Mode C — 論文採信風險快篩(讀者自保)
 給一個論文連結(arXiv/DOI/URL)問「這篇可信嗎 / 有沒有造假」。它查論文**本身**的誠信——**幻覺/不存在引用、殘留 AI 生成文字、tortured phrases、撤稿/PubPeer 狀態、掠奪性期刊**——回一個 0–100 **採信風險**分數 + 證據卷宗。範圍限於**你自己**的判斷(信不信/引不引),**非公開指控**:每條旗標都是可查證線索,「查不到 ≠ 造假」,乾淨分數 ≠ 論文正確。
+
+### Mode D — GitHub Trending 吹捧查核(讀者自保)
+請它掃 **GitHub trending**(本日/當週/當月)有哪些 repo 被過度吹捧或灌水衝星。它取榜、triage 可疑對象(extraordinary 頭條如 `every`/`#1`/`super intelligence`、熱詞風口的 markdown 包、可查證量化宣稱),然後對每個可疑 repo **真的打開本體**(repo 頁 **加上** raw 的 `SKILL.md`/`README`/source),用 6 維 rubric 給「**頭條 vs 本體落差**」0–100 分。
+
+#### 吹捧分數 rubric（0–100,越高越可疑）
+| 維 | 看什麼 | 配分 |
+|---|---|---|
+| D1 | 頭條 vs 本體落差 *(要讀本體)* | 25 |
+| D2 | 隱瞞限制(無 Limitations 段 / 絕對詞被自己的表格打臉) | 20 |
+| D3 | 適用場景落差(benchmark 可重現 ≠ 對你的用途有用) | 15 |
+| D4 | 絕對化·造神宣稱(`every`/`#1`/`super intelligence`) | 15 |
+| D5 | 規則/程式密度(markdown 包:具體可驗證 vs 空泛) | 15 |
+| D6 | 作者/商業訊號(拋棄式帳號、「免費」但預設走自家後端) | 10 |
+
+燈號:**0–25 🟢實打實 · 26–50 🟡自己查證+看用途 · 51–75 🟠頭條嚴重灌水、當原型看 · 76–100 🔴空殼或詐欺式吹捧。**
+
+> Mode D 的靈魂是**真的打開本體讀**:「全是 markdown」≠ 沒料(料是規則密度,不是有沒有程式碼),漂亮 benchmark ≠ 對你的用途有用,病毒式爆紅 ≠ 灌水。星數機器人無法從外部確認——只能看宣稱 vs 本體落差。讀者自保,**非公開指控**。
 
 ## Mode B 示範
 對一則介紹 Perplexity「Search as Code」架構的真實 X 長文問「這是營銷號嗎」,Mode B 取文後實際開啟 Perplexity 原始研究文章核對,給出這份判決:
@@ -99,7 +116,7 @@ Threads、X 等動態牆充斥著「拿一篇真論文、吹成『這將改變�
    ~/.claude/skills/dissecting-paper-hype/  且內含 SKILL.md、references/、scrapling-fetcher/。
    (Windows:%USERPROFILE%\.claude\skills\dissecting-paper-hype\)
 3. 選用 — 建置取文器:在 skill/scrapling-fetcher 執行  `docker build -t hype-fetcher .`
-4. 確認目標路徑下有 SKILL.md,然後讀它並把三種模式摘要回報給我。
+4. 確認目標路徑下有 SKILL.md,然後讀它並把四種模式摘要回報給我。
 ```
 
 ### 方式 B — 手動
@@ -113,7 +130,7 @@ git clone https://github.com/GMfatcat/Paper-Hype
 Copy-Item -Recurse Paper-Hype\skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
 ```
 
-之後在 Claude Code 裡自然詢問即可——skill 會在出現「做營銷號實驗」「把論文寫成吹捧版」(Mode A)、「這篇貼文是營銷號嗎 / is this post hype? <URL>」(Mode B)、或「這篇論文可信嗎 / 有沒有造假? <連結>」(Mode C)等說法時觸發。
+之後在 Claude Code 裡自然詢問即可——skill 會在出現「做營銷號實驗」「把論文寫成吹捧版」(Mode A)、「這篇貼文是營銷號嗎 / is this post hype? <URL>」(Mode B)、「這篇論文可信嗎 / 有沒有造假? <連結>」(Mode C)、或「掃 github trending / 哪些 trending repo 被過度吹捧」(Mode D)等說法時觸發。
 
 ## Docker 取文器（Mode B 取文）
 封裝 [Scrapling](https://github.com/D4Vinci/Scrapling),免在本機裝 Python/Playwright。

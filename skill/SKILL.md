@@ -1,6 +1,6 @@
 ---
 name: dissecting-paper-hype
-description: Use for three paper-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "一次篩這些貼文/批量篩貼文", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "掃最近N篇論文/批量查論文採信風險", "how do hype accounts spin papers", spotting exaggeration in paper-sharing feeds (Threads/X).
+description: Use for four paper-hype / repo-hype / paper-integrity media-literacy modes. MODE A (study): take papers in some domains, rewrite each as a hype post, dissect the tactics. MODE B (quick-check): given ONE Threads/X post (URL or pasted text) asking "這是營銷號嗎", fetch the post, verify the papers/repos it cites, and return a 0–100 hype score. MODE C (paper integrity): given a paper link (arXiv/DOI/URL) asking "is this paper trustworthy / any fraud", verify its references/venue/retraction status and return a 0–100 trust-risk score (reader self-defense, not accusation). MODE D (github trending): given a request to check GitHub trending (daily/weekly/monthly) for over-hyped or star-inflated repos, fetch the board, read each suspect repo's actual body (SKILL.md/README/source) vs its headline, and return 0–100 hype scores. Triggers: "營銷號", "把論文寫成吹捧版", "這篇貼文是營銷號嗎", "幫我看這個 thread/X 連結", "營銷號分數", "hype score", "這篇論文可信嗎", "有沒有造假", "該不該引用這篇", "is this paper legit", "掃最近N篇論文", "github trending", "掃 trending", "這個 repo 是不是被吹捧/灌水衝星", "trending 上哪些可疑", spotting exaggeration in paper feeds or GitHub trending.
 ---
 
 # Dissecting Paper Hype（論文營銷號實驗）
@@ -10,11 +10,12 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 
 **倫理框架(必守)**:論文必須真實存在(正確標題 + arXiv/DOI);每篇都附誠實的「真實版」對照(含限制);**每個產出檔開頭都嵌入固定警語**(見模板 A),讓任何單篇被單獨複製出去時仍帶著「受控示範、非真實評價」的標記——這是結構性防呆,不能只靠意圖判斷。若使用者要的是真要拿去投放的宣傳文,這個 skill 不適用——婉拒。
 
-## 三種模式（先判斷走哪條）
+## 四種模式（先判斷走哪條）
 - **MODE A 實驗模式**(論文 → 營銷號 → 拆解):使用者給「領域/筆記」要研究吹捧手段。走下方〈MODE A〉全段。
 - **MODE B 快篩模式**(貼文 → 0–100 營銷號分數):使用者**貼一則貼文(URL 或內文)問「這是不是營銷號 / 給個分數」**。跳到〈MODE B:快篩模式〉。
 - **MODE C 快篩模式·論文版**(論文連結 → 0–100 採信風險分數):使用者**給一篇論文(arXiv/DOI/URL)問「這篇可信嗎 / 有沒有造假 / 該不該引用」**。跳到〈MODE C:論文採信風險快篩〉。
-- 倫理硬關卡三模式都適用:都不產出可發布行銷文;Mode B 只判讀貼文;**Mode C 只做讀者自保判讀,不產出公開點名/檢舉內容**。
+- **MODE D 快篩模式·GitHub Trending 版**(榜單 → 每個可疑 repo 0–100 吹捧分數):使用者要**查 GitHub trending(本日/當週/當月)有哪些 repo 被過度吹捧/灌水衝星**。跳到〈MODE D:GitHub Trending 吹捧查核〉。
+- 倫理硬關卡四模式都適用:都不產出可發布行銷文;Mode B 只判讀貼文;**Mode C / Mode D 只做讀者自保判讀,不產出公開點名/檢舉內容**。
 
 ---
 # ═══════ MODE A:實驗模式（論文→營銷號→拆解） ═══════
@@ -207,3 +208,59 @@ description: Use for three paper-hype / paper-integrity media-literacy modes. MO
 - preprint「未同儕審查」是固有 caveat 非紅旗;已被接受的會議(ICML/ACL/EUSIPCO 等)應更低分。
 - 圖片化 PDF / 付費牆 → 標「涵蓋受限」非「通過」。
 - 分數為**啟發式參考非定論**;**批量結果絕不可拿去公開點名 / 檢舉**(自保框架)。
+
+---
+# ═══════ MODE D:GitHub Trending 吹捧查核（榜單→每個可疑 repo 0–100 吹捧分數） ═══════
+
+## 何時走這條
+使用者要**查 GitHub trending(本日 daily / 當週 weekly / 當月 monthly)有哪些 repo 被過度吹捧或灌水衝星**。產出:榜單 triage + 對可疑 repo 各一個 **0–100 吹捧分數**(越高越該存疑)+ 燈號 + 「頭條 vs 本體」落差 + 一句結論。本質是把 **Mode B 的查證紀律套在 repo 上**——只是把「貼文 vs 論文」換成「README 頭條 vs repo 本體」。
+
+## Confirm First（有預設就直接走並說明）
+0. **倫理關卡**:這是「讀者自保判讀」用途,正常放行;若使用者要「幫我把我的 repo README 寫得更吸睛 / 寫衝星文案」→ 停止(那是產行銷文)。
+1. **時間範圍**:預設**三個都查**(daily+weekly+monthly);可只指定一個。語言/領域可選(`/trending/python`、`?since=weekly&spoken_language_code=zh`)。
+2. **輸出**:預設對話回判決;存檔寫到 `hype_check/github_trending判決_<YYYY-MM-DD>.md`(ASCII 資料夾)。
+
+## 取榜 Adapter
+- **榜單**:WebFetch `https://github.com/trending?since=daily|weekly|monthly`(`since` 省略=daily)。要某語言:`https://github.com/trending/<lang>?since=weekly`。請它逐筆回:`owner/repo`、主語言、該期間 star 增量、一句描述。
+- **本體**(打分前**必抓**):repo 頁 `https://github.com/<owner>/<repo>` 拿宣稱/總星數/作者/commit 日期;**再抓 raw 本體**讀密度——skill 包抓 `raw.githubusercontent.com/<owner>/<repo>/<branch>/.../SKILL.md`(注意:`skills/X` 可能是 **symlink 指向 repo 根的 `X/`**,404 就改抓根目錄路徑);程式專案抓主要 source / 找 README 的 **Limitations 段**。
+
+## Pipeline
+1. **取榜** — 抓指定的 daily/weekly/monthly 榜。
+2. **Triage 快篩**(主代理,只憑榜面)— 標出可疑候選,訊號:
+   - **extraordinary / 絕對化頭條**:`every`、`#1`、`super intelligence`、「看整個網路」、「100%」、科幻級能力。
+   - **熱詞風口的 markdown 包**:一堆 skill/plugin 包在同一熱詞下集體衝星。
+   - **可查證量化宣稱**:「省 X% token」「打敗 Y」「SOTA」。
+   - 老牌/機構/知名作者(microsoft、apple 等)→ 通常乾淨,可略過或低優先。
+3. **深挖可疑候選**(每個**並行派一個 subagent**,`model: sonnet`)— **先抓 repo 頁,再抓 raw 本體讀密度**,結構化回報:① 真實宣稱 vs 頭條落差 ② README 有沒有 Limitations、限制是否被埋/淡化 ③ 本體是真程式/真規則密度,或空殼 markdown ④ benchmark 的**場景** ⑤ 作者底子 + 有沒有藏在「free」後面的 hosted 後端/付費牆。
+4. **評分**(主代理)— 下方 6 維 rubric,**每維附一句證據(照抄頭條 或 查證結論)**。
+5. **判決報告** — 榜面 triage 表 + 可疑 repo 維度表 + 落差表 + 跨榜通則 + **方法限制聲明**。
+
+## Mode D 評分 Rubric（0–100,越高越可疑）
+| 代號 | 維度 | 配分 | 看什麼 |
+|---|---|---|---|
+| D1 | **頭條 vs 本體落差** | 25 | 靠讀本體:README 頭條賣的成熟度/能力 vs 本體實際做到的(星數/頭條 賣產品、本體卻只是早期原型) |
+| D2 | **隱瞞限制** | 20 | 吃 LLM/有已知弱點卻**無 Limitations 段**或限制埋在最底;絕對詞被自己的表格/FAQ 打臉 |
+| D3 | **適用場景落差** | 15 | benchmark 可重現 ≠ 對使用者用途有用(壓 log≠壓程式碼;不幻覺≠懂語意) |
+| D4 | 絕對化·造神宣稱 | 15 | `every`/`#1`/`super intelligence`/「整個網路」/「100%」等不可證偽或自封詞 |
+| D5 | 規則/程式密度 | 15 | markdown 包:規則**具體+可驗證+非顯而易見**=低分;空泛 design-101 / 半成品=高分 |
+| D6 | 作者·商業訊號 | 10 | 拋棄式新帳號衝單一 repo / 「免費」但預設走自家後端 / 高 churn AI 生成衝星(release 數爆量) |
+
+**燈號**:0–25 🟢實打實值得用 / 26–50 🟡自己查證+看用途 / 51–75 🟠頭條嚴重灌水、當原型看 / 76–100 🔴空殼或詐欺式吹捧。
+
+> **D1+D2 是 Mode D 的靈魂**:它們靠**真的打開本體讀**,這是只看榜面/星數做不到的。
+
+## Mode D 紀律（從實跑學到的硬規則,務必遵守）
+- **打分前必開本體讀密度**——絕不憑「檔案類型」(全是 markdown≠沒料)或「有 benchmark」表面打分。**第一輪沒讀本體的分數只能當待查證假設**。(實跑教訓:某設計 skill 包憑「只是 markdown」誤判 🟠60,讀了數千字的可機械驗證硬規則後翻成 🟡32。)
+- **benchmark 可重現 ≠ 對你的用途有用**:必追問 benchmark 的**場景=使用者真實用途嗎**。(例:某 token 壓縮工具數據漂亮但壓的是 log/JSON 非程式碼,對 coding 幫助有限;某 code graph 不幻覺但做不了語意 RAG。)
+- **真能跑的軟體 ≠ 不營銷**:本體是真的、限制也寫了,落差仍可能很大——扣分扣在**頭條誇大/隱瞞限制**,不是扣「造假」。**熱情/病毒式爆紅 ≠ 灌水**。
+- **無法外部確認星數機器人**:只能看「宣稱 vs 本體」;**不可斷言「機器人灌水」**,只標「頭條 vs 本體落差大」。高 churn(release 數爆量、AI 生成味)是**軟訊號非定論**。
+- **絕對詞當紅旗**:看到 `every`/`#1`/`super intelligence`/「整個網路」→ 直接翻 README 底部找 Limitations,落差就現形。
+- **分數可複現**:固定這 6 維、各維附證據;同一 repo 重跑分數應接近。
+- **不靜默截斷**:榜上 M 個只深挖 N 個要明說(已深挖 N / 共 M);其餘標「未深挖」。
+- **自保框架**:判決僅供使用者自己決定要不要用,**不可拿去公開點名/檢舉**。
+
+## Common Mistakes
+- 看到「全是 markdown」就斷定空殼 → 必須開本體看規則是否具體可驗證(skill/prompt 包的料=規則密度,不是有沒有程式碼)。
+- 看到漂亮 benchmark 表就給低分 → 要對齊 benchmark 場景與使用者真實用途。
+- 把病毒式爆紅或高星數讀成「灌水詐欺」→ 只能評宣稱 vs 本體落差,不可外部斷言機器人。
+- 只看榜面/描述就打分、沒抓 raw 本體 → 違反 Mode D 靈魂,分數無效。

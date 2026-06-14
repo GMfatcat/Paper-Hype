@@ -12,7 +12,7 @@
 
 Social feeds (Threads, X, …) are flooded with posts that take a real research paper and inflate it into a "this changes everything / your job is doomed" clickbait. This skill helps you **see through that** — in two directions.
 
-## Three modes
+## Four modes
 
 ### Mode A — Study (paper → hype → dissection)
 Give it a research domain (or your own notes). It dispatches sub‑agents to find **real** papers, then for each paper produces:
@@ -49,6 +49,23 @@ Bands: **0–25 🟢 worth reading · 26–50 🟡 verify before trusting · 51�
 
 ### Mode C — Paper integrity triage (reader self-defense)
 Give it a paper link (arXiv/DOI/URL) and ask *"is this trustworthy / any fraud?"*. It verifies the paper's **own** integrity — checking for **nonexistent / hallucinated references, leftover AI-generation text, tortured phrases, retraction / PubPeer status, and predatory venues** — and returns a 0–100 **trust-risk** score with an evidence dossier. Scoped to *your own* decision (trust / cite / build on), **not** public accusation: every flag is a verifiable lead, "查不到 ≠ fraud", and a clean score ≠ "the paper is correct."
+
+### Mode D — GitHub trending hype check (reader self-defense)
+Ask it to scan **GitHub trending** (daily / weekly / monthly) for over‑hyped or "star‑inflated" repos. It fetches the board, triages suspects (extraordinary headlines like `every` / `#1` / `super intelligence`, hot‑keyword markdown packs, checkable quantitative claims), then — for each suspect — **opens the actual body** (the repo page *and* the raw `SKILL.md` / `README` / source) and scores the **headline‑vs‑body gap** 0–100 on a 6‑dimension rubric.
+
+#### Hype‑score rubric (0–100, higher = more suspicious)
+| Dim | What it measures | Max |
+|---|---|---|
+| D1 | Headline‑vs‑body gap *(needs reading the body)* | 25 |
+| D2 | Hidden limitations (no Limitations section / absolute words contradicted by its own table) | 20 |
+| D3 | Use‑case mismatch (reproducible benchmark ≠ useful for *your* task) | 15 |
+| D4 | Absolute / self‑anointing claims (`every` / `#1` / `super intelligence`) | 15 |
+| D5 | Rule or code density (markdown pack: concrete & verifiable vs platitudes) | 15 |
+| D6 | Author / commercial signals (throwaway account, "free" but hosted‑backend by default) | 10 |
+
+Bands: **0–25 🟢 solid · 26–50 🟡 verify + check fit · 51–75 🟠 headline badly inflated, treat as prototype · 76–100 🔴 hollow or deceptive.**
+
+> The soul of Mode D is **actually opening the body**: "all markdown" ≠ empty (the substance is rule density, not whether there's code), a pretty benchmark ≠ useful for your use‑case, and viral ≠ bot‑inflated. You can't confirm star bots from outside — only the claim‑vs‑body gap. Reader self‑defense, **not** public accusation.
 
 ## Mode B in action
 Asked *"is this hype?"* on a real X thread about Perplexity's "Search as Code" architecture, Mode B fetched the post, opened Perplexity's actual research article, and returned this verdict:
@@ -99,7 +116,7 @@ Install the "dissecting-paper-hype" Claude Code skill from https://github.com/GM
    ~/.claude/skills/dissecting-paper-hype/  containing SKILL.md, references/ and scrapling-fetcher/.
    (Windows: %USERPROFILE%\.claude\skills\dissecting-paper-hype\)
 3. Optional — build the post fetcher: in skill/scrapling-fetcher run  `docker build -t hype-fetcher .`
-4. Verify SKILL.md exists at the target path, then read it and summarize the three modes back to me.
+4. Verify SKILL.md exists at the target path, then read it and summarize the four modes back to me.
 ```
 
 ### Option B — manual
@@ -113,7 +130,7 @@ git clone https://github.com/GMfatcat/Paper-Hype
 Copy-Item -Recurse Paper-Hype\skill "$env:USERPROFILE\.claude\skills\dissecting-paper-hype"
 ```
 
-Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A), *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B), or *"這篇論文可信嗎 / is this paper legit? <link>"* (Mode C).
+Then in Claude Code just ask naturally — the skill triggers on phrases like *"做營銷號實驗"*, *"把論文寫成吹捧版"* (Mode A), *"這篇貼文是營銷號嗎 / is this post hype? <URL>"* (Mode B), *"這篇論文可信嗎 / is this paper legit? <link>"* (Mode C), or *"掃 github trending / which trending repos are over‑hyped?"* (Mode D).
 
 ## Docker fetcher (Mode B 取文)
 Packages [Scrapling](https://github.com/D4Vinci/Scrapling) so you don't install Python/Playwright on the host.
